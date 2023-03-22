@@ -25,13 +25,13 @@
                 <a href="#"><span>S</span>akthivel</a>
             </div>
             <div class="nav-toggler"><span></span></div>
-            <ul class="nav" id="nav">
-                <li><a href="#home" class="active"><i class="fa fa-home"></i>Home</a></li>
-                <li><a href="#about"><i class="fa fa-user"></i>About</a></li>
-                <li><a href="#skills"><i class="fa fa-cogs"></i>Skills</a></li>
-                <li><a href="#services"  ><i class="fa fa-list"></i>Services</a></li>
-                <li><a href="#portfolio" ><i class="fa fa-briefcase"></i>Portfolio</a></li>
-                <li><a href="#contact" ><i class="fa fa-comments"></i>Contact</a></li>
+            <ul class="nav" id="nav" id="nav-menu">
+                <li><a href="#home" id="nav-menu" class="active"><i class="fa fa-home"></i>Home</a></li>
+                <li><a href="#about" id="nav-menu"><i class="fa fa-user"></i>About</a></li>
+                <li><a href="#skills" id="nav-menu"><i class="fa fa-cogs"></i>Skills</a></li>
+                <li><a href="#services" id="nav-menu" ><i class="fa fa-list"></i>Services</a></li>
+                <li><a href="#portfolio" id="nav-menu"><i class="fa fa-briefcase"></i>Portfolio</a></li>
+                <li><a href="#contact" id="nav-menu"><i class="fa fa-comments"></i>Contact</a></li>
             </ul>
         </div>
         <!-- aside end -->
@@ -39,19 +39,19 @@
         <!-- main container start -->
         <div class="main-content">
             <!-- home section start -->
-            <section class="home active section" id="home">
+            <section class="home active section" id="home" id="nav-menu">
                 <div class="container">
                     <div class="row">
                         <div class="home-info padd-15">
-                            <h3 class="hello">Hello, My name is <span class="name">Sakthivel Madhu</span></h3>
+                            <h3 class="hello" id="user-detail-name">Hello, My name is <span class="name">Sakthivel Madhu</span></h3>
                             <h3 class="my-profession">I'm a <span class="typing">Backend Developer</span></h3>
-                            <p>Backend developer with considerable
+                            <p id="user-detail-intro">Backend developer with considerable
                                 technical skills who possess self-discipline
                                 and the ability to work with minimum
                                 supervision. Looking forward to join a
                                 progressive organization with opportunities
                                 to work onsignificant projects.</p>
-                            <a href="Sakthivel_Madhu_Resume.pdf" download class="btn">Download CV</a>
+                            <a href="Sakthivel_Madhu_Resume.pdf" download class="btn" id="resume-button-1" id="resume-button-2">Download CV</a>
                         </div> 
                         <div class="home-img padd-15">
                             <img src="images/IMG_7887.jpg" alt="">
@@ -87,31 +87,31 @@
                                         <div class="info-item padd-15">
                                             <p>Birthday : <span>13 May 1997</span></p>
                                         </div>
-                                        <div class="info-item padd-15">
+                                        <div class="info-item padd-15" id="contact-github">
                                             <p>GitHub : <a class="okok" href="https://github.com/SakthivelMadhu">SakthivelMadhu</a></p>
                                         </div>
-                                        <div class="info-item padd-15">
+                                        <div class="info-item padd-15" id="contact-email">
                                             <p>Email : <span>sakthi130597@gmail.com</span></p>
                                         </div>
-                                        <div class="info-item padd-15">
+                                        <div class="info-item padd-15" id="contact-github">
                                             <p>Linkedin : <a class="okok" href="https://www.linkedin.com/in/sakthivel-madhu-864647238/">SakthivelM</a></p>
                                         </div>
-                                        <div class="info-item padd-15">
+                                        <div class="info-item padd-15" id="contact-phone">
                                             <p>Phone : <span>+91 7538837154</span></p>
                                         </div>
-                                        <div class="info-item padd-15">
+                                        <div class="info-item padd-15" id="contact-github">
                                             <p>Replit : <a class="okok" href="https://replit.com/@sakthivelMadhu">Sakthivel97</a></p>
                                         </div>
                                         <div class="info-item padd-15">
                                             <p>Degree : <span>Bachelors of Engineering</span></p>
                                         </div>
-                                        <div class="info-item padd-15">
+                                        <div class="info-item padd-15" id="contact-github">
                                             <p>Google Drive : <a class="okok" href="https://drive.google.com/file/d/1xwuZTu0KbVKTiWhcDirkg_WEoiizG__S/view?usp=share_link">Resume</a></p>
                                         </div>
                                         <div class="info-item padd-15">
                                             <p>City : <span>Bengaluru , KA </span></p>
                                         </div>
-                                        <div class="info-item padd-15">
+                                        <div class="info-item padd-15" id="contact-github">
                                             <p>LeetCode : <a class="okok" href="https://leetcode.com/sakthi130597/">sakthi130597</a></p>
                                         </div>
                                     </div>
@@ -130,7 +130,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="skills padd-15">
+                                <div class="skills padd-15" class="skills-card">
                                     <div class="row">
                                         <div class="section-title padd-15">
                                             <h2 id="skills">Skills</h2>
@@ -353,7 +353,7 @@
                     </div>
                     <div class="row">
                         <!-- portfolio item start  -->
-                        <div class="portfolio-item padd-15">
+                        <div class="portfolio-item padd-15" class="project-card">
                             <div class="portfolio-item-inner shadow-dark">
                                 <div class="portfolio-img">
                                     <img src="images/portifolio1.png" alt="">
@@ -392,7 +392,7 @@
                         </div>
                         <!-- portfolio item end  -->
                         <!-- portfolio item start  -->
-                        <div class="portfolio-item padd-15">
+                        <div class="portfolio-item padd-15" class="project-card">
                             <div class="portfolio-item-inner shadow-dark">
                                 <div class="portfolio-img">
                                     <img src="images/portifolio2.png" alt="">
@@ -430,7 +430,7 @@
                         </div>
                         <!-- portfolio item end  -->
                         <!-- portfolio item start  -->
-                        <div class="portfolio-item padd-15">
+                        <div class="portfolio-item padd-15" class="project-card">
                             <div class="portfolio-item-inner shadow-dark">
                                 <div class="portfolio-img">
                                     <img src="images/portifolio3.png" alt="">
@@ -469,7 +469,7 @@
                         </div>
                         <!-- portfolio item end  -->
                         <!-- portfolio item start  -->
-                        <div class="portfolio-item padd-15">
+                        <div class="portfolio-item padd-15" class="project-card">
                             <div class="portfolio-item-inner shadow-dark">
                                 <div class="portfolio-img">
                                     <img src="images/portifolio4.png" alt="">
