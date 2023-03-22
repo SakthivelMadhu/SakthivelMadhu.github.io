@@ -35,8 +35,8 @@ ul{
     background: var(--bg-black-900);
     min-height: 100vh;
     display: block;
-    position: fixed;
-    left:270px;
+    /* position: fixed; */
+    /* left:270px; */
     padding: 0 30px;
     top: 0;
     right: 0;
@@ -140,19 +140,25 @@ ul{
 }
 /* aside  */
 .aside{
-    width:270px;
-    background: var(--bg-black-100);
-    position: fixed;
-    left: 0;
-    top: 0;
+    width:100%;
+    /* margin: auto; */
+    /* padding: auto; */
+    background: var(--bg-black-100); 
+    text-align: right;
+    
+    /* position: fixed; */
+    /* left: 0; */
+    /* top: 0; */
     padding: 30px;
     border-right: 1px solid var(--bg-black-50);
     display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
+    flex-direction: row;
+    /* justify-content: space-between;  */
+    /* flex-direction: row-reverse; */
+    /* align-items: center;  */
+    /* height: 100%;   */
     z-index:10;
-    transition: all 0.3s ease;
+    transition: all 0.3s ease; 
 }
 .aside .logo{
     position: absolute;
@@ -197,7 +203,7 @@ ul{
     width: 45px;
     border: 1px solid var(--bg-black-50);
     cursor: pointer;
-    position: fixed;
+    /* position: fixed; */
     left: 300px;
     top: 20px;
     border-radius: 5px;
@@ -246,6 +252,12 @@ ul{
 }
 .aside .nav{
     margin-top: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    text-align: right;
+    padding-left: 500px;
+    /* padding: auto; */
 }
 .aside .nav li{
     margin-bottom: 20px;
@@ -668,10 +680,16 @@ h3.my-profession{
         padding-top: 70px;
     }
     .aside{
-        left: -270px;
+        /* left: -270px; */
+        margin: auto;
+        /* padding-right: 300px; */
     }
     /* .main-content{
         padding-left: 0;
+    } */
+    /* .aside .nav{
+        padding-right: 500px;
+        margin: auto;
     } */
     .aside.open{
         left: 0;
@@ -693,6 +711,7 @@ h3.my-profession{
         display: block;
         margin-left: 0;
     }
+    
 }
 @media (max-width:991px){
     .contact .contact-info-item , 
@@ -701,7 +720,11 @@ h3.my-profession{
         flex : 0 0 50%;
         max-width: 50%;
     }
-    
+    .aside .nav{
+        /* padding-right: 500px; */
+        margin: auto;
+        justify-content: center;
+    }
     .home .home-info{
         flex: 0 0 100%;
         max-width: 100%;
@@ -711,6 +734,7 @@ h3.my-profession{
     }
 }
 @media (max-width:767px){
+     
     .service .service-item,
     .portfolio .portfolio-item,
     .contact .contact-info-item,
@@ -722,7 +746,37 @@ h3.my-profession{
         flex: 0 0 100%;
         max-width: 100%;
     }
+    .aside{
+        display: flex;
+        flex-direction: column;
+        margin: auto;
+        padding-right: 20px;
+
+    }
+    .aside .nav{
+        margin: auto;
+        width: 95%;
+        text-align: right;
+        /* padding: auto; */
+        justify-content: right;
+        
+    }
+    .aside .nav li a{
+        font-size: 12px;
+        
+    }
+    .aside .logo{
+        text-align: left;
+        
+    }
+    .aside .logo a{
+        font-size: 20px;
+    }
+    .style-switcher{
+        margin: auto;
+    }
 }
+
 .okok{
     color: var(--skin-color);
 }
@@ -759,4 +813,8 @@ h3.my-profession{
     color: var(--skin-color);
     margin-top: -50px;
     display: block;
+}
+#skillss{
+    padding-top: 20px;
+    text-decoration: underline;
 }
