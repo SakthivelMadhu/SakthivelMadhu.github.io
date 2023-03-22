@@ -78,9 +78,29 @@ function asideSectionTogglerBtn(){
     }
 }
 
-
+// send me mail 
 const forms = document.getElementById("button");
 forms.addEventListener("click" , (e) =>{
     e.preventDefault();
     alert("Message sent succesfully!")
 })
+
+// github activity
+const username = "SakthivelMadhu";
+const url = `https://api.github.com/users/${username}/events`;
+console.log(url)
+fetch(url)
+  .then(response => response.json())
+  .then(data => {
+    const calendarDiv = document.querySelector('.calendar');
+    data.forEach(event => {
+      if (event.type === "PushEvent") {
+        const date = new Date(event.created_at).toLocaleDateString();
+        const html = `<span class="event" title="${date}"></span>`;
+        calendarDiv.insertAdjacentHTML('beforeend', html);
+      }
+    });
+  })
+  .catch(error => {
+    console.error(error);
+  });

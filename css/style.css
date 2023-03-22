@@ -141,7 +141,7 @@ ul{
 /* aside  */
 .aside{
     width:100%;
-    /* margin: auto; */
+    margin: auto;
     /* padding: auto; */
     background: var(--bg-black-100); 
     text-align: right;
@@ -156,7 +156,7 @@ ul{
     /* justify-content: space-between;  */
     /* flex-direction: row-reverse; */
     /* align-items: center;  */
-    /* height: 100%;   */
+    height: 100%;  
     z-index:10;
     transition: all 0.3s ease; 
 }
@@ -258,6 +258,9 @@ ul{
     text-align: right;
     padding-left: 500px;
     /* padding: auto; */
+    height: 50px;
+    /* padding: 0; */
+    /* background: greenyellow; */
 }
 .aside .nav li{
     margin-bottom: 20px;
@@ -517,6 +520,25 @@ h3.my-profession{
     text-align: justify;
     color: var(--text-black-700);
 }
+/* github  */
+.github .container{
+    padding-bottom: 40px;
+}
+.github-calendar {
+    margin: 20px 0;
+}
+
+.github-calendar h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.github-calendar .calendar {
+    display: inline-block;
+    width: 100%;
+    height: auto;
+}
+
 /* service  */
 .service .container{
     padding-bottom: 40px;

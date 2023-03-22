@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="css/skins/color-5.css" class="alternate-style" title="color-5" disabled>
     <link rel="stylesheet" href="css/style-switcher.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+
+    <!-- <link rel="stylesheet" href="css/github-calendar-responsive.css"/> -->
 </head>
 <body>
     <!-- main container -->
@@ -51,7 +53,7 @@
                                 supervision. Looking forward to join a
                                 progressive organization with opportunities
                                 to work onsignificant projects.</p>
-                            <a href="Sakthivel_Madhu_Resume.pdf" download class="btn" id="resume-button-1" id="resume-button-2">Download CV</a>
+                            <a href="Sakthivel_Madhu_Resume.pdf" download class="btn" class="nav-line resume">Download CV</a>
                         </div> 
                         <div class="home-img padd-15">
                             <img src="images/IMG_7887.jpg" alt="">
@@ -246,6 +248,24 @@
                     </div>
                 </div>
             </section>
+
+
+            <!-- github section start -->
+            <section class="github section">
+                <div class="container">
+                    <div class="row">
+                        <div class="github-calendar">
+                            <h2>GitHub Activity</h2>
+                            <div class="calendar"></div>
+                          </div>
+                        
+                    </div>
+                </div>
+            </section>
+            <!-- github section end  -->
+            
+
+
             <!-- about section end -->
             <!-- service section start  -->
             <section class="service section" id="services">
@@ -343,7 +363,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="section-title padd-15">
-                            <h2>Portfolio</h2>
+                            <h2>Projects</h2>
                         </div>
                     </div>
                     <div class="row">
@@ -638,6 +658,21 @@
             .catch(error => console.error('Error!', error.message))
         })
       </script>
+
+    <!-- <script src="js/github-calendar-min.js"></script> -->
+    <!-- <script>
+        GitHubCalendar(".calendar", "your-username");
+    
+        // or enable responsive functionality:
+        GitHubCalendar(".calendar", "your-username", { responsive: true });
+    
+        // Use a proxy
+        GitHubCalendar(".calendar", "your-username", {
+           proxy (username) {
+             return fetch(`https://your-proxy.com/github?user=${username}`)
+           }
+        }).then(r => r.text())
+    </script> -->
 </body>
 
 </html>
