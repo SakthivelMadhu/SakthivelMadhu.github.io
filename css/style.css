@@ -524,20 +524,86 @@ h3.my-profession{
 .github .container{
     padding-bottom: 40px;
 }
-.github-calendar {
-    margin: 20px 0;
-}
 
-.github-calendar h2 {
+.github-stats {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 50px;
+    
+  }
+.github-stats1{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 50px;
+    margin-right: 100px;
+}
+  .github-stats h2 {
     font-size: 24px;
     margin-bottom: 10px;
-}
-
-.github-calendar .calendar {
-    display: inline-block;
+  }
+  
+  .github-calendar {
     width: 100%;
-    height: auto;
-}
+    max-width: 400px;
+    margin-right: 20px;
+    color: var(--text-black-900);
+  }
+  
+  .github-calendar .calendar {
+    width: 600px;
+    height: 300px;
+    color: var(--text-black-900);
+  }
+  
+  .github-streak {
+    width: 100%;
+    max-width: 250px;
+    margin-right: 20px;
+  }
+ .github-streak h2{
+    padding-left: 250px;
+    color: var(--text-black-900);
+ }
+  .github-streak .streak-count {
+    margin-top: 70px;
+    width: 400px;
+    height: 350px;
+    margin-left: 200px;
+    
+  }
+  .github-languages {
+    width: 100%;
+    max-width: 300px;
+    margin-right: 320px;
+  }
+  
+  .github-languages .languages-list {
+    display: flex;
+    flex-wrap: wrap;
+    
+  }
+  
+  .github-languages .languages-list img {
+    
+    width: 600px;
+    height: 300px;
+  }
+  
+  .github-stats-card {
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  .github-stats-card .stats-card img {
+    width: 500px;
+    height: 250px;
+    margin-top: 21px;
+  }
+  
+  
 
 /* service  */
 .service .container{
@@ -810,7 +876,18 @@ h3.my-profession{
 .portfolio-a a{
     padding-right: 40px;
     color: var(--skin-color);
-    text-decoration: underline;
+    border: 2px solid orange;
+    text-align: center;
+    padding-left: 30px;
+    box-sizing: content-box;
+    background-color: var(--bg-black-100);
+    color: var(--text-black-900);
+    font-size: 20px;
+}
+.portfolio-a a:hover{
+    background-color: var(--skin-color);
+    /* background-color: var(--bg-black-100); */
+    color: var(--bg-black-100);
 }
 .portfolio-ab {
     padding-left: 15px;

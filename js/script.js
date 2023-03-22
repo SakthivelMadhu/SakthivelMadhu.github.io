@@ -85,22 +85,83 @@ forms.addEventListener("click" , (e) =>{
     alert("Message sent succesfully!")
 })
 
-// github activity
-const username = "SakthivelMadhu";
-const url = `https://api.github.com/users/${username}/events`;
-console.log(url)
-fetch(url)
-  .then(response => response.json())
-  .then(data => {
-    const calendarDiv = document.querySelector('.calendar');
-    data.forEach(event => {
-      if (event.type === "PushEvent") {
-        const date = new Date(event.created_at).toLocaleDateString();
-        const html = `<span class="event" title="${date}"></span>`;
-        calendarDiv.insertAdjacentHTML('beforeend', html);
-      }
-    });
-  })
-  .catch(error => {
-    console.error(error);
-  });
+
+
+// const url = "https://github-readme-stats.vercel.app/api?username=SakthivelMadhu&show_icons=true&count_private=true";
+// fetch(url, { mode: 'no-cors' })
+//   .then(response => {
+//     console.log(response);
+//   })
+//   .catch(error => {
+//     console.error(error);
+//   });
+
+// const username = "SakthivelMadhu";
+
+// // GitHub Calendar
+// const calendarUrl = `https://api.github.com/users/${username}/events/public`;
+// fetch(calendarUrl)
+//   .then(response => response.json())
+//   .then(data => {
+//     const calendarDiv = document.querySelector('.github-calendar .calendar');
+//     data.forEach(event => {
+//       if (event.type === "PushEvent") {
+//         const date = new Date(event.created_at).toLocaleDateString();
+//         const html = `<span class="event" title="${date}"></span>`;
+//         calendarDiv.insertAdjacentHTML('beforeend', html);
+//       }
+//     });
+//   })
+//   .catch(error => {
+//     console.error(error);
+//   });
+
+// // Streak Stats
+// const streakUrl = `https://github-readme-streak-stats.herokuapp.com/?user=${username}`;
+// fetch(streakUrl)
+//   .then(response => response.text())
+//   .then(data => {
+//     const streakCount = data.match(/<span class="streak-count">\d+<\/span>/)[0];
+//     document.querySelector('.github-streak .streak-count').innerHTML = streakCount;
+//   })
+//   .catch(error => {
+//     console.error(error);
+//   });
+
+// // Top Languages
+// const languagesUrl = `https://api.github.com/users/${username}/repos?per_page=100`;
+// fetch(languagesUrl)
+//   .then(response => response.json())
+//   .then(data => {
+//     let languages = {};
+//     data.forEach(repo => {
+//       const language = repo.language;
+//       if (language) {
+//         if (languages[language]) {
+//           languages[language] += 1;
+//         } else {
+//           languages[language] = 1;
+//         }
+//       }
+//     });
+//     const sortedLanguages = Object.keys(languages).sort((a, b) => languages[b] - languages[a]);
+//     const languagesList = document.querySelector('.github-languages .languages-list');
+//     sortedLanguages.slice(0, 6).forEach(language => {
+//       const html = `<li>${language}</li>`;
+//       languagesList.insertAdjacentHTML('beforeend', html);
+//     });
+//   })
+//   .catch(error => {
+//     console.error(error);
+//   });
+
+// // GitHub Stats Card
+// const statsUrl = `https://github-readme-stats.vercel.app/api?username=${username}&show_icons=true&count_private=true`;
+// fetch(statsUrl)
+//   .then(response => response.text())
+//   .then(data => {
+//     document.querySelector('.github-stats-card .stats-card').innerHTML = data;
+//   })
+//   .catch(error => {
+//     console.error(error);
+//   });

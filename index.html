@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="css/style-switcher.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
 
-    <!-- <link rel="stylesheet" href="css/github-calendar-responsive.css"/> -->
+    <link rel="stylesheet" href="css/github-calendar-responsive.css"/>
 </head>
 <body>
     <!-- main container -->
@@ -62,6 +62,7 @@
                 </div>
             </section>
             <!-- home section end -->
+
             <!-- about section start  -->
             <section class="about section" id="about">
                 <div class="container">
@@ -248,25 +249,53 @@
                     </div>
                 </div>
             </section>
-
+            <!-- about section end -->
 
             <!-- github section start -->
             <section class="github section">
                 <div class="container">
                     <div class="row">
-                        <div class="github-calendar">
-                            <h2>GitHub Activity</h2>
-                            <div class="calendar"></div>
+                        <div class="github-stats">
+                            <div class="github-calendar">
+                                <div class="section-title padd-15">
+                                    <h2>My Github Calender</h2>
+                                </div>
+                              <div class="calendar">
+                                <!-- <img src="https://api.github.com/users/SakthivelMadhu/events" alt=""> -->
+                              </div>
+                            </div>
+                            <div class="github-streak">                                
+                                <h2>StreakStats</h2>                           
+                                <p class="streak-count">
+                                    <img src="https://github-readme-streak-stats.herokuapp.com/?user=SakthivelMadhu" alt="">
+                                </p>
+                            </div>
                           </div>
-                        
+                    </div>
+                    <div class="row">
+                        <div class="github-stats">
+                            <div class="github-languages">
+                                <div class="section-title padd-15">
+                                    <h2>GitHub Stats</h2>
+                                </div>
+                                <div class="languages-list">
+                                  <img src="https://github-readme-stats.vercel.app/api?username=SakthivelMadhu&show_icons=true&theme=radica" />
+                                </div>
+                              </div>
+                              <div class="github-stats-card">
+                                <div class="section-title padd-15">
+                                    <h2>Top Languages</h2>
+                                </div>
+                                <div class="stats-card">
+                                  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=SakthivelMadhu&layout=compact" /><br>                                  
+                                </div>
+                              </div>
+                        </div>
                     </div>
                 </div>
             </section>
-            <!-- github section end  -->
-            
-
-
             <!-- about section end -->
+            
             <!-- service section start  -->
             <section class="service section" id="services">
                 <div class="container">
@@ -358,6 +387,7 @@
                 </div>
             </section>
             <!-- service section end  -->
+
             <!-- Project section start  -->
             <section class="portfolio section" id="projects">
                 <div class="container">
@@ -405,8 +435,8 @@
                                     <p>A collaborative project built by a team of 4 members.</p>
                                 </div>
                                 <div class="portfolio-a">
-                                    <a href="https://github.com/Deepak-25yadav/wicked-edge-6587">Github</a>
-                                    <a href="https://magnificent-bonbon-8ffb8d.netlify.app/">Live Demo</a>
+                                    <a class="omg" href="https://github.com/Deepak-25yadav/wicked-edge-6587">Github link</a>
+                                    <a class="omg" href="https://magnificent-bonbon-8ffb8d.netlify.app/">Check it out!</a>
                                 </div>
                             </div>
                         </div>
@@ -443,8 +473,8 @@
                                     <p>A collaborative project built by a team of 4 members.</p>
                                 </div>
                                 <div class="portfolio-a">
-                                    <a href="https://github.com/SakthivelMadhu/-lazy-base-8555">Github</a>
-                                    <a href="https://cerulean-tarsier-3cdce4.netlify.app/">Live Demo</a>
+                                    <a class="omg" href="https://github.com/SakthivelMadhu/-lazy-base-8555">Github link</a>
+                                    <a class="omg" href="https://cerulean-tarsier-3cdce4.netlify.app/">Check it out!</a>
                                 </div>
                             </div>
                         </div>
@@ -482,8 +512,8 @@
                                     <p>A Solo project built by a Short Duration of 5 days.</p>
                                 </div>
                                 <div class="portfolio-a">
-                                    <a href="https://github.com/SakthivelMadhu/next-vest-6513">Github</a>
-                                    <a href="https://roaring-licorice-c0552e.netlify.app/">Live Demo</a>
+                                    <a class="omg" href="https://github.com/SakthivelMadhu/next-vest-6513">Github link</a>
+                                    <a class="omg" href="https://roaring-licorice-c0552e.netlify.app/">Check it out!</a>
                                 </div>
                             </div>
                         </div>
@@ -524,8 +554,8 @@
                                     <p>A Solo project built by a Short Duration of 15 days.</p>
                                 </div>
                                 <div class="portfolio-a">
-                                    <a href="https://github.com/SakthivelMadhu/Restaurant_management_system">Github</a>
-                                    <a href="#">Live Demo</a>
+                                    <a class="omg" href="https://github.com/SakthivelMadhu/Restaurant_management_system">Github link</a>
+                                    <a class="omg" href="#">Check it out!</a>
                                 </div>
                             </div>
                         </div>
@@ -535,6 +565,7 @@
                 </div>
             </section>
             <!-- Project section end  -->
+
             <!-- contact section start  -->
             <section class="contact section" id="contact">
                 <div class="container">
@@ -659,20 +690,21 @@
         })
       </script>
 
-    <!-- <script src="js/github-calendar-min.js"></script> -->
-    <!-- <script>
-        GitHubCalendar(".calendar", "your-username");
+    <script src="js/github-calendar-min.js"></script>
+    <script>
+        const username = "SakthivelMadhu"
+        GitHubCalendar(".calendar", "SakthivelMadhu");
     
         // or enable responsive functionality:
-        GitHubCalendar(".calendar", "your-username", { responsive: true });
+        GitHubCalendar(".calendar", "SakthivelMadhu", { responsive: true });
     
         // Use a proxy
-        GitHubCalendar(".calendar", "your-username", {
+        GitHubCalendar(".calendar", "SakthivelMadhue", {
            proxy (username) {
              return fetch(`https://your-proxy.com/github?user=${username}`)
            }
         }).then(r => r.text())
-    </script> -->
+    </script>
 </body>
 
 </html>
