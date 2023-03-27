@@ -313,6 +313,7 @@ h3.my-profession{
     font-size: 20px;
     color: var(--text-black-700);
 }
+
 .home .home-img{
     flex: 0 0 40%;
     max-width: 40%;
@@ -342,6 +343,7 @@ h3.my-profession{
 .home .home-img img{
     height: 400px;
     margin: auto;
+    /* width:400px */
     /* border-radius: ; */
 }
 /* about  */
@@ -844,9 +846,9 @@ h3.my-profession{
     .aside .nav{
         margin: auto;
         width: 95%;
-        text-align: right;
+        text-align: center;
         /* padding: auto; */
-        justify-content: right;
+        justify-content: center;
         
     }
     .aside .nav li a{
