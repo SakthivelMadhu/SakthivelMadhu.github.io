@@ -700,8 +700,8 @@ h3.my-profession{
     margin-bottom: 60px;
 }
 .contact .contact-info-item{
-    flex: 0 0 25%;
-    max-width: 25%;
+    flex: 0 0 20%;
+    max-width: 20%;
     text-align: center;
     margin-bottom: 60px;
 }
@@ -863,6 +863,10 @@ h3.my-profession{
     .style-switcher{
         margin: auto;
     }
+    .github-stats{
+        display: flex;
+        flex-direction: column;
+    }
 }
 
 .okok{
@@ -916,4 +920,12 @@ h3.my-profession{
 #skillss{
     padding-top: 20px;
     text-decoration: underline;
+}
+#resume{
+    text-align: center;
+    justify-content: space-evenly;
+    margin: auto;
+    height: 50px;
+    align-items: center;
+    border: none;
 }

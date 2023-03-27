@@ -22,26 +22,29 @@
     <!-- main container -->
     <div class="main-container">
         <!-- aside start -->
-        <div class="aside">
+        <div class="aside" >
             <div class="logo">
                 <a href="#"><span>S</span>akthivel</a>
             </div>
             <div class="nav-toggler"><span></span></div>
-            <ul class="nav" id="nav" id="nav-menu">
-                <li><a href="#home" id="nav-menu" class="nav-link home" class="active"><i class="fa fa-home"></i>Home</a></li>
-                <li><a href="#about" id="nav-menu" class="nav-link about"><i class="fa fa-user"></i>About</a></li>
-                <li><a href="#skills" id="nav-menu" class="nav-link skills"><i class="fa fa-cogs"></i>Skills</a></li>
-                <li><a href="#services" id="nav-menu" class="nav-link services"><i class="fa fa-list"></i>Services</a></li>
-                <li><a href="#projects" id="nav-menu" class="nav-link projects"><i class="fa fa-briefcase"></i>Projects</a></li>
-                <li><a href="#contact" id="nav-menu" class="nav-link contact"><i class="fa fa-comments"></i>Contact</a></li>
-            </ul>
+            <nav id="nav-menu">
+                <ul class="nav" id="nav" >
+                    <li><a href="#home"  class="nav-link home" class="active"><i class="fa fa-home"></i>Home</a></li>
+                    <li><a href="#about"  class="nav-link about"><i class="fa fa-user"></i>About</a></li>
+                    <li><a href="#skills"  class="nav-link skills"><i class="fa fa-cogs"></i>Skills</a></li>
+                    <li><a href="#services"  class="nav-link services"><i class="fa fa-list"></i>Services</a></li>
+                    <li><a href="#projects"  class="nav-link projects"><i class="fa fa-briefcase"></i>Projects</a></li>
+                    <li><a href="#contact"  class="nav-link contact"><i class="fa fa-comments"></i>Contact</a></li>
+                    <li><a href="#resume"  class="nav-link contact"><i class="fa fa-briefcase"></i>Resume</a></li>
+                </ul>
+            </nav>
         </div>
         <!-- aside end -->
 
         <!-- main container start -->
         <div class="main-content">
             <!-- home section start -->
-            <section class="home active section" id="home" id="nav-menu">
+            <section class="home active section" id="home" >
                 <div class="container">
                     <div class="row">
                         <div class="home-info padd-15">
@@ -53,10 +56,10 @@
                                 supervision. Looking forward to join a
                                 progressive organization with opportunities
                                 to work onsignificant projects.</p>
-                            <a href="Sakthivel_Madhu_Resume.pdf" download class="btn" class="nav-line resume">Download CV</a>
+                            <a href="resume.pdf" target="_blank" download class="btn" class="nav-link resume">Download CV</a>
                         </div> 
                         <div class="home-img padd-15">
-                            <img src="images/IMG_7887.jpg" alt="">
+                            <img src="images/professional-photo.jpg" alt="My professional photo">
                         </div>
                     </div>
                 </div>
@@ -252,7 +255,7 @@
             <!-- about section end -->
 
             <!-- github section start -->
-            <section class="github section">
+            <section class="github section" id="skills">
                 <div class="container">
                     <div class="row">
                         <div class="github-stats">
@@ -604,6 +607,11 @@
                             <h4>Linkedin</h4>
                             <p><a class="okok" href="https://www.linkedin.com/in/sakthivel-madhu-864647238/">SakthivelM</a></p>
                         </div>
+                        <div class="contact-info-item padd-15">
+                            <div class="icon"><i class="fa fa-globe-europe"></i></div>
+                            <h4>GitHub</h4>
+                            <p><a class="okok" href="https://github.com/SakthivelMadhu">SakthivelMadhu</a></p>
+                        </div>
                          <!-- contact info item end  -->
                     </div>
                     <h3 class="contact-title padd-15">SEND ME AN EMAIL</h3>
@@ -648,6 +656,14 @@
                 </div>
             </section>
             <!-- contact section end  -->
+
+            <!-- resume section start  -->
+            <section id="resume">
+                <h2>My Resume</h2>
+                <!-- Add resume section content here -->
+                <a href="resume.pdf" id="resume" download class="btn" class="nav-link resume">Download Resume</a>
+            </section>
+              <!-- resume section end  -->
         </div>
         <!-- main container end -->
     </div>
