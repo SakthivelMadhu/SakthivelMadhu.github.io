@@ -925,9 +925,12 @@ h3.my-profession{
 }
 #resume{
     text-align: center;
-    justify-content: space-evenly;
+    justify-content: space-around;
     margin: auto;
-    height: 50px;
+    height: 150px;
     align-items: center;
     border: none;
+    padding-top: 30px;
+    display: flex;
+    width: 50%;
 }
