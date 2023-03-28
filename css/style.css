@@ -936,3 +936,7 @@ h3.my-profession{
     background: var(--bg-black-100);
     color: var(--text-black-700);
 }
+.skills-card-img{
+    width:auto;
+    padding-right: 5px;
+}
