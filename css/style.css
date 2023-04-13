@@ -534,7 +534,7 @@ h3.my-profession{
     margin-top: 50px;
     
   }
-.github-stats1{
+.github-stats{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -548,32 +548,32 @@ h3.my-profession{
   }
   
   .github-calendar {
-    width: 100%;
+    width: 1000px;
     max-width: 400px;
     margin-right: 20px;
     color: var(--text-black-900);
   }
   
-  .github-calendar .calendar {
-    width: 600px;
+  .github-calendar .react-activity-calendar {
+    width: 1000px;
     height: 300px;
     color: var(--text-black-900);
   }
   
   .github-streak {
     width: 100%;
-    max-width: 250px;
+    max-width: 200px;
     margin-right: 20px;
   }
  .github-streak h2{
-    padding-left: 250px;
+    padding-left: 2px;
     color: var(--text-black-900);
  }
   .github-streak .streak-count {
     margin-top: 70px;
     width: 400px;
     height: 350px;
-    margin-left: 200px;
+    margin-left: 20px;
     
   }
   .github-languages {

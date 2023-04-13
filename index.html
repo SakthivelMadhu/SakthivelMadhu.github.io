@@ -49,9 +49,9 @@
                 <div class="container">
                     <div class="row">
                         <div class="home-info padd-15">
-                            <h3 class="hello" id="user-detail-name">Hello, My name is <span class="name">Sakthivel Madhu</span></h3>
+                            <h3 class="hello" >Hello, My name is <span class="name">Sakthivel Madhu</span></h3>
                             <h3 class="my-profession">I'm a <span class="typing">Backend Developer</span></h3>
-                            <p id="user-detail-intro">Backend developer with considerable
+                            <p >Backend developer with considerable
                                 technical skills who possess self-discipline
                                 and the ability to work with minimum
                                 supervision. Looking forward to join a
@@ -59,7 +59,7 @@
                                 to work onsignificant projects.
                             </p>
 
-                            <button id="resume-button-2" onclick="window.open('Sakthivel-Madhu-Resume.pdf', '_blank')">Open in new tab</button>
+                            <!-- <button id="resume-button-2" onclick="window.open('Sakthivel-Madhu-Resume.pdf', '_blank')">Open in new tab</button> -->
                             <a id="resume-link-2" href="Sakthivel-Madhu-Resume.pdf" download>Download PDF</a>
 
                         </div> 
@@ -83,8 +83,8 @@
                         <div class="about-content padd-15">
                             <div class="row">
                                 <div class="about-text padd-15">
-                                    <h3 >I'm Sakthivel Madhu and <span>Java Backend Developer</span></h3>
-                                    <p >Talented backend developer adept at contributing to a highly 
+                                    <h3 id="user-detail-name">I'm Sakthivel Madhu and <span>Java Backend Developer</span></h3>
+                                    <p id="user-detail-intro">Talented backend developer adept at contributing to a highly 
                                         collaborative work environment, finding solutions and determining 
                                         customer satisfaction. Designed and developed web applications 
                                         across multiple APIs, third-party integrations and databases. 
@@ -138,13 +138,8 @@
                                     <div class="row">
                                         <div class="buttons padd-15">
                                             <a href="#contact" data-section-index="1" class="btn hire-me">Hire Me</a>
-                                            <!-- <a href="resume.pdf" target="_blank" rel="noopener noreferrer" id="resume-link-2">View Online</a>
-                                            <a href="resume.pdf" download id="resume-button-2">Download PDF</a> -->
-                                            <a href="Sakthivel_Madhu_Resume.pdf" class="btn" download >Download CV</a>
 
-                                            <!-- <a href="resume.pdf" target="_blank" download id="resume-link-2">
-                                                <button id="resume-button-2">Download Resume</button>
-                                              </a> -->
+                                            <a id="resume-link-2" href="Sakthivel-Madhu-Resume.pdf" download>Download PDF</a>
                                               
                                             <!-- <div class="row">
                                                 <a href="#contact" data-section-index="1" class="btn hire-me">Hire Me</a>
@@ -289,11 +284,16 @@
                                 <div class="section-title padd-15">
                                     <h2>My Github Calender</h2>
                                 </div>
-                              <div class="calendar" class="react-activity-calendar">
+                              <div  class="react-activity-calendar">
                                 <!-- <img src="https://api.github.com/users/SakthivelMadhu/events" alt=""> -->
-                                <GithubCalendar username="your-username" />
+                                <!-- <GithubCalendar username="SakthivelMadhu" /> -->
                               </div>
                             </div>
+                            
+                        </div>
+                    </div>
+                    <!-- <div class="row"> -->
+                        <!-- <div class="github-stats"> -->
                             <!-- <h2>StreakStats</h2> -->
                             <div class="github-streak" >                                
                                 <div class="section-title padd-15">
@@ -303,11 +303,6 @@
                                     <img  src="https://github-readme-streak-stats.herokuapp.com/?user=SakthivelMadhu" alt="GitHub Streak Stats" id="github-streak-stats">
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="github-stats">
-                            
                             <div class="github-languages">
                                 <div class="section-title padd-15">
                                     <h2>GitHub Stats</h2>
@@ -324,8 +319,8 @@
                                   <img   src="https://github-readme-stats.vercel.app/api/top-langs/?username=SakthivelMadhu&layout=compact" alt="GitHub Top Languages" id="github-top-langs"/><br>                                  
                                 </div>
                             </div>
-                        </div>
-                    </div>
+                        <!-- </div> -->
+                    <!-- </div> -->
                 </div>
             </section>
             <!-- about section end -->
@@ -762,7 +757,7 @@
             <section id="resume">
                 <h2>If You Want Download My Resume, Please click here! </h2>
 
-                <button id="resume-button-1" onclick="window.open('Sakthivel-Madhu-Resume.pdf', '_blank')">Open in new tab</button>
+                <!-- <button id="resume-button-1" onclick="window.open('Sakthivel-Madhu-Resume.pdf', '_blank')">Open in new tab</button> -->
                 <a id="resume-link-1" href="Sakthivel-Madhu-Resume.pdf" download>Download PDF</a>
                 
             </section>
@@ -815,13 +810,13 @@
     <script src="js/github-calendar-min.js"></script>
     <script>
         const username = "SakthivelMadhu"
-        GitHubCalendar(".calendar", "SakthivelMadhu");
+        GitHubCalendar(".react-activity-calendar", "SakthivelMadhu");
     
         // or enable responsive functionality:
-        GitHubCalendar(".calendar", "SakthivelMadhu", { responsive: true });
+        GitHubCalendar(".react-activity-calendar", "SakthivelMadhu", { responsive: true });
     
         // Use a proxy
-        GitHubCalendar(".calendar", "SakthivelMadhu", {
+        GitHubCalendar(".react-activity-calendar", "SakthivelMadhue", {
            proxy (username) {
              return fetch(`https://your-proxy.com/github?user=${username}`)
            }
