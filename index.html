@@ -58,10 +58,9 @@
                                 progressive organization with opportunities
                                 to work onsignificant projects.
                             </p>
-                            <div id="resume-button-2"><a href="Sakthivel_Madhu_Resume.pdf" download  >Download Resume</a></div>
-                            
-                            <!-- <button id="resume-button-2" onclick="window.open('Sakthivel_Madhu_Resume.pdf', '_blank')" download type="button"> Resume</button> -->
-                            <!-- <button id="resume-button-2" onclick="window.location.href='Sakthivel_Madhu_Resume.pdf'" type="button">Download PDF</button> -->
+
+                            <button id="resume-button-2" onclick="window.open('Sakthivel-Madhu-Resume.pdf', '_blank')">Open in new tab</button>
+                            <a id="resume-link-2" href="Sakthivel-Madhu-Resume.pdf" download>Download PDF</a>
 
                         </div> 
                         <div class="home-imag padd-15">
@@ -292,6 +291,7 @@
                                 </div>
                               <div class="calendar" class="react-activity-calendar">
                                 <!-- <img src="https://api.github.com/users/SakthivelMadhu/events" alt=""> -->
+                                <GithubCalendar username="your-username" />
                               </div>
                             </div>
                             <!-- <h2>StreakStats</h2> -->
@@ -761,27 +761,10 @@
             <!-- resume section start  -->
             <section id="resume">
                 <h2>If You Want Download My Resume, Please click here! </h2>
-                <!-- <a href="resume.pdf" id="resume-link-1"  target="_blank" download >Download Resume</a> -->
-                <!-- <a href="resume.pdf" target="_blank" rel="noopener noreferrer" id="resume-link-1">View Online</a>
-                <a href="resume.pdf" download id="resume-button-1">Download PDF</a> -->
 
-                <!-- <a href="Sakthivel_Madhu_Resume.pdf" download  id="resume-link-1">Download Resume</a> -->
-                <!-- <button id="resume-button-1" onclick="window.open('Sakthivel_Madhu_Resume.pdf', '_blank')" type="button">Download Resume</button> -->
-                <!-- <button id="resume-button-1" onclick="window.location.href='Sakthivel_Madhu_Resume.pdf'" type="button">Download PDF</button> -->
-                <div id="resume-button-1"><a href="Sakthivel_Madhu_Resume.pdf" download  >Download Resume</a></div>
-
-                <!-- <div class="row">
-                    <div class="col-lg-6">
-                      <div class="resume-btn">
-                        <a href="resume.pdf" target="_blank" rel="noopener noreferrer" id="resume-link-1">View Online</a>
-                      </div>
-                    </div>
-                    <div class="col-lg-6">
-                      <div class="resume-btn">
-                        <a href="resume.pdf" download id="resume-button-1">Download PDF</a>
-                      </div>
-                    </div>
-                </div> -->
+                <button id="resume-button-1" onclick="window.open('Sakthivel-Madhu-Resume.pdf', '_blank')">Open in new tab</button>
+                <a id="resume-link-1" href="Sakthivel-Madhu-Resume.pdf" download>Download PDF</a>
+                
             </section>
 
          
@@ -838,7 +821,7 @@
         GitHubCalendar(".calendar", "SakthivelMadhu", { responsive: true });
     
         // Use a proxy
-        GitHubCalendar(".calendar", "SakthivelMadhue", {
+        GitHubCalendar(".calendar", "SakthivelMadhu", {
            proxy (username) {
              return fetch(`https://your-proxy.com/github?user=${username}`)
            }
