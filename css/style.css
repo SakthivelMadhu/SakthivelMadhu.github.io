@@ -940,3 +940,30 @@ h3.my-profession{
     width:auto;
     padding-right: 5px;
 }
+
+
+
+
+/* resume   */
+#resume-link-1,
+#resume-link-2 {
+  display: inline-block;
+  background-color: #4CAF50;
+  color: white;
+  text-align: center;
+  padding: 12px 24px;
+  text-decoration: none;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+#resume-link-1:hover,
+#resume-link-2:hover {
+  background-color: #3e8e41;
+}
+
+#resume-link-1:active,
+#resume-link-2:active {
+  background-color: #3e8e41;
+  transform: translateY(1px);
+}
