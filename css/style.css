@@ -945,25 +945,37 @@ h3.my-profession{
 
 
 /* resume   */
+#resume-button-1,
+#resume-button-2 {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+#resume-button-1:hover,
+#resume-button-2:hover {
+  background-color: #0069d9;
+}
+
+/* If using anchor elements */
 #resume-link-1,
 #resume-link-2 {
   display: inline-block;
-  background-color: #4CAF50;
-  color: white;
-  text-align: center;
-  padding: 12px 24px;
-  text-decoration: none;
-  font-size: 16px;
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
   border-radius: 5px;
+  font-size: 18px;
+  text-decoration: none;
+  padding-right: 10px;
 }
 
 #resume-link-1:hover,
 #resume-link-2:hover {
-  background-color: #3e8e41;
+  background-color: #0069d9;
 }
 
-#resume-link-1:active,
-#resume-link-2:active {
-  background-color: #3e8e41;
-  transform: translateY(1px);
-}
