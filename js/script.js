@@ -85,25 +85,25 @@ forms.addEventListener("click" , (e) =>{
     alert("Message sent succesfully!")
 })
 
-const resumeButton1 = document.getElementById("resume-button-1");
-resumeButton1.addEventListener("click", () => {
-    window.location.href='Sakthivel-Madhu-Resume.pdf'
-  const resumeLink1 = document.createElement("a");
-  resumeLink1.href = "Sakthivel-Madhu-Resume.pdf";
-  resumeLink1.target = "_blank";
-  resumeLink1.download = "Sakthivel-Madhu-Resume.pdf";
-  resumeLink1.click();
-});
+// const resumeButton1 = document.getElementById("resume-button-1");
+// resumeButton1.addEventListener("click", () => {
+//     window.location.href='Sakthivel-Madhu-Resume.pdf'
+//   const resumeLink1 = document.createElement("a");
+//   resumeLink1.href = "Sakthivel-Madhu-Resume.pdf";
+//   resumeLink1.target = "_blank";
+//   resumeLink1.download = "Sakthivel-Madhu-Resume.pdf";
+//   resumeLink1.click();
+// });
 
-const resumeButton2 = document.getElementById("resume-button-2");
-resumeButton2.addEventListener("click", () => {
-    window.location.href='Sakthivel-Madhu-Resume.pdf'
-  const resumeLink2 = document.createElement("a");
-  resumeLink2.href = "Sakthivel-Madhu-Resume.pdf";
-  resumeLink2.target = "_blank";
-  resumeLink2.download = "Sakthivel-Madhu-Resume.pdf";
-  resumeLink2.click();
-});
+// const resumeButton2 = document.getElementById("resume-button-2");
+// resumeButton2.addEventListener("click", () => {
+//     window.location.href='Sakthivel-Madhu-Resume.pdf'
+//   const resumeLink2 = document.createElement("a");
+//   resumeLink2.href = "Sakthivel-Madhu-Resume.pdf";
+//   resumeLink2.target = "_blank";
+//   resumeLink2.download = "Sakthivel-Madhu-Resume.pdf";
+//   resumeLink2.click();
+// });
 
 
 // const url = "https://github-readme-stats.vercel.app/api?username=SakthivelMadhu&show_icons=true&count_private=true";
