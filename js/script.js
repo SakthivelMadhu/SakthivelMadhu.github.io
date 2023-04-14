@@ -87,6 +87,7 @@ forms.addEventListener("click" , (e) =>{
 
 const resumeButton1 = document.getElementById("resume-button-1");
 resumeButton1.addEventListener("click", () => {
+    window.location.href='Sakthivel-Madhu-Resume.pdf'
   const resumeLink1 = document.createElement("a");
   resumeLink1.href = "Sakthivel-Madhu-Resume.pdf";
   resumeLink1.target = "_blank";
@@ -96,6 +97,7 @@ resumeButton1.addEventListener("click", () => {
 
 const resumeButton2 = document.getElementById("resume-button-2");
 resumeButton2.addEventListener("click", () => {
+    window.location.href='Sakthivel-Madhu-Resume.pdf'
   const resumeLink2 = document.createElement("a");
   resumeLink2.href = "Sakthivel-Madhu-Resume.pdf";
   resumeLink2.target = "_blank";
