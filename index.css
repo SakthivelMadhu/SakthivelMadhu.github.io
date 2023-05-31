@@ -11,6 +11,7 @@
   
   
   .mainheading {
+    /* margin-top: 250px; */
     font-family: system-ui;
     text-align: center;
     font-size: 3rem;
@@ -18,9 +19,17 @@
     margin: 2rem 0;
     text-shadow: 2px 2px 2px var(--primary-color);
     color: rgb(0, 0, 0);
+    
   }
   
-  
+  #abouts , #projectss , #contacts , #skillss {
+    margin-top: 300px;
+  }
+   /* .skills {
+    margin-top: 200px;
+    padding-top: 200px;
+    height:auto;
+  } */
   /* <!-------------------------------------------------- NAVBAR ----------------------------------------------------> */
   .fa-bars {
     display: none;
@@ -46,7 +55,7 @@
   }
   
   #nav-menu ul li {
-    padding: 10px 0;
+    padding: 20px 0;
     list-style: none;
   }
   
@@ -57,14 +66,16 @@
     font-family: system-ui;
     text-decoration: none;
     text-shadow: 1px 1px 1px var(--primary-color);
+    margin-top: 20px;
   }
   
-  #nav-menu ul li a:hover {
+  /* #nav-menu ul li a:hover {
     background-color: #ffffff00;
     padding: 2px 0;
     border: 1px solid white;
     border-radius: 10px;
-  }
+    /* margin-top: 20px; */
+  /* }  */
   
   .fa-sun {
     position: fixed;
@@ -186,6 +197,7 @@
   
   #about {
     text-align: center;
+    /* margin-top: 100px; */
   }
   
   #about h1 {
@@ -213,6 +225,7 @@
     width: 80%;
     margin: 0 auto;
     grid-template-columns: repeat(5, 1fr);
+    /* margin-top: 100px; */
   }
   
   .skills-card {
@@ -227,7 +240,16 @@
     background-color: #ffffff3c;
     border: 2px solid rgba(255, 255, 255, 0.645);
   }
-  
+  .skills-card-name{
+    margin-top: -5px;
+    height: 60px;
+    /* object-fit: contain; */
+    /* width: 130px; */
+    font-size: 30px;
+    padding-left: 10px;
+    /* background-color: #ffffff3c; */
+    /* border: 2px solid rgba(255, 255, 255, 0.645); */
+  }
   
   
   

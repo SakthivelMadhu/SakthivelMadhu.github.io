@@ -19,13 +19,13 @@
         <nav title="Navbar" id="nav-menu" class="nav-menu">
             <ul id="navi">
                 <li title="HOME"><a class="nav-link home" href="#home"><span> HOME</span></a></li>
-                <li title="ABOUT"><a class="nav-link about" href="#about"><span> ABOUT</span></a></li>
-                <li title="SKILLS"><a class="nav-link skills" href="#skills"><span>SKILLS</span> </a></li>
-                <li title="PROJECTS"><a class="nav-link projects" href="#projects"><span>PROJECTS</span></a></li>
-                <li title="CONTACT"><a class="nav-link contact" href="#contact"><span>CONTACT</span> </a></li>
+                <li title="ABOUT"><a class="nav-link about" href="#abouts"><span> ABOUT</span></a></li>
+                <li title="SKILLS"><a class="nav-link skills" href="#skillss"><span>SKILLS</span> </a></li>
+                <li title="PROJECTS"><a class="nav-link projects" href="#projectss"><span>PROJECTS</span></a></li>
+                <li title="CONTACT"><a class="nav-link contact" href="#contacts"><span>CONTACT</span> </a></li>
                 <li title="RESUME" id="resume-button-1"><a class="nav-link resume" id="resume-link-1"
-                        href="img/Sakthivel-Madhu-Resume.pdf" target="_blank"
-                        download="Sakthivel-Madhu-Resume"><span>RESUME</span> </a></li>
+                        href="img/Sakthivel_Madhu_Resume.pdf" target="_blank"
+                        download="Sakthivel_Madhu_Resume"><span>RESUME</span> </a></li>
             </ul>
         </nav>
     </div>
@@ -41,7 +41,7 @@
             <h1 id="user-detail-name">
                 Hello I'M <br>
                 SAKTHIVEL MADHU</h1>
-            <h2 id="user-details" >FULL STACK WEB DEVELOPER </h2>
+            <h2 id="user-details" >JAVA BACKEND DEVELOPER </h2>
             <div class="resumebtn">
                 <button id="resume-button-2" class="btn"><a id="resume-link-2" href='/img/Sakthivel_Madhu_Resume.pdf'
                         target="_blank" download="Sakthivel_Madhu_Resume">RESUME</a></button>
@@ -55,7 +55,7 @@
 
     <!-------------------------------------------------- ABOUT ---------------------------------------------------->
 
-    <h1 class="mainheading">ABOUT</h1>
+    <h1 class="mainheading" id="abouts">ABOUT</h1>
     <section title="About" id="about" class="about section">
         <title>About</title>
         <h1 id="user-detail-name"> </h1>
@@ -74,73 +74,73 @@
 
     <!-------------------------------------------------- SKILLS ---------------------------------------------------->
 
-    <h1 class="mainheading">SKILLS</h1>
+    <h1 class="mainheading" id="skillss">SKILLS</h1>
     <section title="Skills" id="skills">
         <div class="skills-card">
-            <div class="skills-card-name  bar">
-
+            <div class="skills-card-name  bar">CSS
             </div>
             <div class="skills-card-img name"><img src="img/css.jpeg" alt=""></div>
+            
         </div>
 
         <div class="skills-card">
-            <div class="skills-card-name  bar">
+            <div class="skills-card-name  bar"> HTML
 
             </div>
             <div class="skills-card-img name"><img src="img/html.jpeg" alt=""></div>
         </div>
 
         <div class="skills-card ">
-            <div class="skills-card-name  bar">
+            <div class="skills-card-name  bar">JavaScript
 
             </div>
             <div class="skills-card-img name"><img src="img/js.jpeg" alt=""></div>
         </div>
 
         <div class="skills-card">
-            <div class="skills-card-name  bar">
+            <div class="skills-card-name  bar">JAVA
 
             </div>
             <div class="skills-card-img name"><img src="img/java.jpeg" alt=""></div>
         </div>
 
         <div class="skills-card">
-            <div class="skills-card-name  bar">
+            <div class="skills-card-name  bar">spring
 
             </div>
             <div class="skills-card-img name"><img src="img/spring.jpeg" alt=""></div>
         </div>
 
         <div class="skills-card">
-            <div class="skills-card-name  bar">
+            <div class="skills-card-name  bar"> Python
 
             </div>
             <div class="skills-card-img name"><img src="img/Python.png" alt=""></div>
         </div>
 
         <div class="skills-card">
-            <div class="skills-card-name  bar">
+            <div class="skills-card-name  bar"> MySQL
 
             </div>
             <div class="skills-card-img name"><img src="img/Mysql.jpeg" alt=""></div>
         </div>
 
         <div class="skills-card">
-            <div class="skills-card-name bar">
+            <div class="skills-card-name bar"> Netlify
 
             </div>
             <div class="skills-card-img name"><img src="img/netlify.jpeg" alt=""></div>
         </div>
 
         <div class="skills-card">
-            <div class="skills-card-name  bar">
+            <div class="skills-card-name  bar">Git
 
             </div>
             <div class="skills-card-img name"><img src="img/git.jpeg" alt=""></div>
         </div>
 
         <div class="skills-card">
-            <div class="skills-card-name  bar">
+            <div class="skills-card-name  bar"> Hibernate
 
             </div>
             <div class="skills-card-img name"><img src="img/hibernate-interview-questions-logo.webp" alt=""></div>
@@ -153,7 +153,7 @@
     <hr>
 
     <!-------------------------------------------------- PROJECTS ---------------------------------------------------->
-    <h1 class="mainheading">PROJECTS</h1>
+    <h1 class="mainheading" id="projectss">PROJECTS</h1>
     <section title="Projects" id="projects">
 
         <!-------------------------------------------------- PROJECT 5 ---------------------------------------------------->
@@ -291,7 +291,7 @@
     <hr>
 
     <!-------------------------------------------------- CONTACTS ---------------------------------------------------->
-    <h1 class="mainheading">CONTACT</h1>
+    <h1 class="mainheading" id="contacts">CONTACT</h1>
     <div title="Contact" id="contact">
         <div class="contact-child-1">
             <img src="img/Contact_us.gif" alt="">
@@ -358,11 +358,11 @@
 
     // ---------------------------resume open----------------------------------
     document.getElementById('resume-link-1').addEventListener("click", () => {
-        window.location.assign("https://drive.google.com/drive/folders/1i5QCkJZm5bfGe-INbt0tRNo26wzmMh-G", "_blank");
+        window.location.assign("https://drive.google.com/file/d/1xwuZTu0KbVKTiWhcDirkg_WEoiizG__S/view?usp=sharing", "_blank");
     })
 
     document.getElementById('resume-link-2').addEventListener("click", () => {
-        window.location.assign("https://drive.google.com/drive/folders/1i5QCkJZm5bfGe-INbt0tRNo26wzmMh-G", "_blank");
+        window.location.assign("https://drive.google.com/file/d/1xwuZTu0KbVKTiWhcDirkg_WEoiizG__S/view?usp=sharing", "_blank");
     })
 
 // ---------------------------resume open----------------------------------
