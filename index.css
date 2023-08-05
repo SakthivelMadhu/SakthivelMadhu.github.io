@@ -6,7 +6,8 @@
   }
   
   body {
-    background: linear-gradient(to right, rgb(7, 76, 225), rgb(234, 12, 190));
+    /* background: linear-gradient(to right, rgb(7, 76, 225), rgb(234, 12, 190)); */
+    background: linear-gradient(to right, rgb(62, 232, 102), rgb(35, 50, 214));
   }
   
   
