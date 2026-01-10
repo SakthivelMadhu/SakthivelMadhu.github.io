@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sakthivel Madhu | Backend Developer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/b06a377e67.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<!-- ================= NAVBAR ================= -->
+<nav class="navbar">
+    <h1 class="logo">Sakthivel</h1>
+    <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</nav>
+
+<!-- ================= HERO ================= -->
+<section id="home" class="hero">
+    <div class="hero-text">
+        <h1>Hello, I'm <span>Sakthivel Madhu</span></h1>
+        <h2>Java Backend Developer</h2>
+        <p>Building scalable ERP, Finance, and Purchase systems</p>
+        <a href="#" class="btn">Download Resume</a>
+    </div>
+
+    <div class="hero-img">
+        <img src="img/professional-photo.jpg" alt="Profile">
+    </div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section id="about" class="section">
+    <h2 class="section-title">About Me</h2>
+    <p class="about-text">
+        Backend Developer specializing in Java, Spring Boot, and large-scale
+        enterprise systems including Purchase, Vendor, and Finance platforms.
+        Experienced in building real-time systems, accounting flows, and
+        scalable microservices.
+    </p>
+</section>
+
+<!-- ================= SKILLS SLIDER ================= -->
+<section id="skills" class="section">
+    <h2 class="section-title">Skills</h2>
+
+    <div class="slider-container">
+        <button class="slide-btn left" onclick="slideSkills(-1)">❮</button>
+
+        <div class="slider" id="skillsSlider">
+            <div class="slide-card">Java</div>
+            <div class="slide-card">Spring Boot</div>
+            <div class="slide-card">Spring Security</div>
+            <div class="slide-card">PostgreSQL</div>
+            <div class="slide-card">GCP</div>
+            <div class="slide-card">BigQuery</div>
+            <div class="slide-card">REST APIs</div>
+            <div class="slide-card">Microservices</div>
+            <div class="slide-card">Tally Workflows</div>
+            <div class="slide-card">Accounting Systems</div>
+            <div class="slide-card">Reconciliation</div>
+            <div class="slide-card">Docker</div>
+            <div class="slide-card">Git</div>
+            <div class="slide-card">JWT</div>
+        </div>
+
+        <button class="slide-btn right" onclick="slideSkills(1)">❯</button>
+    </div>
+</section>
+
+<!-- ================= PROJECTS SLIDER ================= -->
+<section id="projects" class="section">
+    <h2 class="section-title">Projects</h2>
+
+    <div class="slider-container">
+        <button class="slide-btn left" onclick="slideProjects(-1)">❮</button>
+
+        <div class="slider" id="projectsSlider">
+
+            <!-- MAIN SYSTEM 1 -->
+            <div class="project-card">
+                <h3>Purchase Order Management System</h3>
+                <p>
+                    Complete lifecycle system including Purchase Requests, POs, GRN,
+                    Returns, Stock Transfers, and Express purchase flows.
+                </p>
+                <span>Java | Spring Boot | PostgreSQL</span>
+            </div>
+
+            <!-- MAIN SYSTEM 2 -->
+            <div class="project-card">
+                <h3>Vendor Management System</h3>
+                <p>
+                    Vendor onboarding, GST/PAN/Bank verification, 3PL checks,
+                    TAT tracking, compliance automation.
+                </p>
+                <span>Java | Spring Boot | Microservices</span>
+            </div>
+
+            <!-- MAIN SYSTEM 3 -->
+            <div class="project-card">
+                <h3>Finance System – Pallet Books</h3>
+                <p>
+                    Tally-inspired accounting platform with banking, reconciliation,
+                    payables, receivables, loans, POS payments.
+                </p>
+                <span>Java | Spring Boot | FinTech</span>
+            </div>
+
+            <!-- Existing projects can be appended later -->
+
+        </div>
+
+
+
+        <button class="slide-btn right" onclick="slideProjects(1)">❯</button>
+    </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section id="contact" class="section">
+    <h2 class="section-title">Contact</h2>
+    <p>Email: sakthi130597@gmail.com</p>
+    <p>Phone: +91 7538837154</p>
+    <p>GitHub: github.com/SakthivelMadhu</p>
+    <p>LinkedIn: linkedin.com/in/sakthivel-madhu</p>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>
