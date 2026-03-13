@@ -1,579 +1,1369 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>HOME PAGE</title>
-    <script src="https://kit.fontawesome.com/b06a377e67.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="index.css">
-    <link rel="stylesheet" href="media.css">
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Sakthivel Madhu - Backend Engineer | Java 17, Spring Boot, Microservices, GCP"/>
+  <meta name="keywords" content="Backend Engineer, Java, Spring Boot, Microservices, GCP, Portfolio, Sakthivel Madhu"/>
+  <meta name="author" content="Sakthivel Madhu"/>
+  <title>Sakthivel Madhu | Backend Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="media.css">
 </head>
-
 <body>
-<div class="main">
-    <div class="menubar">
-        <span><i class="fa-solid fa-bars"></i></span>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-content">
+    <div class="loader-logo">SM</div>
+    <div class="loader-bar"><div class="loader-fill"></div></div>
+    <p class="loader-text">Loading Portfolio...</p>
+  </div>
+</div>
+
+<!-- CUSTOM CURSOR -->
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-outline" id="cursorOutline"></div>
+
+<!-- SCROLL PROGRESS -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- BACK TO TOP -->
+<button class="back-to-top" id="backToTop" aria-label="Back to top">
+  <i class="fa-solid fa-arrow-up"></i>
+</button>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <div class="nav-brand">
+    <span class="brand-text">SM</span>
+  </div>
+  <div class="nav-links" id="navLinks">
+    <a href="#home" class="nav-link active">Home</a>
+    <a href="#about" class="nav-link">About</a>
+    <a href="#experience" class="nav-link">Experience</a>
+    <a href="#skills" class="nav-link">Skills</a>
+    <a href="#projects" class="nav-link">Projects</a>
+    <a href="#achievements" class="nav-link">Achievements</a>
+    <a href="#contact" class="nav-link">Contact</a>
+    <a href="https://drive.google.com/file/d/1rLtlLlLSBEiQulypJezq-kmwUfeK5qNW/view?usp=sharing" target="_blank" class="nav-resume-btn">
+      <i class="fa-solid fa-file-arrow-down"></i> Resume
+    </a>
+  </div>
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ============================= HERO ============================= -->
+<section id="home" class="hero-section">
+  <div id="particles-canvas"></div>
+  <div class="hero-grid-overlay"></div>
+
+  <div class="hero-content">
+    <div class="hero-text" data-aos="fade-right" data-aos-duration="900">
+      <div class="hero-badge">
+        <span class="badge-pulse"></span>
+        Available for Opportunities
+      </div>
+      <h1 class="hero-name">
+        <span class="name-hello">Hello, I'm</span>
+        <span class="name-main gradient-text">Sakthivel Madhu</span>
+      </h1>
+      <div class="hero-title-wrap">
+        <span class="typing-prefix">I'm a </span>
+        <span class="typing-text" id="typingText"></span>
+        <span class="cursor-blink">|</span>
+      </div>
+      <p class="hero-desc">
+        Backend Engineer with <span class="hl cyan">3+ years</span> of experience delivering
+        <span class="hl purple">large-scale enterprise platforms</span> — ERP, HRMS, Finance &amp; Vendor
+        systems on <span class="hl cyan">GCP</span>. Specialised in
+        <span class="hl gold">fault-tolerant, high-throughput</span> microservices architecture.
+      </p>
+      <div class="hero-cta">
+        <a href="#projects" class="btn-primary">
+          <i class="fa-solid fa-code"></i> View Projects
+        </a>
+        <a href="https://drive.google.com/file/d/1rLtlLlLSBEiQulypJezq-kmwUfeK5qNW/view?usp=sharing" target="_blank" class="btn-outline">
+          <i class="fa-solid fa-download"></i> Download CV
+        </a>
+      </div>
+      <div class="hero-socials">
+        <a href="https://github.com/SakthivelMadhu" target="_blank" class="social-icon-btn" title="GitHub">
+          <i class="fa-brands fa-github"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/sakthivel-madhu-864647238/" target="_blank" class="social-icon-btn" title="LinkedIn">
+          <i class="fa-brands fa-linkedin-in"></i>
+        </a>
+        <a href="https://leetcode.com/u/sakthi130597/" target="_blank" class="social-icon-btn" title="LeetCode">
+          <i class="fa-solid fa-code"></i>
+        </a>
+        <a href="mailto:sakthi130597@gmail.com" class="social-icon-btn" title="Email">
+          <i class="fa-solid fa-envelope"></i>
+        </a>
+      </div>
     </div>
-    <nav title="Navbar" id="nav-menu" class="nav-menu">
-        <ul id="navi">
-            <li title="HOME"><a class="nav-link home" href="#home"><span> HOME</span></a></li>
-            <li title="ABOUT"><a class="nav-link about" href="#abouts"><span> ABOUT</span></a></li>
-            <li title="SKILLS"><a class="nav-link skills" href="#skillss"><span>SKILLS</span> </a></li>
-            <li title="PROJECTS"><a class="nav-link projects" href="#projectss"><span>PROJECTS</span></a></li>
-            <li title="CONTACT"><a class="nav-link contact" href="#contacts"><span>CONTACT</span> </a></li>
-            <li title="RESUME" id="resume-button-1"><a class="nav-link resume" id="resume-link-1"
-                                                       href="img/Sakthivel_Madhu_Resume.pdf" target="_blank"
-                                                       download="Sakthivel_Madhu_Resume"><span>RESUME</span> </a></li>
+
+    <div class="hero-image-wrap" data-aos="fade-left" data-aos-duration="900">
+      <div class="blob-photo-wrap">
+        <!-- Animated wave glow rings -->
+        <div class="wave-ring w1"></div>
+        <div class="wave-ring w2"></div>
+        <div class="wave-ring w3"></div>
+        <!-- SVG blob clip -->
+        <svg class="blob-svg" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <clipPath id="blobClip">
+              <path class="blob-morph" d="M315,180 C340,220 330,280 295,310 C260,340 205,345 165,325 C125,305 85,265 75,220 C65,175 85,120 120,90 C155,60 210,55 260,70 C310,85 290,140 315,180 Z"/>
+            </clipPath>
+            <linearGradient id="blobBorder" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#00D4FF" stop-opacity="0.8"/>
+              <stop offset="50%" stop-color="#8B5CF6" stop-opacity="0.8"/>
+              <stop offset="100%" stop-color="#EC4899" stop-opacity="0.8"/>
+            </linearGradient>
+            <filter id="blobGlow">
+              <feGaussianBlur stdDeviation="8" result="blur"/>
+              <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+          </defs>
+          <!-- Glow border blob -->
+          <path class="blob-border-path" d="M315,180 C340,220 330,280 295,310 C260,340 205,345 165,325 C125,305 85,265 75,220 C65,175 85,120 120,90 C155,60 210,55 260,70 C310,85 290,140 315,180 Z"
+            fill="none" stroke="url(#blobBorder)" stroke-width="3" filter="url(#blobGlow)"/>
+          <!-- Photo clipped to blob -->
+          <image href="img/professional-photo.jpg"
+            x="30" y="20" width="340" height="370"
+            clip-path="url(#blobClip)"
+            preserveAspectRatio="xMidYMid slice"/>
+        </svg>
+        <!-- Experience badge -->
+        <div class="xp-badge">
+          <span class="xp-num">3+</span>
+          <span class="xp-txt">Years<br>Experience</span>
+        </div>
+        <!-- Award badge -->
+        <div class="award-float-badge">
+          <i class="fa-solid fa-trophy"></i>
+          <span>Employee of<br>the Quarter</span>
+        </div>
+      </div>
+      <div class="float-chip chip-java">
+        <i class="fa-brands fa-java"></i> Java 17
+      </div>
+      <div class="float-chip chip-spring">
+        <i class="fa-solid fa-leaf"></i> Spring Boot
+      </div>
+      <div class="float-chip chip-gcp">
+        <i class="fa-brands fa-google"></i> GCP
+      </div>
+      <div class="float-chip chip-ms">
+        <i class="fa-solid fa-cubes"></i> Microservices
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <div class="scroll-mouse"><div class="scroll-wheel"></div></div>
+    <span>Scroll to explore</span>
+  </div>
+</section>
+
+<!-- ============================= ABOUT ============================= -->
+<section id="about" class="section">
+  <div class="container">
+    <div class="section-header" data-aos="fade-up">
+      <span class="section-tag">01 — About Me</span>
+      <h2 class="section-title">Who I Am</h2>
+    </div>
+
+    <div class="stats-row" data-aos="fade-up" data-aos-delay="100">
+      <div class="stat-item">
+        <div class="stat-icon-wrap cyan"><i class="fa-solid fa-briefcase"></i></div>
+        <div class="stat-val" data-count="3">0</div>
+        <div class="stat-label">Years Experience</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-icon-wrap purple"><i class="fa-solid fa-diagram-project"></i></div>
+        <div class="stat-val" data-count="12">0</div>
+        <div class="stat-label">Projects Built</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-icon-wrap pink"><i class="fa-solid fa-rocket"></i></div>
+        <div class="stat-val" data-count="92">0</div>
+        <div class="stat-label">% Manual Effort Reduced</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-icon-wrap gold"><i class="fa-solid fa-bolt"></i></div>
+        <div class="stat-val" data-count="80">0</div>
+        <div class="stat-label">% Faster Onboarding</div>
+      </div>
+    </div>
+
+    <div class="about-duo" data-aos="fade-up" data-aos-delay="200">
+      <div class="about-card glass-card">
+        <h3><i class="fa-solid fa-user-tie"></i> Professional Summary</h3>
+        <p>Backend Engineer with <strong>3+ years</strong> of experience designing and shipping <strong>large-scale, automation-first enterprise platforms</strong> across procurement, finance, and HR domains. Deep expertise in <strong>Java 17, Spring Boot, microservices, event-driven architecture, and high-throughput REST APIs</strong> on <strong>GCP</strong>.</p>
+        <p>Proven track record of delivering <strong>fault-tolerant, production-critical systems</strong> with measurable business impact — including <strong>92% reduction in manual data entry</strong>, <strong>80% faster inventory onboarding</strong>, and full ownership of ERP, HRMS, and Finance modules from system design to production.</p>
+        <p>Strong background in <strong>distributed systems, API design, system design, and cross-functional technical leadership</strong>.</p>
+        <div class="tag-row">
+          <span class="tag">System Design</span>
+          <span class="tag">Microservices</span>
+          <span class="tag">Event-Driven Arch</span>
+          <span class="tag">GCP</span>
+          <span class="tag">Tech Lead</span>
+          <span class="tag">DSA</span>
+        </div>
+      </div>
+
+      <div class="about-card glass-card">
+        <h3><i class="fa-solid fa-address-card"></i> Quick Facts</h3>
+        <ul class="info-list">
+          <li><i class="fa-solid fa-location-dot cyan"></i><span>Bangalore, India</span></li>
+          <li><i class="fa-solid fa-envelope cyan"></i><span>sakthi130597@gmail.com</span></li>
+          <li><i class="fa-solid fa-phone cyan"></i><span>+91 7538837154</span></li>
+          <li><i class="fa-solid fa-graduation-cap cyan"></i><span>B.E. Electronics &amp; Communication Engineering</span></li>
+          <li><i class="fa-solid fa-university cyan"></i><span>Sri Venkateshwara College of Engineering, Chennai</span></li>
+          <li><i class="fa-solid fa-calendar cyan"></i><span>Jul 2014 – May 2018</span></li>
+          <li><i class="fa-solid fa-circle-check green"></i><span>Open to new opportunities</span></li>
         </ul>
-    </nav>
-</div>
-<!-------------------------------------------------- HOME ---------------------------------------------------->
-
-
-<section title="Home" id="home">
-    <div class="child2">
-        <img src="img/professional-photo.jpg" class="home-img" alt="#"/>
+        <a href="https://drive.google.com/file/d/1rLtlLlLSBEiQulypJezq-kmwUfeK5qNW/view?usp=sharing" target="_blank" class="btn-primary btn-sm">
+          <i class="fa-solid fa-file-pdf"></i> View Full Resume
+        </a>
+      </div>
     </div>
-
-    <div class="child1">
-        <h1 id="user-detail-name">
-            Hello I'M <br>
-            SAKTHIVEL MADHU</h1>
-        <h2 id="user-details">JAVA BACKEND DEVELOPER </h2>
-        <div class="resumebtn">
-            <button id="resume-button-2" class="btn"><a id="resume-link-2" href='/img/Sakthivel_Madhu_Resume.pdf'
-                                                        target="_blank" download="Sakthivel_Madhu_Resume">RESUME</a>
-            </button>
-        </div>
-
-    </div>
-
+  </div>
 </section>
 
-
-<!-------------------------------------------------- ABOUT ---------------------------------------------------->
-
-<h1 class="mainheading" id="abouts">ABOUT</h1>
-<section title="About" id="about" class="about section">
-    <title>About</title>
-    <h1 id="user-detail-name"></h1>
-    <h2 id="user-detail-intro">
-        Aspiring Full Stack Web Developer, with a Specialization
-        in CSS, SpringBoot, JavaScript and JAVA and a good grasp of
-        core java concept. collaborative team player who is
-        professional in working on interdisciplinary projects.
-        Looking forward to kickstart the career in the IT sector.
-    </h2>
-</section>
-
-<!-------------------------------------------------- ABOUT ---------------------------------------------------->
-
-<hr>
-
-<!-------------------------------------------------- SKILLS ---------------------------------------------------->
-
-<h1 class="mainheading" id="skillss">SKILLS</h1>
-<section title="Skills" id="skills">
-    <div class="skills-card">
-        <div class="skills-card-name  bar">CSS
-        </div>
-        <div class="skills-card-img name"><img src="img/css.jpeg" alt=""></div>
-
+<!-- ============================= EXPERIENCE ============================= -->
+<section id="experience" class="section section-alt">
+  <div class="container">
+    <div class="section-header" data-aos="fade-up">
+      <span class="section-tag">02 — Experience</span>
+      <h2 class="section-title">Work History</h2>
     </div>
 
-    <div class="skills-card">
-        <div class="skills-card-name  bar"> HTML
+    <div class="timeline">
 
+      <!-- Twinleaves -->
+      <div class="tl-item" data-aos="fade-up" data-aos-delay="100">
+        <div class="tl-line">
+          <div class="tl-dot active-dot"></div>
         </div>
-        <div class="skills-card-img name"><img src="img/html.jpeg" alt=""></div>
-    </div>
-
-    <div class="skills-card ">
-        <div class="skills-card-name  bar">JavaScript
-
-        </div>
-        <div class="skills-card-img name"><img src="img/js.jpeg" alt=""></div>
-    </div>
-
-    <div class="skills-card">
-        <div class="skills-card-name  bar">JAVA
-
-        </div>
-        <div class="skills-card-img name"><img src="img/java.jpeg" alt=""></div>
-    </div>
-
-    <div class="skills-card">
-        <div class="skills-card-name  bar">spring
-
-        </div>
-        <div class="skills-card-img name"><img src="img/spring.jpeg" alt=""></div>
-    </div>
-
-    <div class="skills-card">
-        <div class="skills-card-name  bar"> Python
-
-        </div>
-        <div class="skills-card-img name"><img src="img/Python.png" alt=""></div>
-    </div>
-
-    <div class="skills-card">
-        <div class="skills-card-name  bar"> MySQL
-
-        </div>
-        <div class="skills-card-img name"><img src="img/Mysql.jpeg" alt=""></div>
-    </div>
-
-    <div class="skills-card">
-        <div class="skills-card-name bar"> Netlify
-
-        </div>
-        <div class="skills-card-img name"><img src="img/netlify.jpeg" alt=""></div>
-    </div>
-
-    <div class="skills-card">
-        <div class="skills-card-name  bar">Git
-
-        </div>
-        <div class="skills-card-img name"><img src="img/git.jpeg" alt=""></div>
-    </div>
-
-    <div class="skills-card">
-        <div class="skills-card-name  bar"> Hibernate
-
-        </div>
-        <div class="skills-card-img name"><img src="img/hibernate-interview-questions-logo.webp" alt=""></div>
-    </div>
-
-    <div class="skills-card">
-        <div class="skills-card-name  bar"> SpringBoot
-
-        </div>
-        <div class="skills-card-img name"><img src="img/Spring Boot.png" alt=""></div>
-    </div>
-
-    <div class="skills-card">
-        <div class="skills-card-name  bar"> Maven
-
-        </div>
-        <div class="skills-card-img name"><img src="img/maven.jpg" alt=""></div>
-    </div>
-
-    <div class="skills-card">
-        <div class="skills-card-name  bar"> Security
-
-        </div>
-        <div class="skills-card-img name"><img src="img/Spring Security.jpg" alt=""></div>
-    </div>
-
-    <div class="skills-card">
-        <div class="skills-card-name  bar">Python Flask
-
-        </div>
-        <div class="skills-card-img name"><img src="img/flask.png" alt=""></div>
-    </div>
-    <div class="skills-card">
-        <div class="skills-card-name  bar">MongoDB
-
-        </div>
-        <div class="skills-card-img name"><img src="img/MongoDB.png" alt=""></div>
-    </div>
-
-    <div class="skills-card">
-        <div class="skills-card-name  bar"> Spark
-
-        </div>
-        <div class="skills-card-img name"><img src="img/apcheSpark.png" alt=""></div>
-    </div>
-
-    <div class="skills-card">
-        <div class="skills-card-name  bar">Hadoop Yarn
-
-        </div>
-        <div class="skills-card-img name"><img src="img/yarn.jpg" alt=""></div>
-    </div>
-
-    <div class="skills-card">
-        <div class="skills-card-name  bar"> Impala
-
-        </div>
-        <div class="skills-card-img name"><img src="img/impala.jpg" alt=""></div>
-    </div>
-
-    <div class="skills-card">
-        <div class="skills-card-name  bar">DSA
-
-        </div>
-        <div class="skills-card-img name"><img src="img/dsa.png" alt=""></div>
-    </div>
-
-    <div class="skills-card">
-        <div class="skills-card-name  bar">Prompt
-
-        </div>
-        <div class="skills-card-img name"><img src="img/prompt.png" alt=""></div>
-    </div>
-</section>
-
-<!-------------------------------------------------- SKILLS ---------------------------------------------------->
-
-<hr>
-
-<!-------------------------------------------------- PROJECTS ---------------------------------------------------->
-<h1 class="mainheading" id="projectss">PROJECTS</h1>
-<section title="Projects" id="projects">
-
-    <div class="project-card">
-        <p class="project-description">Purchase Order Management System</p>
-        <img src="img/purchase_system.png" alt="">
-        <div class="desc">
-            Complete Purchase Lifecycle System including Purchase Requests, Purchase Orders,
-            GRN, Returns, Bills, and Stock Transfers. Designed for multi-location inventory
-            handling with seamless workflow automation.
-            <br><br>
-            Features:
-            • Purchase Requests & Approvals
-            • Purchase Job ( doing purchase, sales and GRN into internal companies)
-            • Purchase Orders
-            • GRN & Put-away
-            • Returns & Bills
-            • Stock Transfer Between Locations
-        </div>
-        <h3 class="project-tech-stack">Java | Spring Boot | PostgresSql | REST APIs</h3>
-    </div>
-
-    <div class="project-card">
-        <p class="project-description">Vendor Management System</p>
-        <img src="img/vendor_system.png" alt="">
-        <div class="desc">
-            Centralized Vendor Management platform supporting vendor onboarding,
-            verification, and compliance workflows.
-            <br><br>
-            Features:
-            • Vendor Creation
-            • Vendor TOT Tracking
-            • 3PL Verification
-            • GST, PAN & Bank Validation
-            • Compliance Management
-        </div>
-        <h3 class="project-tech-stack">Java | Spring Boot | PostgresSql | Microservices</h3>
-    </div>
-
-    <div class="project-card">
-        <p class="project-description">Banking & Finance Management System</p>
-        <img src="img/banking_system.png" alt="">
-        <div class="desc">
-            A full-fledged finance module handling bank accounts, reconciliation,
-            loans, credit cards, POS payments, and liabilities.
-            <br><br>
-            Features:
-            • Bank Creation & Management
-            • Automated Reconciliation
-            • Loans & Credit Cards
-            • POS Payments
-            • Financial Reports
-        </div>
-        <h3 class="project-tech-stack">Java | Spring Boot | PostgresSql | FinTech APIs</h3>
-    </div>
-
-    <!-------------------------------------------------- PROJECT 1 ---------------------------------------------------->
-    <div class="project-card">
-        <p class="project-description">MasaiBuilds - Teamiply </p>
-        <img src="img/masaibuild - teamiply.png" alt="">
-        <div class="desc">Our team management application offers a user-friendly platform to streamline communication
-            and
-            task management within organizations. With the ability to assign tasks and receive real-time updates,
-            managers
-            can stay on top of their team's progress.
-        </div>
-        <title class="project-title">MasaiBuilds - Teamiply </title>
-        <h3 class="project-tech-stack">JAVA | JDBC | SQL | Hibernate | AWS</h3>
-        <div>
-            <p class="project-github-link"><a href="https://github.com/masai-builds/TeamiplyBackend"><i
-                    class="fa-brands fa-github"></i></a></p>
-            <p class="project-deployed-link"><a href="https://teamimply.vercel.app/">
-                Live Demonstration</a>
-            </p>
-        </div>
-
-    </div>
-    <!-------------------------------------------------- PROJECT 2 ---------------------------------------------------->
-    <div class="project-card">
-        <p class="project-description">Automation Auction System </p>
-        <img src="img/portifolio5.png" alt="">
-        <div class="desc">Automation auction system is an online auction system, where buyer can buy the product ,
-            seller can sell the product and administrator related data and its items.
-            This system store the all data in this system. It is backend server which built with
-            the help of the java, sql, jdbc and dao technologies.
-        </div>
-        <title class="project-title">Automation Auction System </title>
-        <h3 class="project-tech-stack">JAVA | JDBC | SQL | DAO</h3>
-        <div>
-            <p class="project-github-link"><a href="https://github.com/SakthivelMadhu/brief-shirt-7318"><i
-                    class="fa-brands fa-github"></i></a></p>
-            <p class="project-deployed-link"><a
-                    href="https://drive.google.com/drive/folders/18TTyx6UGZe3w0iRqTwcyqt-htw_FO9Z_?usp=share_link">
-                Live Demonstration</a>
-            </p>
-        </div>
-
-    </div>
-    <!-------------------------------------------------- PROJECT 3 ---------------------------------------------------->
-    <div class="project-card">
-        <p class="project-description">Clone of Famous Footwear </p>
-        <img src="img/portifolio1.png" alt="">
-        <div class="desc">Famous Footwear is a major Indian largest footwear retailer e-commerce company.</div>
-        <title class="project-title">Famous Footwear</title>
-        <h3 class="project-tech-stack">HTML | CSS | JavaScript</h3>
-        <div>
-            <p class="project-github-link"><a href="https://github.com/Deepak-25yadav/wicked-edge-6587"
-                                              target="_blank"><i class="fa-brands fa-github"></i></a></p>
-
-            <p class="project-deployed-link"><a href="https://magnificent-bonbon-8ffb8d.netlify.app/"
-                                                target="_blank">Deployed link</a></p>
-        </div>
-
-    </div>
-    <!-------------------------------------------------- PROJECT 4 ---------------------------------------------------->
-    <div class="project-card">
-        <p class="project-description">Clone of Naukri</p>
-        <img src="img/portifolio2.png" alt="">
-        <div class="desc">Naukri is an Indian employment website operating in India.</div>
-        <title class="project-title">Naukri</title>
-        <h3 class="project-tech-stack"> HTML | CSS | JavaScript </h3>
-        <div>
-            <p class="project-github-link"><a href="https://github.com/SakthivelMadhu/-lazy-base-8555"
-                                              target="_blank"><i class="fa-brands fa-github"></i></a></p>
-
-            <p class="project-deployed-link"><a href="https://cerulean-tarsier-3cdce4.netlify.app/"
-                                                target="_blank">Deployed link</a></p>
-        </div>
-
-    </div>
-    <!-------------------------------------------------- PROJECT 5 ---------------------------------------------------->
-    <div class="project-card">
-        <p class="project-description">Clone of Over Stock Clone</p>
-        <img src="img/portifolio3.png" alt="">
-        <div class="desc">Over Stock is a major Indian largest Furniture retailer e-commerce company.</div>
-        <title class="project-title">Over Stock Clone</title>
-        <h3 class="project-tech-stack">HTML | CSS | JavaScript</h3>
-        <div>
-            <p class="project-github-link"><a href="https://github.com/SakthivelMadhu/next-vest-6513"><i
-                    class="fa-brands fa-github"></i></a></p>
-            <p class="project-deployed-link"><a href="https://roaring-licorice-c0552e.netlify.app/"> Deployed
-                link</a></p>
-        </div>
-    </div>
-    <!-------------------------------------------------- PROJECT 6---------------------------------------------------->
-    <div class="project-card">
-        <p class="project-description">Restaurant Management System </p>
-        <img src="img/portifolio4.png" alt="">
-        <div class="desc">A restaurant management system is a type of software that has been specifically
-            designed for use within the restaurant industry. Also known as restaurant management software, such
-            solutions are intended to
-            assist leaders and others in carrying out the most critical managerial tasks.
-        </div>
-        <title class="project-title">Restaurant Management System</title>
-        <h3 class="project-tech-stack">Python | Tkinter </h3>
-        <div>
-            <p class="project-github-link"><a href="https://github.com/SakthivelMadhu/Restaurant_management_system"
-                                              target="_blank"><i class="fa-brands fa-github"></i></a></p>
-
-            <p class="project-deployed-link"><a
-                    href="https://drive.google.com/drive/folders/1yDRTD5TZtIbbFLt4BjH4TtOEBZebUF0X?usp=share_link"
-                    target="_blank">Live Demonstration</a></p>
-        </div>
-
-    </div>
-
-
-    <!-------------------------------------------------- PROJECT 6 ---------------------------------------------------->
-    <div class="project-card">
-        <p class="project-description"> Portfolio Management System </p>
-        <img src="img/portfolio.png" alt="">
-        <div class="desc">Project Prism is a Portfolio Management Application designed to streamline the process of
-            project
-            and task management for portfolio managers. This web application provides a user-friendly interface for
-            managing
-            portfolio manager profiles, projects, tasks, and resources efficiently. It allows users to perform CRUD
-            (Create, Read, Update, Delete) operations on these entities, manage relationships between them
-            and provides advanced features such as pagination, filtering, and sorting.
-        </div>
-        <title class="project-title">Portfolio Management System</title>
-        <h3 class="project-tech-stack">Python| Flask | MySQL | React JS</h3>
-        <div>
-            <p class="project-github-link"><a href="https://github.com/SakthivelMadhu/Portfolio_Management_Application"><i
-                    class="fa-brands fa-github"></i></a>
-            </p>
-            <p class="project-deployed-link"><a
-                    href="https://drive.google.com/file/d/1R35QZhF5EBD2mC6GMkuvJ7COcmagLj89/view?usp=drive_link">
-                Deployed
-                link</a>
-            </p>
-        </div>
-
-    </div>
-
-
-    <!-------------------------------------------------- PROJECT 6 ---------------------------------------------------->
-    <div class="project-card">
-        <p class="project-description"> Library Management System </p>
-        <img src="img/libManagement.png" alt="">
-        <div class="desc">A library management system is a software application designed to facilitate the management of
-            libraries, including tasks such as cataloging library resources, tracking borrowed items,
-            managing patron information, and handling administrative functions.
-        </div>
-        <title class="project-title">Library Management System</title>
-        <h3 class="project-tech-stack">Python| Flask | Shell | HTML | CSS</h3>
-        <div>
-            <p class="project-github-link"><a href="https://github.com/SakthivelMadhu/Library-Management-System"><i
-                    class="fa-brands fa-github"></i></a>
-            </p>
-            <p class="project-deployed-link"><a
-                    href="https://drive.google.com/drive/folders/1981eZ9LRV9zAKdMU7bveDAFyTEqr9DDp?usp=sharing">
-                Deployed
-                link</a>
-            </p>
-        </div>
-
-    </div>
-
-
-    <!-------------------------------------------------- PROJECT 6 ---------------------------------------------------->
-    <div class="project-card">
-        <p class="project-description"> Intelligent Job Matching System </p>
-        <img src="img/job_matching.jpg" alt="">
-        <div class="desc">This project is a backend system for an intelligent job matching application. It is
-            built using Flask and MongoDB , to facilitate the matching of job seekers with job postings.
-            This project includes features such as
-            managing job seekers, job postings, applications, and skill sets.
-        </div>
-        <title class="project-title">Intelligent Job Matching System</title>
-        <h3 class="project-tech-stack">Python| C | PowerShell | HTML | CSS | JavaScript</h3>
-        <div>
-            <p class="project-github-link"><a href="https://github.com/SakthivelMadhu/Job_Matching_System"><i
-                    class="fa-brands fa-github"></i></a>
-            </p>
-            <p class="project-deployed-link"><a
-                    href="https://drive.google.com/drive/folders/1FLblJSppKn4XmFLDyUJUOooCuB_d9h_v?usp=sharing">
-                Deployed
-                link</a>
-            </p>
-        </div>
-
-    </div>
-
-
-</section>
-
-
-<!-------------------------------------------------- PROJECTS ---------------------------------------------------->
-
-<hr>
-
-<!-------------------------------------------------- CONTACTS ---------------------------------------------------->
-<h1 class="mainheading" id="contacts">CONTACT</h1>
-<div title="Contact" id="contact">
-    <div class="contact-child-1">
-        <img src="img/Contact_us.gif" alt="">
-
-    </div>
-    <div class="contact-child-2">
-        <form action="https://formsubmit.co/sakthi130597@gmail.com" method="POST">
-            <input type="text" name="name" id="name" placeholder="NAME" required>
-            <input type="email" name="email" id="email" placeholder="EMAIL" required>
-            <input type="text" name="text" id="msg" placeholder="Your Massage Here">
+        <div class="tl-card glass-card current-job">
+          <div class="tl-header">
             <div>
-                <button class="btns" type="submit">Submit</button>
+              <h3 class="job-title">Software Development Engineer</h3>
+              <p class="company"><i class="fa-solid fa-building"></i> Twinleaves Retail Ecommerce India Pvt. Ltd.</p>
             </div>
-        </form>
-        <div class="contact-child3">
-            <div class="lindingithub"><a id="contact-github" href="https://github.com/SakthivelMadhu"></a>
-                <a id="contact-linkedin" href="https://www.linkedin.com/in/sakthivel-madhu-864647238/"></a>
+            <div class="tl-meta">
+              <span class="tl-date"><i class="fa-solid fa-calendar-days"></i> May 2024 – Present</span>
+              <span class="tl-location"><i class="fa-solid fa-location-dot"></i> Bangalore, India</span>
+              <span class="current-pill">● Current</span>
             </div>
-            <div class="contact-child4">
-                <a id="contact-phone" href="#">Contact Number: +91 7538837154</a>
-                <a id="contact-email" href="sakthi130597@gmail.com">Email Address:
-                    sakthi130597@gmail.com</a>
+          </div>
+
+          <div class="tl-achievements">
+            <div class="tl-ach-item">
+              <div class="ach-dot purple"></div>
+              <div>
+                <strong>Purchase &amp; ERP Platform</strong>
+                <p>Led full-lifecycle development of enterprise Purchase Order Management covering PR, PO, GRN, billing, payments, returns, replacement inwards, and inter-company purchase workflows (auto-creation of PO, SO, GRN). Designed <span class="hl gold">Express Purchase</span> workflow cutting inventory onboarding by <span class="hl cyan">80%</span>. Integrated Doc-AI via AI/LLM API, reducing manual data entry by <span class="hl cyan">92%</span>. Implemented government-compliant E-Invoicing for Malaysian regulations, eliminating <span class="hl cyan">80%</span> of manual invoice generation effort.</p>
+              </div>
             </div>
+            <div class="tl-ach-item">
+              <div class="ach-dot cyan"></div>
+              <div>
+                <strong>HRMS — Facial Recognition, Attendance &amp; LOP System</strong>
+                <p>Architected an HR attendance platform with facial recognition-based check-in/out for identity verification, geo-fencing for location-based attendance policies (office/field/remote), and automated LOP (Loss of Pay) calculation driven by leave balances, shift schedules, and attendance gaps. Built real-time attendance dashboards, shift management, and payroll-linked LOP reporting.</p>
+              </div>
+            </div>
+            <div class="tl-ach-item">
+              <div class="ach-dot pink"></div>
+              <div>
+                <strong>Vendor Management System</strong>
+                <p>Built a centralized vendor onboarding and compliance platform with automated GST, PAN, and bank account verification via third-party integrations through API Gateway. Designed configurable Terms of Trade (TOT) engines supporting item-level pricing rules, return policies, and delivery location constraints.</p>
+              </div>
+            </div>
+            <div class="tl-ach-item">
+              <div class="ach-dot gold"></div>
+              <div>
+                <strong>Finance Management System (Pallet Books)</strong>
+                <p>Designed a scalable finance platform (inspired by Zoho Books / Tally) supporting bank accounts, payable ledgers, purchase accounting, and real-time reconciliation. Integrated Elasticsearch for fast ledger search and audit log querying. Migrated bank statement extraction to Doc-AI achieving <span class="hl cyan">95%</span> accuracy across multiple bank formats.</p>
+              </div>
+            </div>
+            <div class="tl-ach-item">
+              <div class="ach-dot green"></div>
+              <div>
+                <strong>Platform &amp; Infrastructure</strong>
+                <p>Architected microservices (Java 17, Spring Boot) with high-throughput REST APIs and API Gateway routing; optimised PostgreSQL schemas; implemented fault-tolerant async workflows using Pub/Sub, retries, and idempotent APIs. Set up CI/CD pipelines (GitHub Actions, Jenkins), Docker containerisation, Linux server environments, and Elasticsearch-powered search/logging on GCP. Technical owner across product, finance, ops, and HR teams; mentored junior engineers via code reviews and pair programming.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="tech-chips">
+            <span>Java 17</span><span>Spring Boot</span><span>Spring Security</span><span>GCP</span>
+            <span>PostgreSQL</span><span>Elasticsearch</span><span>Pub/Sub</span><span>Docker</span>
+            <span>CI/CD</span><span>Redis</span><span>AI/LLM APIs</span><span>Microservices</span>
+          </div>
         </div>
+      </div>
+
+      <!-- Masai School -->
+      <div class="tl-item" data-aos="fade-up" data-aos-delay="200">
+        <div class="tl-line">
+          <div class="tl-dot"></div>
+        </div>
+        <div class="tl-card glass-card">
+          <div class="tl-header">
+            <div>
+              <h3 class="job-title">Full Stack Web Developer</h3>
+              <p class="company"><i class="fa-solid fa-building"></i> Masai School</p>
+            </div>
+            <div class="tl-meta">
+              <span class="tl-date"><i class="fa-solid fa-calendar-days"></i> Jul 2022 – Jul 2023</span>
+              <span class="tl-location"><i class="fa-solid fa-location-dot"></i> Remote</span>
+            </div>
+          </div>
+          <p class="tl-desc">Completed 2160+ hours of intensive full-stack and backend engineering training. Developed 3+ production-style applications including Naukri and e-commerce clones; built a backend-driven Automated Auction Management System with real-time bidding workflows. Strengthened core DSA and system design skills applied directly in subsequent engineering roles.</p>
+          <div class="tech-chips">
+            <span>Java</span><span>Spring Boot</span><span>Hibernate</span><span>MySQL</span>
+            <span>JavaScript</span><span>System Design</span><span>DSA</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- EFI -->
+      <div class="tl-item" data-aos="fade-up" data-aos-delay="300">
+        <div class="tl-line">
+          <div class="tl-dot"></div>
+        </div>
+        <div class="tl-card glass-card">
+          <div class="tl-header">
+            <div>
+              <h3 class="job-title">Associate Software Engineer</h3>
+              <p class="company"><i class="fa-solid fa-building"></i> EFI Pvt. Ltd.</p>
+            </div>
+            <div class="tl-meta">
+              <span class="tl-date"><i class="fa-solid fa-calendar-days"></i> Oct 2020 – Mar 2021</span>
+              <span class="tl-location"><i class="fa-solid fa-location-dot"></i> Bangalore, India</span>
+            </div>
+          </div>
+          <p class="tl-desc">Delivered 3+ feature modules for the Fiery product (C++, SQL), contributing to two stable production releases. Partnered with QA and business stakeholders for requirements gathering, defect resolution, and release validation — building a foundation in enterprise software delivery that informed subsequent backend engineering work.</p>
+          <div class="tech-chips">
+            <span>C++</span><span>SQL</span><span>Enterprise Software</span><span>QA</span>
+          </div>
+        </div>
+      </div>
+
     </div>
-</div>
-
-<hr>
-<!-------------------------------------------------- RESUME ---------------------------------------------------->
-
-
-<!-------------------------------------------------- GitHUB ---------------------------------------------------->
-
-<section title="Github-Stats" class="react-activity-calendar">
-    <h1>GitHub React-Activity-Calendar</h1>
-    <img id="github-streak-stats" src="https://github-readme-streak-stats.herokuapp.com/?user=SakthivelMadhu&"
-         alt="SakthivelMadhu"/>
-    <div>
-        <img id="github-top-langs"
-             src="https://github-readme-stats.vercel.app/api/top-langs/?username=SakthivelMadhu"
-             alt="top_languages"/>
-        <img id="github-stats-card"
-             src="https://github-readme-stats.vercel.app/api?username=SakthivelMadhu&show_icons=true&locale=en"
-             alt="stat-card"/>
-    </div>
+  </div>
 </section>
 
-<div id="githubsection">
-    <img id="image2"
-         src="https://github-readme-streak-stats.herokuapp.com/?user=SakthivelMadhu&">
-</div>
-<!-------------------------------------------------- GitHUB ---------------------------------------------------->
+<!-- ============================= SKILLS ============================= -->
+<section id="skills" class="section">
+  <div class="container">
+    <div class="section-header" data-aos="fade-up">
+      <span class="section-tag">03 — Technical Skills</span>
+      <h2 class="section-title">My Tech Stack</h2>
+    </div>
 
-</body>
+    <div class="skills-layout">
+
+      <div class="skill-cat glass-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="cat-title">
+          <div class="cat-icon-wrap purple"><i class="fa-solid fa-server"></i></div>
+          <h3>Backend, Cloud &amp; DevOps</h3>
+        </div>
+        <div class="chip-grid">
+          <div class="skill-chip"><img src="img/java.jpeg" alt="Java" onerror="this.style.display='none'"><span>Java 17</span></div>
+          <div class="skill-chip"><img src="img/Spring Boot.png" alt="Spring Boot" onerror="this.style.display='none'"><span>Spring Boot</span></div>
+          <div class="skill-chip"><img src="img/Spring Security.jpg" alt="Spring Security" onerror="this.style.display='none'"><span>Spring Security</span></div>
+          <div class="skill-chip"><img src="img/spring.jpeg" alt="Spring Cloud" onerror="this.style.display='none'"><span>Spring Cloud</span></div>
+          <div class="skill-chip"><span class="chip-emoji">🔗</span><span>REST APIs</span></div>
+          <div class="skill-chip"><span class="chip-emoji">⚙️</span><span>Microservices</span></div>
+          <div class="skill-chip"><img src="img/hibernate-interview-questions-logo.webp" alt="Hibernate" onerror="this.style.display='none'"><span>Hibernate/JPA</span></div>
+          <div class="skill-chip"><span class="chip-emoji">📡</span><span>Event-Driven Arch</span></div>
+          <div class="skill-chip"><span class="chip-emoji">🌐</span><span>API Gateway</span></div>
+          <div class="skill-chip"><img src="img/maven.jpg" alt="Maven" onerror="this.style.display='none'"><span>Maven / Gradle</span></div>
+          <div class="skill-chip"><span class="chip-emoji">🐧</span><span>Linux</span></div>
+          <div class="skill-chip"><span class="chip-emoji">☁️</span><span>GCP</span></div>
+          <div class="skill-chip"><span class="chip-emoji">🐳</span><span>Docker</span></div>
+          <div class="skill-chip"><span class="chip-emoji">🔄</span><span>CI/CD</span></div>
+          <div class="skill-chip"><span class="chip-emoji">📋</span><span>OpenAPI/Swagger</span></div>
+        </div>
+      </div>
+
+      <div class="skill-cat glass-card" data-aos="fade-up" data-aos-delay="150">
+        <div class="cat-title">
+          <div class="cat-icon-wrap cyan"><i class="fa-solid fa-database"></i></div>
+          <h3>Databases, Search &amp; Messaging</h3>
+        </div>
+        <div class="chip-grid">
+          <div class="skill-chip"><img src="img/Mysql.jpeg" alt="PostgreSQL" onerror="this.style.display='none'"><span>PostgreSQL</span></div>
+          <div class="skill-chip"><img src="img/Mysql.jpeg" alt="MySQL" onerror="this.style.display='none'"><span>MySQL</span></div>
+          <div class="skill-chip"><img src="img/MongoDB.png" alt="MongoDB" onerror="this.style.display='none'"><span>MongoDB</span></div>
+          <div class="skill-chip"><span class="chip-emoji">📊</span><span>BigQuery</span></div>
+          <div class="skill-chip"><span class="chip-emoji">🔍</span><span>Elasticsearch</span></div>
+          <div class="skill-chip"><span class="chip-emoji">⚡</span><span>Redis</span></div>
+          <div class="skill-chip"><span class="chip-emoji">📨</span><span>GCP Pub/Sub</span></div>
+          <div class="skill-chip"><span class="chip-emoji">🔄</span><span>Async Processing</span></div>
+          <div class="skill-chip"><span class="chip-emoji">📈</span><span>SQL Optimisation</span></div>
+          <div class="skill-chip"><img src="img/apcheSpark.png" alt="Apache Spark" onerror="this.style.display='none'"><span>Apache Spark</span></div>
+          <div class="skill-chip"><img src="img/yarn.jpg" alt="Hadoop Yarn" onerror="this.style.display='none'"><span>Hadoop Yarn</span></div>
+          <div class="skill-chip"><img src="img/impala.jpg" alt="Impala" onerror="this.style.display='none'"><span>Impala</span></div>
+        </div>
+      </div>
+
+      <div class="skill-cat glass-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="cat-title">
+          <div class="cat-icon-wrap pink"><i class="fa-solid fa-brain"></i></div>
+          <h3>AI, Security &amp; Languages</h3>
+        </div>
+        <div class="chip-grid">
+          <div class="skill-chip"><img src="img/prompt.png" alt="AI" onerror="this.style.display='none'"><span>AI/LLM APIs</span></div>
+          <div class="skill-chip"><span class="chip-emoji">🤖</span><span>Doc-AI</span></div>
+          <div class="skill-chip"><span class="chip-emoji">✨</span><span>Generative AI</span></div>
+          <div class="skill-chip"><img src="img/prompt.png" alt="Prompt" onerror="this.style.display='none'"><span>Prompt Engineering</span></div>
+          <div class="skill-chip"><span class="chip-emoji">🔐</span><span>JWT / OAuth 2.0</span></div>
+          <div class="skill-chip"><span class="chip-emoji">🛡️</span><span>API Security</span></div>
+          <div class="skill-chip"><img src="img/Python.png" alt="Python" onerror="this.style.display='none'"><span>Python</span></div>
+          <div class="skill-chip"><img src="img/js.jpeg" alt="JS" onerror="this.style.display='none'"><span>JavaScript</span></div>
+          <div class="skill-chip"><span class="chip-emoji">🟢</span><span>Node.js</span></div>
+          <div class="skill-chip"><img src="img/flask.png" alt="Flask" onerror="this.style.display='none'"><span>Flask</span></div>
+          <div class="skill-chip"><span class="chip-emoji">⚙️</span><span>C++</span></div>
+          <div class="skill-chip"><span class="chip-emoji">📮</span><span>Postman</span></div>
+        </div>
+      </div>
+
+      <div class="skill-cat glass-card" data-aos="fade-up" data-aos-delay="250">
+        <div class="cat-title">
+          <div class="cat-icon-wrap gold"><i class="fa-solid fa-lightbulb"></i></div>
+          <h3>Domain &amp; Engineering Practices</h3>
+        </div>
+        <div class="chip-grid">
+          <div class="skill-chip"><span class="chip-emoji">💰</span><span>Accounting Workflows</span></div>
+          <div class="skill-chip"><span class="chip-emoji">⚖️</span><span>Reconciliation Engines</span></div>
+          <div class="skill-chip"><span class="chip-emoji">📒</span><span>Ledger Systems</span></div>
+          <div class="skill-chip"><span class="chip-emoji">💸</span><span>Payroll &amp; LOP</span></div>
+          <div class="skill-chip"><span class="chip-emoji">😊</span><span>Facial Recognition</span></div>
+          <div class="skill-chip"><span class="chip-emoji">📍</span><span>Geo-fencing</span></div>
+          <div class="skill-chip"><span class="chip-emoji">🧾</span><span>E-Invoicing</span></div>
+          <div class="skill-chip"><span class="chip-emoji">🏗️</span><span>System Design</span></div>
+          <div class="skill-chip"><span class="chip-emoji">🌐</span><span>Distributed Systems</span></div>
+          <div class="skill-chip"><img src="img/dsa.png" alt="DSA" onerror="this.style.display='none'"><span>DSA</span></div>
+          <div class="skill-chip"><span class="chip-emoji">🔄</span><span>Agile / Scrum</span></div>
+          <div class="skill-chip"><span class="chip-emoji">👀</span><span>Code Review &amp; Mentoring</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================= PROJECTS ============================= -->
+<section id="projects" class="section section-alt">
+  <div class="container">
+    <div class="section-header" data-aos="fade-up">
+      <span class="section-tag">04 — Projects</span>
+      <h2 class="section-title">What I've Built</h2>
+    </div>
+
+    <div class="project-filters" data-aos="fade-up" data-aos-delay="100">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="enterprise">Enterprise</button>
+      <button class="filter-btn" data-filter="backend">Backend</button>
+      <button class="filter-btn" data-filter="frontend">Frontend</button>
+      <button class="filter-btn" data-filter="python">Python</button>
+    </div>
+
+    <div class="projects-grid" id="projectsGrid">
+
+      <div class="proj-card" data-category="enterprise backend" data-aos="fade-up" data-aos-delay="100">
+        <div class="proj-card-inner">
+          <div class="proj-badge enterprise">Enterprise</div>
+          <div class="proj-img-wrap">
+            <img src="img/purchase_system.png" alt="Purchase Order Management"/>
+            <div class="proj-overlay"><span><i class="fa-solid fa-expand"></i> View Details</span></div>
+          </div>
+          <div class="proj-body">
+            <h3>Purchase Order Management System</h3>
+            <p>Complete Purchase Lifecycle System — PR, PO, GRN, Bills, Returns, Stock Transfers, and inter-company workflows. Integrated Doc-AI reducing manual data entry by <strong>92%</strong>. E-Invoicing for Malaysian compliance.</p>
+            <ul class="proj-feats">
+              <li>Express Purchase (80% faster onboarding)</li>
+              <li>Inter-company PO/SO/GRN auto-creation</li>
+              <li>Doc-AI integration (92% manual reduction)</li>
+              <li>Government-compliant E-Invoicing</li>
+            </ul>
+            <div class="proj-stack">
+              <span>Java 17</span><span>Spring Boot</span><span>PostgreSQL</span><span>REST APIs</span><span>GCP</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-card" data-category="enterprise backend" data-aos="fade-up" data-aos-delay="150">
+        <div class="proj-card-inner">
+          <div class="proj-badge enterprise">Enterprise</div>
+          <div class="proj-img-wrap">
+            <img src="img/vendor_system.png" alt="Vendor Management"/>
+            <div class="proj-overlay"><span><i class="fa-solid fa-expand"></i> View Details</span></div>
+          </div>
+          <div class="proj-body">
+            <h3>Vendor Management System</h3>
+            <p>Centralised vendor onboarding and compliance platform with automated GST, PAN, and bank account verification via third-party API Gateway integrations. Configurable Terms of Trade engines.</p>
+            <ul class="proj-feats">
+              <li>Automated GST, PAN &amp; Bank Validation</li>
+              <li>Configurable Terms of Trade (TOT)</li>
+              <li>3PL Verification &amp; Compliance</li>
+              <li>API Gateway Integration</li>
+            </ul>
+            <div class="proj-stack">
+              <span>Java 17</span><span>Spring Boot</span><span>Microservices</span><span>PostgreSQL</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-card" data-category="enterprise backend" data-aos="fade-up" data-aos-delay="200">
+        <div class="proj-card-inner">
+          <div class="proj-badge enterprise">Enterprise</div>
+          <div class="proj-img-wrap">
+            <img src="img/banking_system.png" alt="Finance Management"/>
+            <div class="proj-overlay"><span><i class="fa-solid fa-expand"></i> View Details</span></div>
+          </div>
+          <div class="proj-body">
+            <h3>Banking &amp; Finance Management System</h3>
+            <p>Scalable finance platform (inspired by Zoho Books/Tally) — bank accounts, payable ledgers, purchase accounting, real-time reconciliation. Doc-AI bank statement extraction with <strong>95% accuracy</strong>.</p>
+            <ul class="proj-feats">
+              <li>Real-time Reconciliation Engine</li>
+              <li>Elasticsearch Ledger Search</li>
+              <li>Loan &amp; Credit Card Workflows</li>
+              <li>Doc-AI 95% accuracy</li>
+            </ul>
+            <div class="proj-stack">
+              <span>Java 17</span><span>Spring Boot</span><span>Elasticsearch</span><span>PostgreSQL</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-card" data-category="backend" data-aos="fade-up" data-aos-delay="100">
+        <div class="proj-card-inner">
+          <div class="proj-img-wrap">
+            <img src="img/masaibuild - teamiply.png" alt="Teamiply"/>
+            <div class="proj-overlay"><span><i class="fa-solid fa-expand"></i> View Details</span></div>
+          </div>
+          <div class="proj-body">
+            <h3>MasaiBuilds — Teamiply</h3>
+            <p>Team management application offering a user-friendly platform to streamline communication and task management within organisations. Real-time task updates and manager dashboards.</p>
+            <div class="proj-stack">
+              <span>JAVA</span><span>JDBC</span><span>SQL</span><span>Hibernate</span><span>AWS</span>
+            </div>
+            <div class="proj-links">
+              <a href="https://github.com/masai-builds/TeamiplyBackend" target="_blank" class="proj-link"><i class="fa-brands fa-github"></i> Code</a>
+              <a href="https://teamimply.vercel.app/" target="_blank" class="proj-link demo"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-card" data-category="backend" data-aos="fade-up" data-aos-delay="150">
+        <div class="proj-card-inner">
+          <div class="proj-img-wrap">
+            <img src="img/portifolio5.png" alt="Auction System"/>
+            <div class="proj-overlay"><span><i class="fa-solid fa-expand"></i> View Details</span></div>
+          </div>
+          <div class="proj-body">
+            <h3>Automation Auction System</h3>
+            <p>Online auction system where buyers can purchase, sellers can list products, and administrators manage data and items. Backend server built with Java, SQL, JDBC and DAO technologies.</p>
+            <div class="proj-stack">
+              <span>JAVA</span><span>JDBC</span><span>SQL</span><span>DAO</span>
+            </div>
+            <div class="proj-links">
+              <a href="https://github.com/SakthivelMadhu/brief-shirt-7318" target="_blank" class="proj-link"><i class="fa-brands fa-github"></i> Code</a>
+              <a href="https://drive.google.com/drive/folders/18TTyx6UGZe3w0iRqTwcyqt-htw_FO9Z_?usp=share_link" target="_blank" class="proj-link demo"><i class="fa-solid fa-arrow-up-right-from-square"></i> Demo</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-card" data-category="frontend" data-aos="fade-up" data-aos-delay="100">
+        <div class="proj-card-inner">
+          <div class="proj-img-wrap">
+            <img src="img/portifolio1.png" alt="Famous Footwear Clone"/>
+            <div class="proj-overlay"><span><i class="fa-solid fa-expand"></i> View Details</span></div>
+          </div>
+          <div class="proj-body">
+            <h3>Clone of Famous Footwear</h3>
+            <p>Major Indian footwear retailer e-commerce clone with full UI replication, product browsing, and cart functionality.</p>
+            <div class="proj-stack">
+              <span>HTML</span><span>CSS</span><span>JavaScript</span>
+            </div>
+            <div class="proj-links">
+              <a href="https://github.com/Deepak-25yadav/wicked-edge-6587" target="_blank" class="proj-link"><i class="fa-brands fa-github"></i> Code</a>
+              <a href="https://magnificent-bonbon-8ffb8d.netlify.app/" target="_blank" class="proj-link demo"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-card" data-category="frontend" data-aos="fade-up" data-aos-delay="150">
+        <div class="proj-card-inner">
+          <div class="proj-img-wrap">
+            <img src="img/portifolio2.png" alt="Naukri Clone"/>
+            <div class="proj-overlay"><span><i class="fa-solid fa-expand"></i> View Details</span></div>
+          </div>
+          <div class="proj-body">
+            <h3>Clone of Naukri</h3>
+            <p>Indian employment website clone with job listings, search functionality, and full UI replication of India's leading job portal.</p>
+            <div class="proj-stack">
+              <span>HTML</span><span>CSS</span><span>JavaScript</span>
+            </div>
+            <div class="proj-links">
+              <a href="https://github.com/SakthivelMadhu/-lazy-base-8555" target="_blank" class="proj-link"><i class="fa-brands fa-github"></i> Code</a>
+              <a href="https://cerulean-tarsier-3cdce4.netlify.app/" target="_blank" class="proj-link demo"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-card" data-category="frontend" data-aos="fade-up" data-aos-delay="200">
+        <div class="proj-card-inner">
+          <div class="proj-img-wrap">
+            <img src="img/portifolio3.png" alt="OverStock Clone"/>
+            <div class="proj-overlay"><span><i class="fa-solid fa-expand"></i> View Details</span></div>
+          </div>
+          <div class="proj-body">
+            <h3>Clone of Over Stock</h3>
+            <p>Major furniture retailer e-commerce clone with product browsing, filtering, and shopping cart features.</p>
+            <div class="proj-stack">
+              <span>HTML</span><span>CSS</span><span>JavaScript</span>
+            </div>
+            <div class="proj-links">
+              <a href="https://github.com/SakthivelMadhu/next-vest-6513" target="_blank" class="proj-link"><i class="fa-brands fa-github"></i> Code</a>
+              <a href="https://roaring-licorice-c0552e.netlify.app/" target="_blank" class="proj-link demo"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-card" data-category="python" data-aos="fade-up" data-aos-delay="100">
+        <div class="proj-card-inner">
+          <div class="proj-img-wrap">
+            <img src="img/portifolio4.png" alt="Restaurant Management"/>
+            <div class="proj-overlay"><span><i class="fa-solid fa-expand"></i> View Details</span></div>
+          </div>
+          <div class="proj-body">
+            <h3>Restaurant Management System</h3>
+            <p>Restaurant management software for the restaurant industry, assisting leaders in carrying out critical managerial tasks with a comprehensive desktop UI.</p>
+            <div class="proj-stack">
+              <span>Python</span><span>Tkinter</span>
+            </div>
+            <div class="proj-links">
+              <a href="https://github.com/SakthivelMadhu/Restaurant_management_system" target="_blank" class="proj-link"><i class="fa-brands fa-github"></i> Code</a>
+              <a href="https://drive.google.com/drive/folders/1yDRTD5TZtIbbFLt4BjH4TtOEBZebUF0X?usp=share_link" target="_blank" class="proj-link demo"><i class="fa-solid fa-arrow-up-right-from-square"></i> Demo</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-card" data-category="python backend" data-aos="fade-up" data-aos-delay="150">
+        <div class="proj-card-inner">
+          <div class="proj-img-wrap">
+            <img src="img/portfolio.png" alt="Portfolio Management"/>
+            <div class="proj-overlay"><span><i class="fa-solid fa-expand"></i> View Details</span></div>
+          </div>
+          <div class="proj-body">
+            <h3>Portfolio Management System</h3>
+            <p>Project Prism — Portfolio Management App streamlining project and task management. Supports CRUD operations, pagination, filtering, and sorting with React JS frontend.</p>
+            <div class="proj-stack">
+              <span>Python</span><span>Flask</span><span>MySQL</span><span>React JS</span>
+            </div>
+            <div class="proj-links">
+              <a href="https://github.com/SakthivelMadhu/Portfolio_Management_Application" target="_blank" class="proj-link"><i class="fa-brands fa-github"></i> Code</a>
+              <a href="https://drive.google.com/file/d/1R35QZhF5EBD2mC6GMkuvJ7COcmagLj89/view?usp=drive_link" target="_blank" class="proj-link demo"><i class="fa-solid fa-arrow-up-right-from-square"></i> Demo</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-card" data-category="python backend" data-aos="fade-up" data-aos-delay="200">
+        <div class="proj-card-inner">
+          <div class="proj-img-wrap">
+            <img src="img/libManagement.png" alt="Library Management"/>
+            <div class="proj-overlay"><span><i class="fa-solid fa-expand"></i> View Details</span></div>
+          </div>
+          <div class="proj-body">
+            <h3>Library Management System</h3>
+            <p>Software application facilitating library management including cataloguing resources, tracking borrowed items, managing patron information, and administrative functions.</p>
+            <div class="proj-stack">
+              <span>Python</span><span>Flask</span><span>Shell</span><span>HTML</span><span>CSS</span>
+            </div>
+            <div class="proj-links">
+              <a href="https://github.com/SakthivelMadhu/Library-Management-System" target="_blank" class="proj-link"><i class="fa-brands fa-github"></i> Code</a>
+              <a href="https://drive.google.com/drive/folders/1981eZ9LRV9zAKdMU7bveDAFyTEqr9DDp?usp=sharing" target="_blank" class="proj-link demo"><i class="fa-solid fa-arrow-up-right-from-square"></i> Demo</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-card" data-category="python backend" data-aos="fade-up" data-aos-delay="250">
+        <div class="proj-card-inner">
+          <div class="proj-img-wrap">
+            <img src="img/job_matching.jpg" alt="Job Matching"/>
+            <div class="proj-overlay"><span><i class="fa-solid fa-expand"></i> View Details</span></div>
+          </div>
+          <div class="proj-body">
+            <h3>Intelligent Job Matching System</h3>
+            <p>Backend system for intelligent job matching built with Flask and MongoDB. Features management of job seekers, postings, applications, and skill sets with intelligent matching algorithms.</p>
+            <div class="proj-stack">
+              <span>Python</span><span>Flask</span><span>MongoDB</span><span>JavaScript</span>
+            </div>
+            <div class="proj-links">
+              <a href="https://github.com/SakthivelMadhu/Job_Matching_System" target="_blank" class="proj-link"><i class="fa-brands fa-github"></i> Code</a>
+              <a href="https://drive.google.com/drive/folders/1FLblJSppKn4XmFLDyUJUOooCuB_d9h_v?usp=sharing" target="_blank" class="proj-link demo"><i class="fa-solid fa-arrow-up-right-from-square"></i> Demo</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================= ACHIEVEMENTS ============================= -->
+<section id="achievements" class="section">
+  <div class="container">
+    <div class="section-header" data-aos="fade-up">
+      <span class="section-tag">05 — Recognition</span>
+      <h2 class="section-title">Achievements &amp; Certifications</h2>
+    </div>
+
+    <div class="ach-grid">
+      <div class="ach-card featured-ach glass-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="ach-glow-ring"></div>
+        <div class="ach-icon-big gold"><i class="fa-solid fa-trophy"></i></div>
+        <div class="ach-content">
+          <span class="ach-badge award-badge">🏆 Award</span>
+          <h3>Employee of the Quarter</h3>
+          <p class="ach-org">Twinleaves Retail Ecommerce India Pvt. Ltd.</p>
+          <p class="ach-desc">Recognised for high-impact engineering contributions and full technical ownership across ERP, HRMS, and Finance platforms. Delivered measurable outcomes — 92% manual effort reduction and 80% faster inventory onboarding.</p>
+          <a href="https://drive.google.com/file/d/1uu_cF3-hacTCve8xITkrSTivhXP8U5jS/view?usp=drive_link" target="_blank" class="ach-link-btn">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i> View Certificate
+          </a>
+        </div>
+      </div>
+
+      <div class="ach-card glass-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="ach-icon-big cyan"><i class="fa-solid fa-certificate"></i></div>
+        <div class="ach-content">
+          <span class="ach-badge cert-badge">📜 Certification</span>
+          <h3>Prompt Engineering for Developers</h3>
+          <p class="ach-org">DeepLearning.AI / ChatGPT — Java Track</p>
+          <p class="ach-desc">Completed certification in Prompt Engineering for Developers with a focus on Java implementation and AI/LLM API integration patterns for production systems.</p>
+          <a href="https://drive.google.com/file/d/1WxbYa7Iwbv7RLjo5zRuZmZDiBGacOShI/view?usp=sharing" target="_blank" class="ach-link-btn">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i> View Certificate
+          </a>
+        </div>
+      </div>
+
+      <div class="ach-card glass-card" data-aos="fade-up" data-aos-delay="300">
+        <div class="ach-icon-big purple"><i class="fa-brands fa-python"></i></div>
+        <div class="ach-content">
+          <span class="ach-badge cert-badge">📜 Certification</span>
+          <h3>Python Programming Certification</h3>
+          <p class="ach-org">Apponix Training Center</p>
+          <p class="ach-desc">Professional certification in Python Programming covering core language features, OOP concepts, and practical application development including backend and scripting.</p>
+          <a href="https://drive.google.com/file/d/1WwUrLLHI4uib6dqFcEVzrL0e1spKFdZi/view?usp=sharing" target="_blank" class="ach-link-btn">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i> View Certificate
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= ENTERPRISE DOMAINS ============================= -->
+<section id="domains" class="section section-alt">
+  <div class="container">
+    <div class="section-header" data-aos="fade-up">
+      <span class="section-tag">06 — Enterprise Impact</span>
+      <h2 class="section-title">Platforms I've Engineered</h2>
+      <p class="section-sub">Production-grade enterprise systems used by real teams, handling real money and real data — every day.</p>
+    </div>
+
+    <div class="domains-grid">
+
+      <div class="domain-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="domain-img-wrap">
+          <img src="img/purchase_system.png" alt="ERP Purchase Platform"/>
+          <div class="domain-img-overlay"></div>
+          <div class="domain-category-badge"><i class="fa-solid fa-boxes-stacked"></i> ERP Platform</div>
+          <div class="domain-impact-pill cyan-pill">80% Faster Onboarding</div>
+        </div>
+        <div class="domain-body">
+          <h3>Purchase &amp; ERP Platform</h3>
+          <p>Full purchase lifecycle — PR, PO, GRN, billing, returns, inter-company workflows &amp; e-invoicing. Doc-AI integration reduced manual entry by <strong>92%</strong>.</p>
+          <div class="domain-metrics">
+            <div class="dm-item"><span class="dm-num cyan">92%</span><span class="dm-label">Manual Reduction</span></div>
+            <div class="dm-item"><span class="dm-num gold">80%</span><span class="dm-label">Faster Onboarding</span></div>
+            <div class="dm-item"><span class="dm-num purple">100%</span><span class="dm-label">Compliance</span></div>
+          </div>
+          <div class="domain-chips">
+            <span>Java 17</span><span>Spring Boot</span><span>GCP</span><span>AI/LLM</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="domain-card" data-aos="fade-up" data-aos-delay="150">
+        <div class="domain-img-wrap">
+          <img src="img/banking_system.png" alt="Finance Management System"/>
+          <div class="domain-img-overlay"></div>
+          <div class="domain-category-badge"><i class="fa-solid fa-coins"></i> FinTech</div>
+          <div class="domain-impact-pill gold-pill">95% Doc-AI Accuracy</div>
+        </div>
+        <div class="domain-body">
+          <h3>Finance Management System</h3>
+          <p>Scalable platform inspired by Zoho Books/Tally — bank accounts, payable ledgers, purchase accounting &amp; real-time reconciliation with Elasticsearch-powered audit logs.</p>
+          <div class="domain-metrics">
+            <div class="dm-item"><span class="dm-num cyan">95%</span><span class="dm-label">Doc-AI Accuracy</span></div>
+            <div class="dm-item"><span class="dm-num gold">∞</span><span class="dm-label">Transactions</span></div>
+            <div class="dm-item"><span class="dm-num purple">RT</span><span class="dm-label">Reconciliation</span></div>
+          </div>
+          <div class="domain-chips">
+            <span>Elasticsearch</span><span>PostgreSQL</span><span>Redis</span><span>Doc-AI</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="domain-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="domain-img-wrap">
+          <img src="img/vendor_system.png" alt="Vendor Management System"/>
+          <div class="domain-img-overlay"></div>
+          <div class="domain-category-badge"><i class="fa-solid fa-handshake"></i> Vendor Mgmt</div>
+          <div class="domain-impact-pill purple-pill">Auto GST/PAN Verify</div>
+        </div>
+        <div class="domain-body">
+          <h3>Vendor Management System</h3>
+          <p>Centralised onboarding &amp; compliance platform with automated GST, PAN &amp; bank verification via API Gateway. Configurable Terms of Trade engines.</p>
+          <div class="domain-metrics">
+            <div class="dm-item"><span class="dm-num cyan">100%</span><span class="dm-label">Auto Verify</span></div>
+            <div class="dm-item"><span class="dm-num gold">0</span><span class="dm-label">Manual Checks</span></div>
+            <div class="dm-item"><span class="dm-num purple">API</span><span class="dm-label">Gateway</span></div>
+          </div>
+          <div class="domain-chips">
+            <span>Microservices</span><span>Spring Cloud</span><span>3PL APIs</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="domain-card" data-aos="fade-up" data-aos-delay="250">
+        <div class="domain-img-wrap hrms-card">
+          <div class="hrms-visual">
+            <div class="hrms-icon-ring">
+              <div class="hrms-center-icon"><i class="fa-solid fa-face-smile"></i></div>
+              <div class="hrms-orbit-icon hi1"><i class="fa-solid fa-location-dot"></i></div>
+              <div class="hrms-orbit-icon hi2"><i class="fa-solid fa-clock"></i></div>
+              <div class="hrms-orbit-icon hi3"><i class="fa-solid fa-calendar-check"></i></div>
+              <div class="hrms-orbit-icon hi4"><i class="fa-solid fa-coins"></i></div>
+            </div>
+          </div>
+          <div class="domain-img-overlay"></div>
+          <div class="domain-category-badge"><i class="fa-solid fa-users"></i> HRMS</div>
+          <div class="domain-impact-pill pink-pill">Facial Recognition</div>
+        </div>
+        <div class="domain-body">
+          <h3>HRMS — Attendance &amp; LOP System</h3>
+          <p>Facial recognition check-in/out, geo-fencing for remote/office policies, automated LOP calculation, payroll-linked reporting &amp; shift management.</p>
+          <div class="domain-metrics">
+            <div class="dm-item"><span class="dm-num cyan">0</span><span class="dm-label">Manual HR Work</span></div>
+            <div class="dm-item"><span class="dm-num gold">RT</span><span class="dm-label">Dashboards</span></div>
+            <div class="dm-item"><span class="dm-num purple">AI</span><span class="dm-label">Face ID</span></div>
+          </div>
+          <div class="domain-chips">
+            <span>Facial Recognition</span><span>Geo-fencing</span><span>Payroll</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================= GITHUB STATS ============================= -->
+<section id="github" class="section">
+  <div class="container">
+    <div class="section-header" data-aos="fade-up">
+      <span class="section-tag">07 — Open Source</span>
+      <h2 class="section-title">GitHub Activity</h2>
+    </div>
+    <div class="github-wrap" data-aos="fade-up" data-aos-delay="100">
+      <div class="github-card glass-card">
+        <img src="https://github-readme-streak-stats.herokuapp.com/?user=SakthivelMadhu&theme=tokyonight&hide_border=true&background=0D0D1E&stroke=00D4FF&ring=8B5CF6&fire=F59E0B&currStreakLabel=00D4FF"
+          alt="GitHub Streak"/>
+      </div>
+      <div class="github-card glass-card">
+        <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=SakthivelMadhu&theme=tokyonight&hide_border=true&layout=compact&bg_color=0D0D1E"
+          alt="Top Languages"/>
+      </div>
+      <div class="github-card glass-card">
+        <img src="https://github-readme-stats.vercel.app/api?username=SakthivelMadhu&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0D0D1E"
+          alt="GitHub Stats"/>
+      </div>
+    </div>
+    <div class="github-cta" data-aos="fade-up" data-aos-delay="200">
+      <a href="https://github.com/SakthivelMadhu" target="_blank" class="btn-primary">
+        <i class="fa-brands fa-github"></i> View Full GitHub Profile
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= CONTACT ============================= -->
+<section id="contact" class="contact-section">
+  <!-- Aurora background blobs -->
+  <div class="ct-aurora">
+    <div class="ct-blob ct-blob-1"></div>
+    <div class="ct-blob ct-blob-2"></div>
+    <div class="ct-blob ct-blob-3"></div>
+  </div>
+  <div class="ct-grid-overlay"></div>
+
+  <div class="container ct-container">
+    <!-- Top headline -->
+    <div class="ct-headline" data-aos="fade-up">
+      <div class="ct-avail-badge">
+        <span class="badge-pulse"></span> Open to Opportunities
+      </div>
+      <h2 class="ct-title">Let's Build Something<br><span class="gradient-text">Epic Together</span></h2>
+      <p class="ct-subtitle">I'm actively looking for challenging backend engineering roles and exciting product ideas. If you have a hard problem, let's solve it.</p>
+    </div>
+
+    <!-- Big contact cards -->
+    <div class="ct-cards-row" data-aos="fade-up" data-aos-delay="100">
+      <a href="mailto:sakthi130597@gmail.com" class="ct-card ct-email magnetic">
+        <div class="ct-card-glow"></div>
+        <div class="ct-card-icon"><i class="fa-solid fa-envelope"></i></div>
+        <div class="ct-card-text">
+          <span class="ct-card-label">Email Me</span>
+          <span class="ct-card-val">sakthi130597@gmail.com</span>
+        </div>
+        <div class="ct-card-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+      </a>
+      <a href="https://www.linkedin.com/in/sakthivel-madhu-864647238/" target="_blank" class="ct-card ct-linkedin magnetic">
+        <div class="ct-card-glow"></div>
+        <div class="ct-card-icon"><i class="fa-brands fa-linkedin"></i></div>
+        <div class="ct-card-text">
+          <span class="ct-card-label">Connect on LinkedIn</span>
+          <span class="ct-card-val">sakthivel-madhu-864647238</span>
+        </div>
+        <div class="ct-card-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+      </a>
+      <a href="https://github.com/SakthivelMadhu" target="_blank" class="ct-card ct-github magnetic">
+        <div class="ct-card-glow"></div>
+        <div class="ct-card-icon"><i class="fa-brands fa-github"></i></div>
+        <div class="ct-card-text">
+          <span class="ct-card-label">View My Code</span>
+          <span class="ct-card-val">github.com/SakthivelMadhu</span>
+        </div>
+        <div class="ct-card-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+      </a>
+      <a href="tel:+917538837154" class="ct-card ct-phone magnetic">
+        <div class="ct-card-glow"></div>
+        <div class="ct-card-icon"><i class="fa-solid fa-phone"></i></div>
+        <div class="ct-card-text">
+          <span class="ct-card-label">Call Me</span>
+          <span class="ct-card-val">+91 75388 37154</span>
+        </div>
+        <div class="ct-card-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+      </a>
+    </div>
+
+    <!-- Divider -->
+    <div class="ct-divider" data-aos="fade-up" data-aos-delay="150">
+      <span>Or send me a direct message</span>
+    </div>
+
+    <!-- Form + GIF row -->
+    <div class="ct-form-row" data-aos="fade-up" data-aos-delay="200">
+      <div class="ct-form-left">
+        <div class="ct-gif-box glass-card">
+          <img src="img/Contact_us.gif" alt="Contact"/>
+          <div class="ct-location-bar">
+            <i class="fa-solid fa-location-dot"></i>
+            <span>Bangalore, India · Available Remotely</span>
+          </div>
+          <div class="ct-response-badge">
+            <i class="fa-solid fa-bolt"></i> Typically responds within 24h
+          </div>
+        </div>
+      </div>
+      <div class="ct-form-right">
+        <form action="https://formsubmit.co/sakthi130597@gmail.com" method="POST" class="ct-form glass-card">
+          <h3><i class="fa-solid fa-paper-plane"></i> Send a Message</h3>
+          <div class="ct-form-grid">
+            <div class="ct-field">
+              <label for="f-name">Name</label>
+              <input type="text" id="f-name" name="name" placeholder="Your name" required/>
+            </div>
+            <div class="ct-field">
+              <label for="f-email">Email</label>
+              <input type="email" id="f-email" name="email" placeholder="your@email.com" required/>
+            </div>
+          </div>
+          <div class="ct-field">
+            <label for="f-subject">Subject</label>
+            <input type="text" id="f-subject" name="subject" placeholder="Job opportunity / Project / Collaboration"/>
+          </div>
+          <div class="ct-field">
+            <label for="f-msg">Message</label>
+            <textarea id="f-msg" name="message" rows="5" placeholder="Tell me what you're building or what role you have in mind..." required></textarea>
+          </div>
+          <button type="submit" class="ct-submit-btn magnetic">
+            <span class="btn-glow"></span>
+            <i class="fa-solid fa-paper-plane"></i> Send Message
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= FOOTER ============================= -->
+<footer class="footer">
+  <div class="footer-aurora">
+    <div class="f-blob f-blob-1"></div>
+    <div class="f-blob f-blob-2"></div>
+  </div>
+
+  <!-- Wave separator -->
+  <div class="footer-wave">
+    <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z" fill="#050510"/>
+    </svg>
+  </div>
+
+  <div class="footer-inner">
+    <!-- Profile strip -->
+    <div class="footer-profile-strip" data-aos="fade-up">
+      <div class="footer-photo-wrap">
+        <img src="img/professional-photo.jpg" alt="Sakthivel Madhu"/>
+      </div>
+      <div class="footer-id">
+        <div class="footer-logo-badge">SM</div>
+        <div>
+          <h3 class="footer-name">Sakthivel Madhu</h3>
+          <p class="footer-role">Backend Engineer · Java 17 · Spring Boot · GCP · Microservices</p>
+        </div>
+      </div>
+      <div class="footer-cta-group">
+        <a href="mailto:sakthi130597@gmail.com" class="btn-primary btn-sm magnetic">
+          <i class="fa-solid fa-envelope"></i> Hire Me
+        </a>
+        <a href="https://drive.google.com/file/d/1rLtlLlLSBEiQulypJezq-kmwUfeK5qNW/view?usp=sharing" target="_blank" class="btn-outline btn-sm">
+          <i class="fa-solid fa-download"></i> Resume
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-divider-line"></div>
+
+    <!-- Bottom row -->
+    <div class="footer-bottom-row">
+      <p class="footer-copy">© 2026 Sakthivel Madhu · Built with <span class="heart">❤</span> · Powered by ambition &amp; ☕</p>
+      <div class="footer-nav">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="footer-social-icons">
+        <a href="https://github.com/SakthivelMadhu" target="_blank" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/sakthivel-madhu-864647238/" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+        <a href="https://leetcode.com/u/sakthi130597/" target="_blank" aria-label="LeetCode"><i class="fa-solid fa-code"></i></a>
+        <a href="mailto:sakthi130597@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- AOS -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
 <script>
+// ========== INIT ==========
+AOS.init({ once: true, offset: 80 });
 
+// ========== LOADER ==========
+window.addEventListener('load', () => {
+  const loader = document.getElementById('loader');
+  setTimeout(() => {
+    loader.style.opacity = '0';
+    loader.style.pointerEvents = 'none';
+    setTimeout(() => loader.style.display = 'none', 600);
+  }, 1800);
+});
 
-    // ----------------------------------------navbar----------------------------------------
-    const toggleButton = document.getElementsByClassName('menubar')[0]
-    const navbarLinks = document.getElementsByClassName('nav-menu')[0]
+// ========== CUSTOM CURSOR ==========
+const dot = document.getElementById('cursorDot');
+const outline = document.getElementById('cursorOutline');
+let outlineX = 0, outlineY = 0, dotX = 0, dotY = 0;
+document.addEventListener('mousemove', e => {
+  dotX = e.clientX; dotY = e.clientY;
+  dot.style.left = dotX + 'px';
+  dot.style.top = dotY + 'px';
+});
+function animateOutline() {
+  outlineX += (dotX - outlineX) * 0.12;
+  outlineY += (dotY - outlineY) * 0.12;
+  outline.style.left = outlineX + 'px';
+  outline.style.top = outlineY + 'px';
+  requestAnimationFrame(animateOutline);
+}
+animateOutline();
+document.querySelectorAll('a, button, .proj-card, .ach-card, .skill-chip').forEach(el => {
+  el.addEventListener('mouseenter', () => outline.classList.add('cursor-hover'));
+  el.addEventListener('mouseleave', () => outline.classList.remove('cursor-hover'));
+});
 
-    toggleButton.addEventListener('click', () => {
-        navbarLinks.classList.toggle('active')
-    })
+// ========== SCROLL PROGRESS ==========
+window.addEventListener('scroll', () => {
+  const scrolled = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+  document.getElementById('scrollProgress').style.width = scrolled + '%';
 
-    // ---------------------------resume open----------------------------------
-    document.getElementById('resume-link-1').addEventListener("click", () => {
-        window.location.assign("https://drive.google.com/file/d/1rLtlLlLSBEiQulypJezq-kmwUfeK5qNW/view?usp=sharing", "_blank");
-    })
+  // Navbar scroll effect
+  const nav = document.getElementById('navbar');
+  nav.classList.toggle('scrolled', window.scrollY > 50);
 
-    document.getElementById('resume-link-2').addEventListener("click", () => {
-        window.location.assign("https://drive.google.com/file/d/1rLtlLlLSBEiQulypJezq-kmwUfeK5qNW/view?usp=sharing", "_blank");
-    })
+  // Back to top
+  document.getElementById('backToTop').classList.toggle('visible', window.scrollY > 400);
 
-    // ---------------------------resume open----------------------------------
-
-
-    /* --------------------------------------------------GITHUB------------------------------------------------------ */
-
-    let arr = ["https://github-readme-streak-stats.herokuapp.com/?user=SakthivelMadhu&", "https://github-readme-stats.vercel.app/api/top-langs/?username=SakthivelMadhu", "https://github-readme-stats.vercel.app/api?username=SakthivelMadhu&show_icons=true&locale=en"];
-
-    let j = 0;
-
-    function slides2() {
-        document.getElementById("image2").src = arr[j];
-        if (j < arr.length - 1) j++;
-        else j = 0;
+  // Active nav link
+  const sections = document.querySelectorAll('section[id]');
+  sections.forEach(sec => {
+    const top = sec.offsetTop - 100;
+    const id = sec.getAttribute('id');
+    if (window.scrollY >= top && window.scrollY < top + sec.offsetHeight) {
+      document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+      const active = document.querySelector(`.nav-link[href="#${id}"]`);
+      if (active) active.classList.add('active');
     }
+  });
+});
 
-    setInterval(slides2, 1500);
+// ========== BACK TO TOP ==========
+document.getElementById('backToTop').addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
 
-    /* --------------------------------------------------GITHUB------------------------------------------------------ */
+// ========== HAMBURGER ==========
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('navLinks');
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('open');
+  navLinks.classList.toggle('open');
+});
+document.querySelectorAll('.nav-link, .nav-resume-btn').forEach(l => {
+  l.addEventListener('click', () => {
+    hamburger.classList.remove('open');
+    navLinks.classList.remove('open');
+  });
+});
 
+// ========== TYPING EFFECT ==========
+const roles = ['Backend Engineer', 'Java 17 Developer', 'Spring Boot Expert', 'Microservices Architect', 'GCP Engineer', 'System Designer'];
+let rIdx = 0, cIdx = 0, deleting = false;
+const el = document.getElementById('typingText');
+function type() {
+  const word = roles[rIdx];
+  el.textContent = deleting ? word.substring(0, cIdx--) : word.substring(0, cIdx++);
+  if (!deleting && cIdx === word.length + 1) { deleting = true; setTimeout(type, 1500); return; }
+  if (deleting && cIdx === 0) { deleting = false; rIdx = (rIdx + 1) % roles.length; }
+  setTimeout(type, deleting ? 60 : 100);
+}
+type();
 
-    // var typed = new Typed(".typing" , {
-    //     strings: [""  ,"Problem Solver" ,"Continuous Learner" ,"Java Backend Developer" , "Full Stack Web Developer" ] ,
-    //     typeSpeed: 100,
-    //     BackSpeed: 60,
-    //     loop:true
-    // })
+// ========== COUNTER ANIMATION ==========
+const counters = document.querySelectorAll('.stat-val[data-count]');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const target = +entry.target.dataset.count;
+      let current = 0;
+      const step = target / 60;
+      const timer = setInterval(() => {
+        current = Math.min(current + step, target);
+        entry.target.textContent = Math.floor(current) + (target >= 80 ? '%+' : '+');
+        if (current >= target) clearInterval(timer);
+      }, 25);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.5 });
+counters.forEach(c => observer.observe(c));
+
+// ========== PROJECT FILTER ==========
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const filter = btn.dataset.filter;
+    document.querySelectorAll('.proj-card').forEach(card => {
+      const cats = card.dataset.category || '';
+      const show = filter === 'all' || cats.includes(filter);
+      card.style.display = show ? 'block' : 'none';
+      card.style.animation = show ? 'fadeInUp 0.4s ease' : 'none';
+    });
+  });
+});
+
+// ========== PARTICLES ==========
+(function() {
+  const canvas = document.createElement('canvas');
+  canvas.id = 'particles-bg';
+  const container = document.getElementById('particles-canvas');
+  if (!container) return;
+  container.appendChild(canvas);
+  const ctx = canvas.getContext('2d');
+  let W, H, particles = [];
+  function resize() {
+    W = canvas.width = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+  const colors = ['rgba(0,212,255,', 'rgba(139,92,246,', 'rgba(244,114,182,', 'rgba(245,158,11,'];
+  for (let i = 0; i < 70; i++) {
+    particles.push({
+      x: Math.random() * W, y: Math.random() * H,
+      r: Math.random() * 2 + 0.5,
+      vx: (Math.random() - 0.5) * 0.4, vy: (Math.random() - 0.5) * 0.4,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      opacity: Math.random() * 0.5 + 0.2
+    });
+  }
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    particles.forEach((p, i) => {
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < 0 || p.x > W) p.vx *= -1;
+      if (p.y < 0 || p.y > H) p.vy *= -1;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = p.color + p.opacity + ')';
+      ctx.fill();
+      particles.forEach((p2, j) => {
+        if (j <= i) return;
+        const d = Math.hypot(p.x - p2.x, p.y - p2.y);
+        if (d < 120) {
+          ctx.beginPath();
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(p2.x, p2.y);
+          ctx.strokeStyle = `rgba(0,212,255,${0.1 * (1 - d / 120)})`;
+          ctx.lineWidth = 0.5;
+          ctx.stroke();
+        }
+      });
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+// ========== SMOOTH SCROLL ==========
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+  });
+});
+
+// ========== BLOB MORPH SVG ANIMATION ==========
+(function() {
+  const paths = [
+    "M315,180 C340,220 330,280 295,310 C260,340 205,345 165,325 C125,305 85,265 75,220 C65,175 85,120 120,90 C155,60 210,55 260,70 C310,85 290,140 315,180 Z",
+    "M300,160 C335,200 345,270 310,305 C275,340 210,350 170,330 C130,310 90,270 80,225 C70,180 95,125 135,95 C175,65 225,60 265,80 C305,100 265,120 300,160 Z",
+    "M320,190 C345,235 325,295 285,320 C245,345 190,340 155,315 C120,290 90,250 85,205 C80,160 105,110 145,85 C185,60 240,65 275,90 C310,115 295,145 320,190 Z",
+    "M305,170 C338,215 338,285 300,315 C262,345 200,342 162,318 C124,294 88,258 82,212 C76,166 100,115 140,90 C180,65 230,68 268,88 C306,108 272,125 305,170 Z"
+  ];
+  const morphEl = document.querySelector('.blob-morph');
+  const borderEl = document.querySelector('.blob-border-path');
+  if (!morphEl || !borderEl) return;
+  let idx = 0;
+  function nextBlob() {
+    idx = (idx + 1) % paths.length;
+    morphEl.setAttribute('d', paths[idx]);
+    borderEl.setAttribute('d', paths[idx]);
+  }
+  setInterval(nextBlob, 2800);
+})();
+
+// ========== MAGNETIC BUTTONS ==========
+document.querySelectorAll('.magnetic').forEach(btn => {
+  btn.addEventListener('mousemove', e => {
+    const r = btn.getBoundingClientRect();
+    const x = e.clientX - r.left - r.width / 2;
+    const y = e.clientY - r.top - r.height / 2;
+    btn.style.transform = `translate(${x * 0.25}px, ${y * 0.25}px)`;
+  });
+  btn.addEventListener('mouseleave', () => {
+    btn.style.transform = '';
+  });
+});
+
+// ========== CARD 3D TILT ==========
+document.querySelectorAll('.proj-card-inner, .domain-card, .ach-card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const r = card.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width - 0.5;
+    const y = (e.clientY - r.top) / r.height - 0.5;
+    card.style.transform = `perspective(800px) rotateY(${x * 8}deg) rotateX(${-y * 8}deg) translateZ(4px)`;
+  });
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = 'perspective(800px) rotateY(0) rotateX(0) translateZ(0)';
+    card.style.transition = 'transform 0.5s ease';
+  });
+  card.addEventListener('mouseenter', () => {
+    card.style.transition = 'transform 0.1s ease';
+  });
+});
+
+// ========== GLITCH TEXT ON HOVER (hero name) ==========
+(function() {
+  const nameEl = document.querySelector('.name-main');
+  if (!nameEl) return;
+  const orig = nameEl.textContent;
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%';
+  nameEl.addEventListener('mouseenter', () => {
+    let iter = 0;
+    const interval = setInterval(() => {
+      nameEl.textContent = orig.split('').map((ch, i) => {
+        if (i < iter) return orig[i];
+        if (ch === ' ') return ' ';
+        return chars[Math.floor(Math.random() * chars.length)];
+      }).join('');
+      if (iter >= orig.length) clearInterval(interval);
+      iter += 1.5;
+    }, 35);
+  });
+})();
+
+// ========== AURORA PARALLAX ==========
+document.addEventListener('mousemove', e => {
+  const x = (e.clientX / window.innerWidth - 0.5) * 30;
+  const y = (e.clientY / window.innerHeight - 0.5) * 30;
+  document.querySelectorAll('.ct-blob').forEach((b, i) => {
+    const depth = (i + 1) * 0.4;
+    b.style.transform = `translate(${x * depth}px, ${y * depth}px)`;
+  });
+});
 </script>
-
+</body>
 </html>
