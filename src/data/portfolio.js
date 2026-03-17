@@ -9,7 +9,7 @@ export const personalInfo = {
     'Deep expertise in Java 17, Spring Boot, microservices, event-driven architecture, and high-throughput REST APIs on GCP.',
     'Proven track record of delivering fault-tolerant, production-critical systems with measurable business impact.',
   ],
-  photo: '/img/my pic.webp',
+  photo: '/img/photo.jpg',
   resume: 'https://drive.google.com/file/d/1rLtlLlLSBEiQulypJezq-kmwUfeK5qNW/view?usp=sharing',
   contact: {
     email: 'sakthi130597@gmail.com',
@@ -60,6 +60,36 @@ export const workHistory = [
       },
     ],
     tech: ['Java 17', 'Spring Boot', 'Spring Security', 'GCP', 'PostgreSQL', 'Elasticsearch', 'Pub/Sub', 'Docker', 'Redis', 'CI/CD'],
+  },
+  {
+    id: 4,
+    role: 'Self-Learning & Skill Building',
+    company: 'Independent',
+    location: 'Remote',
+    duration: 'Aug 2023 – Apr 2024',
+    isCurrent: false,
+    isGap: true,
+    color: '#10B981',
+    chapter: 'Chapter 02.5',
+    summary: '10 months of focused independent upskilling — deepening Java/Spring Boot mastery, system design, and building personal projects after Masai training.',
+    achievements: [
+      {
+        title: 'Advanced Java & Spring Boot Mastery',
+        description: 'Deepened expertise in Java 17, Spring Security, Spring Cloud, and Hibernate/JPA through self-directed study, online courses, and building personal projects from scratch.',
+        impact: ['Java 17 advanced features', 'Spring Security & OAuth 2.0', 'Hibernate optimization patterns'],
+      },
+      {
+        title: 'System Design & DSA Practice',
+        description: 'Solved 150+ LeetCode problems focusing on data structures, algorithms, and system design patterns. Studied distributed systems design, microservices architecture, and scalability principles.',
+        impact: ['150+ LeetCode problems', 'Distributed systems study', 'Microservices patterns'],
+      },
+      {
+        title: 'Python & Full-Stack Projects',
+        description: 'Built 4+ personal projects using Python (Flask, Tkinter), MySQL, and MongoDB — restaurant management system, library management, intelligent job matching, and portfolio management app.',
+        impact: ['4+ personal projects', 'Python/Flask/MySQL stack', 'RESTful API design'],
+      },
+    ],
+    tech: ['Java 17', 'Spring Boot', 'Python', 'Flask', 'MySQL', 'MongoDB', 'System Design', 'DSA', 'LeetCode'],
   },
   {
     id: 2,

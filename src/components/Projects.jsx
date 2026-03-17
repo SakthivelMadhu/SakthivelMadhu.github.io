@@ -2,20 +2,15 @@ import { useState, useRef, useCallback, useEffect } from 'react'
 import { motion, AnimatePresence, useInView } from 'framer-motion'
 import { projects } from '../data/portfolio'
 
-const FILTERS = [
-  { label: 'All', value: 'all' },
-  { label: 'Enterprise', value: 'enterprise', icon: '🏢' },
-  { label: 'Backend', value: 'backend', icon: '⚙️' },
-  { label: 'Frontend', value: 'frontend', icon: '🎨' },
-  { label: 'Python', value: 'python', icon: '🐍' },
-]
-
 const CAT = {
   enterprise: { color: '#00D4FF', label: 'Enterprise' },
   backend:    { color: '#8B5CF6', label: 'Backend' },
   frontend:   { color: '#EC4899', label: 'Frontend' },
   python:     { color: '#F59E0B', label: 'Python' },
 }
+
+const enterpriseProjects = projects.filter(p => p.category === 'enterprise')
+const learningProjects    = projects.filter(p => p.category !== 'enterprise')
 
 // ─────────────────────────────────────────────────────────────────────────────
 // CASE STUDY MODAL
@@ -41,10 +36,8 @@ function CaseStudyModal({ project, onClose }) {
         exit={{ opacity: 0 }}
         onClick={onClose}
       >
-        {/* Backdrop */}
         <div className="absolute inset-0" style={{ background: 'rgba(0,0,0,0.85)', backdropFilter: 'blur(12px)' }} />
 
-        {/* Panel */}
         <motion.div
           className="relative w-full sm:max-w-2xl max-h-screen sm:max-h-[90vh] rounded-t-3xl sm:rounded-3xl overflow-hidden flex flex-col"
           style={{ background: '#0d0d14', border: `1px solid ${cat.color}25`, boxShadow: `0 40px 100px rgba(0,0,0,0.8), 0 0 60px ${cat.color}10` }}
@@ -54,10 +47,8 @@ function CaseStudyModal({ project, onClose }) {
           transition={{ type: 'spring', stiffness: 280, damping: 30 }}
           onClick={e => e.stopPropagation()}
         >
-          {/* Top accent */}
           <div className="h-0.5 flex-shrink-0" style={{ background: `linear-gradient(90deg, transparent, ${cat.color}, transparent)` }} />
 
-          {/* Header */}
           <div className="px-7 pt-7 pb-5 flex-shrink-0 border-b" style={{ borderColor: 'rgba(255,255,255,0.05)' }}>
             <div className="flex items-start justify-between gap-4">
               <div>
@@ -91,9 +82,7 @@ function CaseStudyModal({ project, onClose }) {
             </div>
           </div>
 
-          {/* Scrollable body */}
           <div className="overflow-y-auto flex-1 px-7 py-6 space-y-6">
-            {/* Image */}
             <div className="rounded-2xl overflow-hidden border" style={{ borderColor: `${cat.color}20` }}>
               <img src={project.image} alt={project.title} className="w-full"
                 style={{ maxHeight: 200, objectFit: 'cover', objectPosition: 'top' }}
@@ -101,7 +90,6 @@ function CaseStudyModal({ project, onClose }) {
               />
             </div>
 
-            {/* Overview */}
             <div>
               <div className="font-mono text-xs uppercase tracking-widest mb-2 flex items-center gap-2" style={{ color: cat.color }}>
                 <span className="w-4 h-px inline-block" style={{ background: cat.color }} />
@@ -110,7 +98,6 @@ function CaseStudyModal({ project, onClose }) {
               <p className="text-sm leading-relaxed" style={{ color: 'rgba(148,163,184,0.85)' }}>{project.description}</p>
             </div>
 
-            {/* Impact */}
             <div>
               <div className="font-mono text-xs uppercase tracking-widest mb-3 flex items-center gap-2" style={{ color: '#10B981' }}>
                 <span className="w-4 h-px inline-block" style={{ background: '#10B981' }} />
@@ -131,7 +118,6 @@ function CaseStudyModal({ project, onClose }) {
               </div>
             </div>
 
-            {/* Tech stack */}
             <div>
               <div className="font-mono text-xs uppercase tracking-widest mb-3 flex items-center gap-2" style={{ color: 'rgba(100,116,139,0.7)' }}>
                 <span className="w-4 h-px inline-block" style={{ background: 'rgba(100,116,139,0.4)' }} />
@@ -148,7 +134,6 @@ function CaseStudyModal({ project, onClose }) {
             </div>
           </div>
 
-          {/* Bottom safe area */}
           <div className="h-4 flex-shrink-0" />
         </motion.div>
       </motion.div>
@@ -157,9 +142,9 @@ function CaseStudyModal({ project, onClose }) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// PROJECT CARD — clean editorial
+// PROJECT CARD
 // ─────────────────────────────────────────────────────────────────────────────
-function ProjectCard({ project, index, onOpenCase }) {
+function ProjectCard({ project, index, onOpenCase, muted = false }) {
   const wrapperRef = useRef(null)
   const cardRef = useRef(null)
   const rafRef = useRef(null)
@@ -194,7 +179,7 @@ function ProjectCard({ project, index, onOpenCase }) {
     <motion.div
       ref={ref}
       initial={{ opacity: 0, y: 40 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
+      animate={inView ? { opacity: muted ? 0.75 : 1, y: 0 } : {}}
       transition={{ duration: 0.6, delay: (index % 3) * 0.08, ease: [0.23, 1, 0.32, 1] }}
       layout
     >
@@ -211,12 +196,12 @@ function ProjectCard({ project, index, onOpenCase }) {
             borderColor: 'rgba(255,255,255,0.06)',
             transformStyle: 'preserve-3d',
             willChange: 'transform',
-            transition: '',
           }}
           onClick={() => onOpenCase(project)}
           onMouseEnter={e => {
             e.currentTarget.style.borderColor = `${cat.color}30`
             e.currentTarget.style.boxShadow = `0 20px 60px rgba(0,0,0,0.5), 0 0 30px ${cat.color}0a`
+            if (muted) e.currentTarget.parentElement?.parentElement?.setAttribute('style', 'opacity:1')
           }}
           onMouseLeave={e => {
             e.currentTarget.style.borderColor = 'rgba(255,255,255,0.06)'
@@ -225,22 +210,20 @@ function ProjectCard({ project, index, onOpenCase }) {
         >
           {/* Left accent bar */}
           <div className="absolute left-0 top-0 bottom-0 w-0.5 rounded-r"
-            style={{ background: `linear-gradient(to bottom, transparent, ${cat.color}, transparent)`, opacity: 0.6 }} />
+            style={{ background: `linear-gradient(to bottom, transparent, ${cat.color}, transparent)`, opacity: muted ? 0.35 : 0.6 }} />
 
           {/* Image */}
-          <div className="relative h-40 overflow-hidden" style={{ background: 'rgba(0,0,0,0.3)' }}>
+          <div className="relative h-36 overflow-hidden" style={{ background: 'rgba(0,0,0,0.3)' }}>
             <img src={project.image} alt={project.title}
               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               onError={e => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex' }}
             />
-            <div className="w-full h-full items-center justify-center text-4xl absolute inset-0"
+            <div className="w-full h-full items-center justify-center text-3xl absolute inset-0"
               style={{ display: 'none', background: 'rgba(10,10,15,0.95)' }}>
               {project.category === 'enterprise' ? '🏢' : project.category === 'backend' ? '⚙️' : project.category === 'frontend' ? '🎨' : '🐍'}
             </div>
-            {/* Fade overlay */}
             <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(10,10,15,0.9) 0%, rgba(10,10,15,0.1) 60%, transparent 100%)' }} />
 
-            {/* Category badge */}
             <div className="absolute top-3 left-3.5">
               <span className="text-xs font-mono font-bold px-2.5 py-1 rounded-full"
                 style={{ background: `${cat.color}15`, color: cat.color, border: `1px solid ${cat.color}30`, backdropFilter: 'blur(8px)' }}>
@@ -248,7 +231,6 @@ function ProjectCard({ project, index, onOpenCase }) {
               </span>
             </div>
 
-            {/* Hover: view case study */}
             <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
               <div className="px-4 py-2 rounded-xl text-xs font-mono font-bold flex items-center gap-2"
                 style={{ background: 'rgba(0,0,0,0.8)', border: `1px solid ${cat.color}40`, color: cat.color, backdropFilter: 'blur(12px)' }}>
@@ -256,7 +238,6 @@ function ProjectCard({ project, index, onOpenCase }) {
               </div>
             </div>
 
-            {/* External links — small icons */}
             <div className="absolute top-3 right-3 flex gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
               {project.links.code && (
                 <a href={project.links.code} target="_blank" rel="noopener noreferrer" onClick={e => e.stopPropagation()}
@@ -288,7 +269,6 @@ function ProjectCard({ project, index, onOpenCase }) {
               {project.description}
             </p>
 
-            {/* Highlights */}
             <div className="flex flex-wrap gap-1 mb-4">
               {project.highlights.slice(0, 2).map(h => (
                 <span key={h} className="text-xs px-2 py-0.5 rounded-full"
@@ -298,7 +278,6 @@ function ProjectCard({ project, index, onOpenCase }) {
               ))}
             </div>
 
-            {/* Tech row */}
             <div className="flex flex-wrap gap-1 pt-3 border-t" style={{ borderColor: 'rgba(255,255,255,0.04)' }}>
               {project.tech.slice(0, 4).map(t => (
                 <span key={t} className="text-xs px-2 py-0.5 rounded font-mono"
@@ -323,11 +302,11 @@ function ProjectCard({ project, index, onOpenCase }) {
 // SECTION
 // ─────────────────────────────────────────────────────────────────────────────
 export default function Projects() {
-  const [activeFilter, setActiveFilter] = useState('all')
   const [caseProject, setCaseProject] = useState(null)
   const sectionRef = useRef(null)
+  const learningRef = useRef(null)
   const inView = useInView(sectionRef, { once: true, margin: '-100px' })
-  const filtered = activeFilter === 'all' ? projects : projects.filter(p => p.category === activeFilter)
+  const learningInView = useInView(learningRef, { once: true, margin: '-80px' })
 
   return (
     <section id="projects" ref={sectionRef} className="py-24 md:py-32 relative overflow-hidden">
@@ -335,65 +314,88 @@ export default function Projects() {
       <div className="absolute pointer-events-none" style={{ bottom: '10%', right: '-5%', width: 400, height: 400, borderRadius: '50%', background: 'radial-gradient(circle,rgba(0,212,255,0.04) 0%,transparent 70%)', filter: 'blur(40px)' }} />
 
       <div className="max-w-7xl mx-auto px-6">
+
+        {/* ── ENTERPRISE PROJECTS ─────────────────────────── */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7 }}
           className="text-center mb-12"
         >
-          <p className="text-sm mb-3 tracking-widest uppercase font-mono" style={{ color: '#EC4899' }}>What I've Built</p>
-          <h2 className="section-title text-white">Featured <span className="gradient-text-cyan">Projects</span></h2>
+          <p className="text-sm mb-3 tracking-widest uppercase font-mono" style={{ color: '#EC4899' }}>Production Systems</p>
+          <h2 className="section-title text-white">Enterprise <span className="gradient-text-cyan">Projects</span></h2>
           <p className="mt-4 max-w-md mx-auto text-sm" style={{ color: 'rgba(100,116,139,0.7)' }}>
-            Click any card to open a case study
+            Live production systems powering real business operations · Click any card to open a case study
           </p>
         </motion.div>
 
-        {/* Filter tabs */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.15 }}
-          className="flex flex-wrap justify-center gap-2 mb-12"
+          initial={{ opacity: 0 }}
+          animate={inView ? { opacity: 1 } : {}}
+          transition={{ duration: 0.3 }}
+          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8"
         >
-          {FILTERS.map(f => {
-            const isActive = activeFilter === f.value
-            const color = CAT[f.value]?.color || '#00D4FF'
-            return (
-              <motion.button key={f.value} onClick={() => setActiveFilter(f.value)}
-                whileHover={{ y: -2 }} whileTap={{ scale: 0.96 }}
-                className="relative px-4 py-2 text-sm font-medium rounded-xl border transition-all duration-200 overflow-hidden"
-                style={isActive
-                  ? { background: `${color}12`, borderColor: `${color}40`, color, fontWeight: 700, boxShadow: `0 4px 20px ${color}15` }
-                  : { background: 'rgba(255,255,255,0.02)', borderColor: 'rgba(255,255,255,0.06)', color: 'rgba(148,163,184,0.6)' }
-                }
-              >
-                {f.icon && <span className="mr-1.5">{f.icon}</span>}
-                {f.label}
-                <span className="ml-1.5 text-xs opacity-50">
-                  ({f.value === 'all' ? projects.length : projects.filter(p => p.category === f.value).length})
-                </span>
-              </motion.button>
-            )
-          })}
+          {enterpriseProjects.map((project, i) => (
+            <ProjectCard key={project.id} project={project} index={i} onOpenCase={setCaseProject} />
+          ))}
         </motion.div>
 
-        {/* Grid */}
-        <AnimatePresence mode="popLayout">
+        {/* Enterprise note */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={inView ? { opacity: 1 } : {}}
+          transition={{ delay: 0.4 }}
+          className="flex items-center justify-center gap-3 mb-20"
+        >
+          <div className="h-px w-16" style={{ background: 'rgba(0,212,255,0.2)' }} />
+          <span className="text-xs font-mono flex items-center gap-2" style={{ color: 'rgba(100,116,139,0.5)' }}>
+            <i className="fas fa-lock text-xs" style={{ color: '#00D4FF', opacity: 0.6 }} />
+            Private repos · Production-grade · Not open source
+          </span>
+          <div className="h-px w-16" style={{ background: 'rgba(0,212,255,0.2)' }} />
+        </motion.div>
+
+        {/* ── DIVIDER ────────────────────────────────────── */}
+        <div className="flex items-center gap-6 mb-16">
+          <div className="flex-1 h-px" style={{ background: 'linear-gradient(to right, transparent, rgba(255,255,255,0.08))' }} />
+          <div className="text-xs font-mono px-4 py-2 rounded-full border flex items-center gap-2"
+            style={{ borderColor: 'rgba(255,255,255,0.08)', color: 'rgba(100,116,139,0.5)', background: 'rgba(255,255,255,0.02)' }}>
+            <i className="fas fa-graduation-cap" style={{ color: '#8B5CF6', opacity: 0.7 }} />
+            Training years
+          </div>
+          <div className="flex-1 h-px" style={{ background: 'linear-gradient(to left, transparent, rgba(255,255,255,0.08))' }} />
+        </div>
+
+        {/* ── LEARNING PROJECTS ──────────────────────────── */}
+        <div ref={learningRef}>
           <motion.div
-            key={activeFilter}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.25 }}
-            className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
+            initial={{ opacity: 0, y: 20 }}
+            animate={learningInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-10"
           >
-            {filtered.map((project, i) => (
-              <ProjectCard key={project.id} project={project} index={i} onOpenCase={setCaseProject} />
+            <p className="text-xs mb-2 tracking-widest uppercase font-mono" style={{ color: '#8B5CF6' }}>Masai & Self-Directed Learning</p>
+            <h3 className="text-2xl font-display font-bold" style={{ color: 'rgba(226,232,240,0.6)' }}>
+              Learning <span style={{ color: '#8B5CF6' }}>Projects</span>
+            </h3>
+            <p className="mt-3 max-w-md mx-auto text-xs" style={{ color: 'rgba(100,116,139,0.5)' }}>
+              Built during training (2022–2024) to master backend, frontend, and Python fundamentals
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={learningInView ? { opacity: 1 } : {}}
+            transition={{ duration: 0.4, delay: 0.1 }}
+            className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5"
+          >
+            {learningProjects.map((project, i) => (
+              <ProjectCard key={project.id} project={project} index={i} onOpenCase={setCaseProject} muted />
             ))}
           </motion.div>
-        </AnimatePresence>
+        </div>
 
-        <motion.div initial={{ opacity: 0 }} animate={inView ? { opacity: 1 } : {}} transition={{ delay: 0.5 }} className="text-center mt-12">
+        <motion.div initial={{ opacity: 0 }} animate={learningInView ? { opacity: 1 } : {}} transition={{ delay: 0.5 }} className="text-center mt-12">
           <motion.a href="https://github.com/SakthivelMadhu" target="_blank" rel="noopener noreferrer"
             whileHover={{ scale: 1.03, y: -2 }} whileTap={{ scale: 0.97 }}
             className="inline-flex items-center gap-2 px-6 py-3 text-sm font-medium rounded-xl"
@@ -404,7 +406,6 @@ export default function Projects() {
         </motion.div>
       </div>
 
-      {/* Case study modal */}
       {caseProject && (
         <CaseStudyModal project={caseProject} onClose={() => setCaseProject(null)} />
       )}

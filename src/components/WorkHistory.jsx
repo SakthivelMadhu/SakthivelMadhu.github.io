@@ -1,5 +1,5 @@
-import { useEffect, useRef, useCallback, useState } from 'react'
-import { motion, AnimatePresence, useInView } from 'framer-motion'
+import { useEffect, useRef, useCallback } from 'react'
+import { motion, useInView } from 'framer-motion'
 import { workHistory } from '../data/portfolio'
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -233,19 +233,90 @@ function EFIPanel() {
 const PANELS = [TwinleavesPanel, MasaiPanel, EFIPanel]
 
 // ─────────────────────────────────────────────────────────────────────────────
-// JOB CARD — left or right side, with rotating achievements
+// GAP CARD — self-learning period
+// ─────────────────────────────────────────────────────────────────────────────
+function GapCard({ gap }) {
+  const ref = useRef(null)
+  const inView = useInView(ref, { once: true, margin: '-60px' })
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 30 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+      className="relative mx-auto max-w-2xl my-2"
+    >
+      {/* Vertical connector lines */}
+      <div className="absolute left-1/2 -top-8 h-8 w-px" style={{ background: 'linear-gradient(to bottom, rgba(255,255,255,0.06), rgba(16,185,129,0.3))', transform: 'translateX(-50%)' }} />
+      <div className="absolute left-1/2 -bottom-8 h-8 w-px" style={{ background: 'linear-gradient(to bottom, rgba(16,185,129,0.3), rgba(255,255,255,0.06))', transform: 'translateX(-50%)' }} />
+
+      <div className="rounded-2xl border p-6 relative overflow-hidden"
+        style={{ background: 'rgba(16,185,129,0.03)', borderColor: 'rgba(16,185,129,0.15)', borderStyle: 'dashed' }}>
+        {/* Glow */}
+        <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse at 50% 0%, rgba(16,185,129,0.06) 0%, transparent 70%)' }} />
+
+        <div className="relative z-10">
+          <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
+            <div className="flex items-center gap-3">
+              <span className="font-mono text-xs uppercase tracking-widest font-bold px-2.5 py-1 rounded-full"
+                style={{ background: 'rgba(16,185,129,0.1)', color: '#10B981', border: '1px solid rgba(16,185,129,0.25)' }}>
+                {gap.chapter}
+              </span>
+              <span className="text-xs font-mono px-2.5 py-1 rounded-full"
+                style={{ background: 'rgba(16,185,129,0.06)', color: 'rgba(16,185,129,0.7)', border: '1px solid rgba(16,185,129,0.12)' }}>
+                🎓 Self-Directed
+              </span>
+            </div>
+            <span className="text-xs font-mono" style={{ color: 'rgba(100,116,139,0.5)' }}>{gap.duration}</span>
+          </div>
+
+          <h4 className="font-display font-bold text-white text-lg mb-1">{gap.role}</h4>
+          <p className="text-xs mb-4" style={{ color: 'rgba(148,163,184,0.6)' }}>{gap.summary}</p>
+
+          <div className="grid sm:grid-cols-3 gap-3">
+            {gap.achievements.map((ach, i) => (
+              <motion.div key={ach.title}
+                initial={{ opacity: 0, y: 12 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: 0.2 + i * 0.1 }}
+                className="p-3 rounded-xl border"
+                style={{ background: 'rgba(16,185,129,0.04)', borderColor: 'rgba(16,185,129,0.1)' }}>
+                <div className="text-xs font-semibold text-white mb-1">{ach.title}</div>
+                <div className="flex flex-wrap gap-1">
+                  {ach.impact.map(imp => (
+                    <span key={imp} className="text-xs px-1.5 py-0.5 rounded font-mono"
+                      style={{ color: 'rgba(16,185,129,0.7)', background: 'rgba(16,185,129,0.08)' }}>
+                      {imp}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          <div className="flex flex-wrap gap-1 mt-4 pt-3 border-t" style={{ borderColor: 'rgba(16,185,129,0.08)' }}>
+            {gap.tech.map(t => (
+              <span key={t} className="text-xs px-2 py-0.5 rounded font-mono"
+                style={{ color: 'rgba(100,116,139,0.5)', background: 'rgba(255,255,255,0.02)' }}>
+                {t}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  )
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// JOB CARD — full detail view with all achievements expanded
 // ─────────────────────────────────────────────────────────────────────────────
 function JobCard({ job, index, align }) {
-  const [activeAch, setActiveAch] = useState(0)
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-80px' })
 
-  useEffect(() => {
-    const t = setInterval(() => {
-      setActiveAch(a => (a + 1) % job.achievements.length)
-    }, 3200)
-    return () => clearInterval(t)
-  }, [job.achievements.length])
+  // Collect all unique impact tags across achievements for the metrics row
+  const allImpact = job.achievements.flatMap(a => a.impact).slice(0, 4)
 
   return (
     <motion.div
@@ -253,94 +324,177 @@ function JobCard({ job, index, align }) {
       initial={{ opacity: 0, x: align === 'left' ? -50 : 50 }}
       animate={inView ? { opacity: 1, x: 0 } : {}}
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-      className="flex flex-col h-full"
+      className="flex gap-5"
     >
-      {/* Chapter label */}
-      <div className="flex items-center gap-3 mb-5">
+      {/* Timeline spine */}
+      <div className="hidden md:flex flex-col items-center flex-shrink-0" style={{ paddingTop: 6 }}>
+        {/* Circle node */}
         <motion.div
-          className="font-display font-black text-6xl leading-none select-none"
-          style={{ color: `${job.color}20` }}
-          animate={{ color: [`${job.color}20`, `${job.color}35`, `${job.color}20`] }}
-          transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+          className="w-4 h-4 rounded-full border-2 flex-shrink-0 relative z-10"
+          style={{ borderColor: job.color, background: '#0a0a0f', boxShadow: `0 0 12px ${job.color}50` }}
+          animate={{ boxShadow: [`0 0 8px ${job.color}40`, `0 0 20px ${job.color}70`, `0 0 8px ${job.color}40`] }}
+          transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
         >
-          {String(index + 1).padStart(2, '0')}
+          <motion.div
+            className="absolute inset-1 rounded-full"
+            style={{ background: job.color }}
+            animate={{ scale: [0.6, 1, 0.6], opacity: [0.6, 1, 0.6] }}
+            transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
+          />
         </motion.div>
-        <div>
-          <div className="font-mono text-xs uppercase tracking-widest mb-1" style={{ color: job.color }}>
+        {/* Vertical line */}
+        <motion.div
+          className="w-px flex-1 mt-2"
+          style={{ background: `linear-gradient(to bottom, ${job.color}50, ${job.color}10)` }}
+          initial={{ scaleY: 0, originY: 0 }}
+          animate={inView ? { scaleY: 1 } : {}}
+          transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+        />
+      </div>
+
+      {/* Main content */}
+      <div className="flex-1 min-w-0 pb-4">
+
+        {/* ── Header ── */}
+        <div className="flex flex-wrap items-center gap-3 mb-4">
+          <span className="font-mono text-xs uppercase tracking-widest font-bold px-2.5 py-1 rounded-full"
+            style={{ background: `${job.color}12`, color: job.color, border: `1px solid ${job.color}25` }}>
             {job.chapter}
-          </div>
+          </span>
           {job.isCurrent && (
-            <span className="text-xs font-mono px-2 py-0.5 rounded-full inline-flex items-center gap-1.5"
-              style={{ background: 'rgba(16,185,129,0.1)', color: '#10B981', border: '1px solid rgba(16,185,129,0.25)' }}>
-              <motion.span className="w-1.5 h-1.5 rounded-full inline-block" style={{ background: '#10B981' }}
-                animate={{ scale: [1, 1.6, 1] }} transition={{ duration: 1.4, repeat: Infinity }} />
-              Current
+            <span className="text-xs font-mono px-2.5 py-1 rounded-full inline-flex items-center gap-1.5"
+              style={{ background: 'rgba(16,185,129,0.08)', color: '#10B981', border: '1px solid rgba(16,185,129,0.2)' }}>
+              <motion.span className="w-1.5 h-1.5 rounded-full inline-block flex-shrink-0" style={{ background: '#10B981' }}
+                animate={{ scale: [1, 1.7, 1] }} transition={{ duration: 1.4, repeat: Infinity }} />
+              Current Role
             </span>
           )}
         </div>
-      </div>
 
-      {/* Main info */}
-      <div className="mb-6">
-        <h3 className="font-display font-bold text-white text-2xl md:text-3xl leading-tight mb-2">{job.company}</h3>
-        <div className="font-medium text-base mb-1" style={{ color: job.color }}>{job.role}</div>
-        <div className="text-sm font-mono" style={{ color: 'rgba(100,116,139,0.6)' }}>
-          {job.duration} · {job.location}
+        {/* ── Company + role ── */}
+        <div className="mb-3">
+          <h3 className="font-display font-bold text-white text-2xl md:text-3xl leading-tight mb-1.5">
+            {job.company}
+          </h3>
+          <div className="flex flex-wrap items-center gap-3">
+            <span className="font-semibold text-base" style={{ color: job.color }}>{job.role}</span>
+            <span className="text-sm font-mono" style={{ color: 'rgba(100,116,139,0.55)' }}>
+              {job.duration}
+            </span>
+            <span className="text-xs px-2 py-0.5 rounded font-mono"
+              style={{ background: 'rgba(255,255,255,0.04)', color: 'rgba(100,116,139,0.5)', border: '1px solid rgba(255,255,255,0.06)' }}>
+              📍 {job.location}
+            </span>
+          </div>
         </div>
-      </div>
 
-      {/* Summary */}
-      <p className="text-sm leading-relaxed mb-6" style={{ color: 'rgba(148,163,184,0.75)' }}>{job.summary}</p>
+        {/* ── Summary ── */}
+        <p className="text-sm leading-relaxed mb-5" style={{ color: 'rgba(148,163,184,0.7)' }}>
+          {job.summary}
+        </p>
 
-      {/* Rotating achievement */}
-      <div className="flex-1 min-h-0 mb-6">
-        <div className="flex items-center gap-2 mb-3">
-          <div className="w-5 h-px" style={{ background: job.color }} />
-          <span className="font-mono text-xs uppercase tracking-widest" style={{ color: job.color }}>Key Achievement</span>
-          <div className="flex gap-1 ml-auto">
-            {job.achievements.map((_, i) => (
-              <motion.button key={i} onClick={() => setActiveAch(i)}
-                className="w-1.5 h-1.5 rounded-full transition-all"
-                style={{ background: i === activeAch ? job.color : `${job.color}30` }}
-                animate={{ scale: i === activeAch ? 1.3 : 1 }}
-                transition={{ duration: 0.2 }}
-              />
+        {/* ── Key metrics row ── */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.2, duration: 0.5 }}
+          className="flex flex-wrap gap-2 mb-6 p-3 rounded-xl border"
+          style={{ background: `${job.color}06`, borderColor: `${job.color}15` }}
+        >
+          <span className="font-mono text-xs uppercase tracking-widest w-full mb-1" style={{ color: `${job.color}80` }}>
+            Key Metrics
+          </span>
+          {allImpact.map((imp, i) => (
+            <motion.span
+              key={imp}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={inView ? { opacity: 1, scale: 1 } : {}}
+              transition={{ delay: 0.3 + i * 0.07, type: 'spring', stiffness: 250 }}
+              className="text-xs px-3 py-1 rounded-full font-medium"
+              style={{ background: `${job.color}12`, color: job.color, border: `1px solid ${job.color}25` }}
+            >
+              ⚡ {imp}
+            </motion.span>
+          ))}
+        </motion.div>
+
+        {/* ── All achievements expanded ── */}
+        <div className="mb-2">
+          <div className="flex items-center gap-2 mb-4">
+            <div className="w-5 h-px" style={{ background: job.color }} />
+            <span className="font-mono text-xs uppercase tracking-widest font-bold" style={{ color: job.color }}>
+              Achievements
+            </span>
+            <div className="flex-1 h-px" style={{ background: `linear-gradient(90deg, ${job.color}20, transparent)` }} />
+          </div>
+
+          <div className="space-y-3">
+            {job.achievements.map((ach, i) => (
+              <motion.div
+                key={ach.title}
+                initial={{ opacity: 0, x: align === 'left' ? -20 : 20 }}
+                animate={inView ? { opacity: 1, x: 0 } : {}}
+                transition={{ delay: 0.25 + i * 0.1, duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+                className="rounded-2xl border overflow-hidden"
+                style={{ background: 'rgba(255,255,255,0.02)', borderColor: `${job.color}18` }}
+              >
+                {/* Achievement header */}
+                <div className="flex items-start gap-3 px-4 pt-4 pb-3">
+                  {/* Number badge */}
+                  <div
+                    className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-mono font-bold flex-shrink-0 mt-0.5"
+                    style={{ background: `${job.color}18`, color: job.color, border: `1px solid ${job.color}30` }}
+                  >
+                    {i + 1}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="font-bold text-white text-sm leading-snug mb-2">{ach.title}</div>
+                    {/* Description */}
+                    <p className="text-xs leading-relaxed mb-3" style={{ color: 'rgba(148,163,184,0.65)' }}>
+                      {ach.description}
+                    </p>
+                    {/* Impact tags */}
+                    <div className="flex flex-wrap gap-1.5">
+                      {ach.impact.map(imp => (
+                        <span key={imp}
+                          className="text-xs px-2.5 py-0.5 rounded-full"
+                          style={{ background: `${job.color}10`, color: job.color, border: `1px solid ${job.color}22` }}
+                        >
+                          ✓ {imp}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+                {/* Bottom accent line */}
+                <div className="h-px mx-4 mb-3" style={{ background: `linear-gradient(90deg, ${job.color}20, transparent)` }} />
+              </motion.div>
             ))}
           </div>
         </div>
 
-        <div className="relative overflow-hidden rounded-2xl border" style={{ background: `${job.color}06`, borderColor: `${job.color}18`, minHeight: 120 }}>
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeAch}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-              className="p-5"
-            >
-              <div className="font-bold text-white text-sm mb-3">{job.achievements[activeAch].title}</div>
-              <div className="flex flex-wrap gap-1.5">
-                {job.achievements[activeAch].impact.map(imp => (
-                  <span key={imp} className="text-xs px-2.5 py-1 rounded-full font-medium"
-                    style={{ background: `${job.color}15`, color: job.color, border: `1px solid ${job.color}30` }}>
-                    ✓ {imp}
-                  </span>
-                ))}
-              </div>
-            </motion.div>
-          </AnimatePresence>
-        </div>
-      </div>
-
-      {/* Tech */}
-      <div className="flex flex-wrap gap-1.5">
-        {job.tech.map(t => (
-          <span key={t} className="text-xs px-2.5 py-1 rounded-full font-mono"
-            style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', color: 'rgba(148,163,184,0.6)' }}>
-            {t}
-          </span>
-        ))}
+        {/* ── Tech stack ── */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.5, duration: 0.5 }}
+          className="mt-5"
+        >
+          <div className="flex items-center gap-2 mb-3">
+            <div className="w-4 h-px" style={{ background: 'rgba(100,116,139,0.4)' }} />
+            <span className="font-mono text-xs uppercase tracking-widest" style={{ color: 'rgba(100,116,139,0.5)' }}>
+              Stack Used
+            </span>
+          </div>
+          <div className="flex flex-wrap gap-1.5">
+            {job.tech.map(t => (
+              <span key={t} className="text-xs px-2.5 py-1 rounded-full font-mono"
+                style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.07)', color: 'rgba(148,163,184,0.55)' }}>
+                {t}
+              </span>
+            ))}
+          </div>
+        </motion.div>
       </div>
     </motion.div>
   )
@@ -349,7 +503,7 @@ function JobCard({ job, index, align }) {
 // ─────────────────────────────────────────────────────────────────────────────
 // CHAPTER ROW — full-width zigzag entry
 // ─────────────────────────────────────────────────────────────────────────────
-function ChapterRow({ job, index }) {
+function ChapterRow({ job, index, isLast, nextColor }) {
   // odd = panel left, even = panel right
   const panelLeft = index % 2 !== 0
   const ref = useRef(null)
@@ -390,15 +544,15 @@ function ChapterRow({ job, index }) {
       </div>
 
       {/* Section divider (not last) */}
-      {index < workHistory.length - 1 && (
+      {!isLast && (
         <div className="relative flex items-center justify-center py-2">
           <div className="w-full h-px" style={{ background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent)' }} />
           <div className="absolute flex items-center gap-3 px-6 rounded-full py-1"
             style={{ background: '#0a0a0f', border: '1px solid rgba(255,255,255,0.06)' }}>
-            <motion.div className="w-1.5 h-1.5 rounded-full" style={{ background: workHistory[index].color }}
+            <motion.div className="w-1.5 h-1.5 rounded-full" style={{ background: job.color }}
               animate={{ scale: [1, 1.6, 1] }} transition={{ duration: 1.5, repeat: Infinity }} />
             <i className="fas fa-arrow-down text-xs" style={{ color: 'rgba(100,116,139,0.4)' }} />
-            <motion.div className="w-1.5 h-1.5 rounded-full" style={{ background: workHistory[index + 1].color }}
+            <motion.div className="w-1.5 h-1.5 rounded-full" style={{ background: nextColor }}
               animate={{ scale: [1, 1.6, 1] }} transition={{ duration: 1.5, repeat: Infinity, delay: 0.5 }} />
           </div>
         </div>
@@ -441,14 +595,27 @@ export default function WorkHistory() {
           <p className="font-mono text-sm mb-3 tracking-widest uppercase" style={{ color: '#8B5CF6' }}>Career Journey</p>
           <h2 className="section-title text-white">Work <span className="gradient-text-cyan">History</span></h2>
           <p className="mt-4 max-w-xl mx-auto text-sm" style={{ color: 'rgba(100,116,139,0.7)' }}>
-            Three chapters — each one bigger than the last
+            From foundation to full-scale enterprise engineering
           </p>
         </div>
 
-        {/* Zigzag chapters */}
-        {workHistory.map((job, i) => (
-          <ChapterRow key={job.id} job={job} index={i} />
-        ))}
+        {/* Zigzag chapters — main jobs only; gap rendered as a bridge card */}
+        {(() => {
+          const mainJobs = workHistory.filter(j => !j.isGap)
+          const gapEntry = workHistory.find(j => j.isGap)
+          return mainJobs.map((job, i) => (
+            <div key={job.id}>
+              <ChapterRow
+                job={job}
+                index={i}
+                isLast={i === mainJobs.length - 1}
+                nextColor={i < mainJobs.length - 1 ? mainJobs[i + 1].color : job.color}
+              />
+              {/* After Twinleaves (index 0), show the self-learning gap bridge */}
+              {i === 0 && gapEntry && <GapCard gap={gapEntry} />}
+            </div>
+          ))
+        })()}
       </div>
     </section>
   )

@@ -111,7 +111,7 @@ function SpaceBackground() {
     size: _h(i * 53.1) * 3 + 2,
     color: ['#00D4FF', '#8B5CF6', '#EC4899', '#10B981', '#F59E0B'][i],
     duration: 15 + _h(i * 37.9) * 20,
-    delay: _h(i * 211.3) * -15,
+    delay: i * 3 + _h(i * 211.3) * 8,  // positive delay: stagger start, no negative offset
   }))
 
   return (
@@ -330,9 +330,12 @@ function ParticleBackground() {
 export default function App() {
   const scrollProgress = useScrollProgress()
   const [loaded, setLoaded] = useState(false)
+  const [particlesReady, setParticlesReady] = useState(false)
 
   useEffect(() => {
     setLoaded(true)
+    const t = setTimeout(() => setParticlesReady(true), 2000)
+    return () => clearTimeout(t)
   }, [])
 
   return (
@@ -346,8 +349,8 @@ export default function App() {
       {/* Space background: planets, satellites, nebula */}
       <SpaceBackground />
 
-      {/* Particle background */}
-      <ParticleBackground />
+      {/* Particle background — delayed to avoid animation overload on first load */}
+      {particlesReady && <ParticleBackground />}
 
       {/* Custom cursor (desktop only) */}
       <div className="hidden md:block">

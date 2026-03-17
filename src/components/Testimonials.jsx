@@ -135,16 +135,6 @@ export default function Testimonials() {
           ))}
         </div>
 
-        {/* Disclaimer note */}
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={inView ? { opacity: 1 } : {}}
-          transition={{ delay: 0.6 }}
-          className="text-center mt-8 text-xs font-mono"
-          style={{ color: 'rgba(100,116,139,0.4)' }}
-        >
-          * Recommendations pending LinkedIn publish — content is accurate & will be updated
-        </motion.p>
       </div>
     </section>
   )
