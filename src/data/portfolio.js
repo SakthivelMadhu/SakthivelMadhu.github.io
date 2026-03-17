@@ -174,6 +174,18 @@ export const projects = [
     badgeColor: '#00D4FF',
   },
   {
+    id: 13,
+    category: 'enterprise',
+    title: 'HRMS — Facial Recognition & Attendance',
+    description: 'End-to-end HR attendance platform with facial recognition-based check-in/out, geo-fencing for location-based attendance policies, automated LOP calculation, and payroll-linked dashboards.',
+    image: '/img/erp.webp',
+    tech: ['Java 17', 'Spring Boot', 'GCP', 'PostgreSQL', 'Facial Recognition', 'Geo-fencing', 'REST APIs'],
+    highlights: ['Real-time facial check-in/out', 'Automated LOP calculation', 'Payroll-linked dashboards'],
+    links: { code: null, live: null },
+    badge: 'Enterprise',
+    badgeColor: '#00D4FF',
+  },
+  {
     id: 4,
     category: 'backend',
     title: 'MasaiBuilds — Teamiply',
