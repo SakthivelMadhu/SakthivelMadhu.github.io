@@ -189,6 +189,14 @@ function ProfileSection() {
         <span>GCP Cloud Eng</span>
       </Badge>
 
+      {/* 🇲🇾 Malaysia Client */}
+      <Badge color="#10B981" delay={3.0} duration={5} animY={[-6, 2, -6]}
+        style={{ top: '-30px', left: '50%', transform: 'translateX(-50%)' }}
+      >
+        <span>🇲🇾</span>
+        <span>Malaysia Client</span>
+      </Badge>
+
       {/* Open to work */}
       <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 z-20">
         <motion.div

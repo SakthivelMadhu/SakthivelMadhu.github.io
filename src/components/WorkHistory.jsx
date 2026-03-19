@@ -429,47 +429,122 @@ function JobCard({ job, index, align }) {
           </div>
 
           <div className="space-y-3">
-            {job.achievements.map((ach, i) => (
-              <motion.div
-                key={ach.title}
-                initial={{ opacity: 0, x: align === 'left' ? -20 : 20 }}
-                animate={inView ? { opacity: 1, x: 0 } : {}}
-                transition={{ delay: 0.25 + i * 0.1, duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
-                className="rounded-2xl border overflow-hidden"
-                style={{ background: 'rgba(255,255,255,0.02)', borderColor: `${job.color}18` }}
-              >
-                {/* Achievement header */}
-                <div className="flex items-start gap-3 px-4 pt-4 pb-3">
-                  {/* Number badge */}
-                  <div
-                    className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-mono font-bold flex-shrink-0 mt-0.5"
-                    style={{ background: `${job.color}18`, color: job.color, border: `1px solid ${job.color}30` }}
+            {job.achievements.map((ach, i) => {
+              // Malaysia client achievement — special flagship card
+              if (ach.isMalaysiaClient) {
+                return (
+                  <motion.div
+                    key={ach.title}
+                    initial={{ opacity: 0, x: align === 'left' ? -20 : 20 }}
+                    animate={inView ? { opacity: 1, x: 0 } : {}}
+                    transition={{ delay: 0.2, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                    className="rounded-2xl overflow-hidden relative"
+                    style={{ background: 'linear-gradient(135deg, rgba(16,185,129,0.08), rgba(0,212,255,0.04))', border: '1px solid rgba(16,185,129,0.35)', boxShadow: '0 8px 40px rgba(16,185,129,0.08)' }}
                   >
-                    {i + 1}
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="font-bold text-white text-sm leading-snug mb-2">{ach.title}</div>
-                    {/* Description */}
-                    <p className="text-xs leading-relaxed mb-3" style={{ color: 'rgba(148,163,184,0.65)' }}>
-                      {ach.description}
-                    </p>
-                    {/* Impact tags */}
-                    <div className="flex flex-wrap gap-1.5">
-                      {ach.impact.map(imp => (
-                        <span key={imp}
-                          className="text-xs px-2.5 py-0.5 rounded-full"
-                          style={{ background: `${job.color}10`, color: job.color, border: `1px solid ${job.color}22` }}
-                        >
-                          ✓ {imp}
+                    {/* Top accent */}
+                    <div className="absolute top-0 left-0 right-0 h-0.5"
+                      style={{ background: 'linear-gradient(90deg, transparent, #10B981, #00D4FF, transparent)' }} />
+                    {/* Grid bg */}
+                    <div className="absolute inset-0 pointer-events-none"
+                      style={{ backgroundImage: 'linear-gradient(rgba(16,185,129,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(16,185,129,0.04) 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
+
+                    <div className="relative z-10 px-4 pt-4 pb-3">
+                      {/* Header row */}
+                      <div className="flex flex-wrap items-center gap-2 mb-3">
+                        <span className="text-2xl">🇲🇾</span>
+                        <span className="font-mono text-xs uppercase tracking-widest font-bold px-2.5 py-1 rounded-full"
+                          style={{ background: 'rgba(16,185,129,0.12)', color: '#10B981', border: '1px solid rgba(16,185,129,0.3)' }}>
+                          International Client
                         </span>
-                      ))}
+                        <span className="font-mono text-xs px-2.5 py-1 rounded-full"
+                          style={{ background: 'rgba(0,212,255,0.08)', color: '#00D4FF', border: '1px solid rgba(0,212,255,0.2)' }}>
+                          Malaysia 🏢 Abroad
+                        </span>
+                        <motion.span className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: '#10B981' }}
+                          animate={{ scale: [1, 1.6, 1], opacity: [1, 0.5, 1] }} transition={{ duration: 1.5, repeat: Infinity }} />
+                      </div>
+
+                      <div className="font-bold text-white text-sm leading-snug mb-2">{ach.title}</div>
+                      <p className="text-xs leading-relaxed mb-3" style={{ color: 'rgba(148,163,184,0.7)' }}>
+                        {ach.description}
+                      </p>
+
+                      {/* Modules grid */}
+                      <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mb-3">
+                        {[
+                          { icon: '📄', label: 'E-Invoice', sub: 'Malaysia Compliant' },
+                          { icon: '🏢', label: 'Purchase Job', sub: 'Multi-company' },
+                          { icon: '📋', label: 'PO & Express PO', sub: 'Full lifecycle' },
+                          { icon: '💳', label: 'Bills → Payable', sub: 'Auto ledger' },
+                          { icon: '🧾', label: 'Tax Master', sub: 'SST · Excise · Import' },
+                          { icon: '📊', label: 'BigQuery Reports', sub: 'All modules' },
+                        ].map(m => (
+                          <div key={m.label} className="rounded-xl p-2.5 border"
+                            style={{ background: 'rgba(16,185,129,0.05)', borderColor: 'rgba(16,185,129,0.15)' }}>
+                            <div className="text-sm mb-0.5">{m.icon}</div>
+                            <div className="text-xs font-semibold text-white">{m.label}</div>
+                            <div className="text-xs" style={{ color: 'rgba(100,116,139,0.6)' }}>{m.sub}</div>
+                          </div>
+                        ))}
+                      </div>
+
+                      {/* Impact tags */}
+                      <div className="flex flex-wrap gap-1.5">
+                        {ach.impact.map(imp => (
+                          <span key={imp} className="text-xs px-2.5 py-0.5 rounded-full"
+                            style={{ background: 'rgba(16,185,129,0.1)', color: '#10B981', border: '1px solid rgba(16,185,129,0.22)' }}>
+                            ✓ {imp}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="h-px mx-4 mb-3" style={{ background: 'linear-gradient(90deg, rgba(16,185,129,0.25), transparent)' }} />
+                  </motion.div>
+                )
+              }
+
+              return (
+                <motion.div
+                  key={ach.title}
+                  initial={{ opacity: 0, x: align === 'left' ? -20 : 20 }}
+                  animate={inView ? { opacity: 1, x: 0 } : {}}
+                  transition={{ delay: 0.25 + i * 0.1, duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+                  className="rounded-2xl border overflow-hidden"
+                  style={{ background: 'rgba(255,255,255,0.02)', borderColor: `${job.color}18` }}
+                >
+                  {/* Achievement header */}
+                  <div className="flex items-start gap-3 px-4 pt-4 pb-3">
+                    {/* Number badge */}
+                    <div
+                      className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-mono font-bold flex-shrink-0 mt-0.5"
+                      style={{ background: `${job.color}18`, color: job.color, border: `1px solid ${job.color}30` }}
+                    >
+                      {i}
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="font-bold text-white text-sm leading-snug mb-2">{ach.title}</div>
+                      {/* Description */}
+                      <p className="text-xs leading-relaxed mb-3" style={{ color: 'rgba(148,163,184,0.65)' }}>
+                        {ach.description}
+                      </p>
+                      {/* Impact tags */}
+                      <div className="flex flex-wrap gap-1.5">
+                        {ach.impact.map(imp => (
+                          <span key={imp}
+                            className="text-xs px-2.5 py-0.5 rounded-full"
+                            style={{ background: `${job.color}10`, color: job.color, border: `1px solid ${job.color}22` }}
+                          >
+                            ✓ {imp}
+                          </span>
+                        ))}
+                      </div>
                     </div>
                   </div>
-                </div>
-                {/* Bottom accent line */}
-                <div className="h-px mx-4 mb-3" style={{ background: `linear-gradient(90deg, ${job.color}20, transparent)` }} />
-              </motion.div>
-            ))}
+                  {/* Bottom accent line */}
+                  <div className="h-px mx-4 mb-3" style={{ background: `linear-gradient(90deg, ${job.color}20, transparent)` }} />
+                </motion.div>
+              )
+            })}
           </div>
         </div>
 
@@ -593,7 +668,7 @@ export default function WorkHistory() {
         {/* Header */}
         <div ref={headingRef} className="text-center mb-4">
           <p className="font-mono text-sm mb-3 tracking-widest uppercase" style={{ color: '#8B5CF6' }}>Career Journey</p>
-          <h2 className="section-title text-white">Work <span className="gradient-text-cyan">History</span></h2>
+          <h2 className="section-title text-white">Professional Work <span className="gradient-text-cyan">Experience</span></h2>
           <p className="mt-4 max-w-xl mx-auto text-sm" style={{ color: 'rgba(100,116,139,0.7)' }}>
             From foundation to full-scale enterprise engineering
           </p>

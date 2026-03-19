@@ -15,7 +15,23 @@ import ImpactNumbers from './components/ImpactNumbers'
 import Testimonials from './components/Testimonials'
 import OpenSource from './components/OpenSource'
 import FloatingResume from './components/FloatingResume'
+import LeetCodeStats from './components/LeetCodeStats'
 import { useScrollProgress } from './hooks/useScrollProgress'
+
+// Section ID → accent color mapping
+const SECTION_COLORS = {
+  hero:         '#00D4FF',
+  about:        '#8B5CF6',
+  work:         '#EC4899',
+  projects:     '#F59E0B',
+  skills:       '#10B981',
+  achievements: '#F59E0B',
+  testimonials: '#8B5CF6',
+  github:       '#00D4FF',
+  beyond:       '#EC4899',
+  contact:      '#10B981',
+}
+const SECTION_IDS = Object.keys(SECTION_COLORS)
 
 function CustomCursor() {
   const dotRef = useRef(null)
@@ -23,8 +39,40 @@ function CustomCursor() {
   const pos = useRef({ x: 0, y: 0 })
   const ringPos = useRef({ x: 0, y: 0 })
   const raf = useRef(null)
+  const colorRef = useRef('#00D4FF')
+
+  const applyColor = (color) => {
+    colorRef.current = color
+    if (dotRef.current) {
+      dotRef.current.style.background = color
+      dotRef.current.style.boxShadow = `0 0 12px ${color}90, 0 0 4px ${color}`
+    }
+    if (ringRef.current) {
+      ringRef.current.style.borderColor = `${color}80`
+      ringRef.current.style.boxShadow = `0 0 8px ${color}30`
+    }
+  }
 
   useEffect(() => {
+    // Section-aware color tracking
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const color = SECTION_COLORS[entry.target.id] || '#00D4FF'
+          applyColor(color)
+        }
+      })
+    }, { threshold: 0.35 })
+
+    const observe = () => {
+      SECTION_IDS.forEach(id => {
+        const el = document.getElementById(id)
+        if (el) observer.observe(el)
+      })
+    }
+    // Observe after a tick so sections are mounted
+    setTimeout(observe, 500)
+
     const move = (e) => {
       pos.current = { x: e.clientX, y: e.clientY }
       if (dotRef.current) {
@@ -43,20 +91,45 @@ function CustomCursor() {
       raf.current = requestAnimationFrame(animate)
     }
 
-    const onEnter = () => ringRef.current?.classList.add('cursor-hover')
-    const onLeave = () => ringRef.current?.classList.remove('cursor-hover')
-    const interactives = document.querySelectorAll('a, button, [role="button"], .tilt-card')
-    interactives.forEach((el) => {
-      el.addEventListener('mouseenter', onEnter)
-      el.addEventListener('mouseleave', onLeave)
-    })
+    const onEnter = () => {
+      if (!ringRef.current) return
+      ringRef.current.classList.add('cursor-hover')
+      ringRef.current.style.borderColor = colorRef.current
+      ringRef.current.style.background = `${colorRef.current}12`
+      ringRef.current.style.boxShadow = `0 0 20px ${colorRef.current}40`
+    }
+    const onLeave = () => {
+      if (!ringRef.current) return
+      ringRef.current.classList.remove('cursor-hover')
+      ringRef.current.style.background = ''
+      ringRef.current.style.borderColor = `${colorRef.current}80`
+      ringRef.current.style.boxShadow = `0 0 8px ${colorRef.current}30`
+    }
+
+    const attachInteractives = () => {
+      const interactives = document.querySelectorAll('a, button, [role="button"], .tilt-card')
+      interactives.forEach((el) => {
+        el.addEventListener('mouseenter', onEnter)
+        el.addEventListener('mouseleave', onLeave)
+      })
+      return interactives
+    }
+
+    let interactives = attachInteractives()
+    // Re-attach after slight delay for dynamically rendered elements
+    const reattach = setTimeout(() => { interactives = attachInteractives() }, 1500)
 
     window.addEventListener('mousemove', move, { passive: true })
     raf.current = requestAnimationFrame(animate)
 
+    // Initial color
+    applyColor('#00D4FF')
+
     return () => {
       window.removeEventListener('mousemove', move)
       cancelAnimationFrame(raf.current)
+      observer.disconnect()
+      clearTimeout(reattach)
       interactives.forEach((el) => {
         el.removeEventListener('mouseenter', onEnter)
         el.removeEventListener('mouseleave', onLeave)
@@ -375,6 +448,7 @@ export default function App() {
               <OpenSource />
               <Skills />
               <Achievements />
+              <LeetCodeStats />
               <Testimonials />
               <GitHubStats />
               <BeyondCode />

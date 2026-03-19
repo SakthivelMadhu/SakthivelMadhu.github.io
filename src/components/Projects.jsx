@@ -423,14 +423,265 @@ function LearningCard({ project, index, onOpenCase }) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
+// LEARNING CAROUSEL — testimonial-style auto-rotating
+// ─────────────────────────────────────────────────────────────────────────────
+function LearningCarouselFeatured({ project, direction, onOpenCase }) {
+  const cat = CAT[project.category] || CAT.backend
+  const color = cat.color
+  return (
+    <motion.div
+      key={project.id}
+      initial={{ opacity: 0, x: direction * 60 }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, x: direction * -60 }}
+      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+      className="relative rounded-3xl overflow-hidden cursor-pointer"
+      style={{ background: `linear-gradient(135deg, ${color}08, rgba(10,10,15,0.98))`, border: `1px solid ${color}22`, minHeight: 320 }}
+      onClick={() => onOpenCase(project)}
+    >
+      {/* Top accent */}
+      <div className="absolute top-0 left-0 right-0 h-0.5"
+        style={{ background: `linear-gradient(90deg, transparent, ${color}, transparent)` }} />
+      {/* Grid bg */}
+      <div className="absolute inset-0 pointer-events-none"
+        style={{ backgroundImage: `linear-gradient(${color}05 1px, transparent 1px), linear-gradient(90deg, ${color}05 1px, transparent 1px)`, backgroundSize: '36px 36px' }} />
+      {/* Glow */}
+      <div className="absolute pointer-events-none"
+        style={{ top: -60, right: -60, width: 240, height: 240, borderRadius: '50%', background: `radial-gradient(circle, ${color}14 0%, transparent 70%)`, filter: 'blur(30px)' }} />
+
+      <div className="relative z-10 p-8 flex flex-col" style={{ minHeight: 320 }}>
+        {/* Top row */}
+        <div className="flex items-center justify-between mb-5">
+          <span className="font-mono text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest"
+            style={{ background: `${color}15`, color, border: `1px solid ${color}30` }}>
+            {cat.label}
+          </span>
+          <div className="flex gap-2">
+            {project.links?.code && (
+              <a href={project.links.code} target="_blank" rel="noopener noreferrer" onClick={e => e.stopPropagation()}
+                className="w-8 h-8 flex items-center justify-center rounded-xl text-xs"
+                style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', color: 'rgba(148,163,184,0.8)' }}>
+                <i className="fab fa-github" />
+              </a>
+            )}
+            {project.links?.live && (
+              <a href={project.links.live} target="_blank" rel="noopener noreferrer" onClick={e => e.stopPropagation()}
+                className="w-8 h-8 flex items-center justify-center rounded-xl text-xs"
+                style={{ background: `${color}12`, border: `1px solid ${color}30`, color }}>
+                <i className="fas fa-external-link" />
+              </a>
+            )}
+          </div>
+        </div>
+
+        {/* Image */}
+        <div className="rounded-2xl overflow-hidden mb-5 border" style={{ borderColor: `${color}15`, height: 130 }}>
+          <img src={project.image} alt={project.title}
+            className="w-full h-full object-cover"
+            style={{ opacity: 0.25, filter: `hue-rotate(0deg)` }}
+            onError={e => { e.target.style.display = 'none' }} />
+        </div>
+
+        {/* Title + desc */}
+        <h3 className="font-display font-bold text-white text-lg mb-2 leading-snug">{project.title}</h3>
+        <p className="text-sm leading-relaxed mb-5 flex-1" style={{ color: 'rgba(148,163,184,0.65)' }}>{project.description}</p>
+
+        {/* Highlights */}
+        <div className="flex flex-wrap gap-1.5 mb-4">
+          {project.highlights.map(h => (
+            <span key={h} className="text-xs px-2 py-0.5 rounded-full"
+              style={{ background: `${color}0d`, color: `${color}cc`, border: `1px solid ${color}20` }}>
+              ✓ {h}
+            </span>
+          ))}
+        </div>
+
+        {/* Tech */}
+        <div className="flex flex-wrap gap-1 pt-4 border-t" style={{ borderColor: 'rgba(255,255,255,0.05)' }}>
+          {project.tech.map(t => (
+            <span key={t} className="text-xs px-2 py-0.5 rounded font-mono"
+              style={{ color: 'rgba(100,116,139,0.55)', background: 'rgba(255,255,255,0.03)' }}>
+              {t}
+            </span>
+          ))}
+        </div>
+
+        {/* Open hint */}
+        <div className="absolute bottom-4 right-4 text-xs font-mono px-3 py-1.5 rounded-xl"
+          style={{ background: 'rgba(0,0,0,0.6)', border: `1px solid ${color}30`, color, backdropFilter: 'blur(8px)' }}>
+          <i className="fas fa-expand-alt mr-1 text-xs" /> Details
+        </div>
+      </div>
+    </motion.div>
+  )
+}
+
+function LearningCarouselSidebar({ items, activeIdx, onSelect }) {
+  return (
+    <div className="flex flex-col gap-2 overflow-y-auto" style={{ maxHeight: 360 }}>
+      {items.map((p, i) => {
+        const cat = CAT[p.category] || CAT.backend
+        const isActive = i === activeIdx
+        return (
+          <button key={p.id} onClick={() => onSelect(i)}
+            className="text-left rounded-2xl p-3 flex items-center gap-3 transition-all duration-300"
+            style={{
+              background: isActive ? `${cat.color}12` : 'rgba(255,255,255,0.02)',
+              border: `1px solid ${isActive ? cat.color + '35' : 'rgba(255,255,255,0.06)'}`,
+              cursor: 'pointer',
+            }}>
+            <div className="w-9 h-9 rounded-xl overflow-hidden flex-shrink-0 border"
+              style={{ borderColor: isActive ? `${cat.color}40` : 'rgba(255,255,255,0.06)' }}>
+              <img src={p.image} alt={p.title} className="w-full h-full object-cover"
+                style={{ opacity: 0.5 }} onError={e => { e.target.style.display = 'none' }} />
+            </div>
+            <div className="min-w-0">
+              <div className="text-xs font-semibold text-white truncate">{p.title}</div>
+              <div className="text-xs mt-0.5 truncate font-mono" style={{ color: cat.color, opacity: 0.7 }}>{cat.label}</div>
+            </div>
+            {isActive && <div className="w-1.5 h-1.5 rounded-full flex-shrink-0 ml-auto" style={{ background: cat.color }} />}
+          </button>
+        )
+      })}
+    </div>
+  )
+}
+
+function LearningCarousel({ projects: items, onOpenCase }) {
+  const ref = useRef(null)
+  const inView = useInView(ref, { once: true, margin: '-80px' })
+  const [activeIdx, setActiveIdx] = useState(0)
+  const [direction, setDirection] = useState(1)
+  const intervalRef = useRef(null)
+
+  const startAuto = useCallback(() => {
+    intervalRef.current = setInterval(() => {
+      setDirection(1)
+      setActiveIdx(p => (p + 1) % items.length)
+    }, 4000)
+  }, [items.length])
+
+  useEffect(() => {
+    startAuto()
+    return () => clearInterval(intervalRef.current)
+  }, [startAuto])
+
+  const goTo = (idx) => {
+    clearInterval(intervalRef.current)
+    setDirection(idx > activeIdx ? 1 : -1)
+    setActiveIdx(idx)
+    startAuto()
+  }
+  const prev = () => { clearInterval(intervalRef.current); setDirection(-1); setActiveIdx(p => (p - 1 + items.length) % items.length); startAuto() }
+  const next = () => { clearInterval(intervalRef.current); setDirection(1); setActiveIdx(p => (p + 1) % items.length); startAuto() }
+
+  const active = items[activeIdx]
+  const activeCat = CAT[active.category] || CAT.backend
+
+  return (
+    <div ref={ref}>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={inView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.6 }}
+        className="text-center mb-10"
+      >
+        <p className="text-xs mb-2 tracking-widest uppercase font-mono" style={{ color: '#8B5CF6' }}>Masai & Self-Directed Learning</p>
+        <h3 className="text-2xl font-display font-bold" style={{ color: 'rgba(226,232,240,0.55)' }}>
+          Learning <span style={{ color: '#8B5CF6' }}>Projects</span>
+        </h3>
+        <p className="mt-3 max-w-md mx-auto text-xs" style={{ color: 'rgba(100,116,139,0.45)' }}>
+          Built during training to master backend, frontend, and Python fundamentals
+        </p>
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={inView ? { opacity: 1, y: 0 } : {}}
+        transition={{ delay: 0.2, duration: 0.7 }}
+      >
+        {/* Marquee strip */}
+        <div className="overflow-hidden mb-8 relative" style={{ maskImage: 'linear-gradient(90deg, transparent, black 8%, black 92%, transparent)' }}>
+          <motion.div className="flex gap-3" animate={{ x: ['0%', '-50%'] }} transition={{ duration: 25, repeat: Infinity, ease: 'linear' }} style={{ width: 'max-content' }}>
+            {[...items, ...items].map((p, i) => {
+              const c = CAT[p.category]?.color || '#8B5CF6'
+              return (
+                <div key={i} className="flex items-center gap-2 px-3 py-1.5 rounded-full flex-shrink-0"
+                  style={{ background: `${c}10`, border: `1px solid ${c}22` }}>
+                  <div className="w-1.5 h-1.5 rounded-full" style={{ background: c }} />
+                  <span className="text-xs font-medium text-white whitespace-nowrap">{p.title}</span>
+                </div>
+              )
+            })}
+          </motion.div>
+        </div>
+
+        {/* Main layout */}
+        <div className="grid lg:grid-cols-[1fr_240px] gap-6">
+          {/* Featured card */}
+          <div>
+            {/* Controls header */}
+            <div className="flex items-center justify-between mb-4 px-1">
+              <div className="flex items-center gap-3">
+                <div className="px-3 py-1 rounded-full font-mono text-xs uppercase tracking-widest"
+                  style={{ background: `${activeCat.color}12`, color: activeCat.color, border: `1px solid ${activeCat.color}30` }}>
+                  {activeIdx + 1} / {items.length}
+                </div>
+                <div className="h-1 rounded-full overflow-hidden" style={{ width: 80, background: 'rgba(255,255,255,0.05)' }}>
+                  <motion.div key={activeIdx} className="h-full rounded-full"
+                    style={{ background: activeCat.color }}
+                    initial={{ width: '0%' }} animate={{ width: '100%' }} transition={{ duration: 4, ease: 'linear' }} />
+                </div>
+              </div>
+              <div className="flex gap-2">
+                <button onClick={prev} className="w-8 h-8 rounded-full flex items-center justify-center"
+                  style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', color: 'rgba(148,163,184,0.7)', cursor: 'pointer' }}>
+                  <i className="fas fa-chevron-left text-xs" />
+                </button>
+                <button onClick={next} className="w-8 h-8 rounded-full flex items-center justify-center"
+                  style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', color: 'rgba(148,163,184,0.7)', cursor: 'pointer' }}>
+                  <i className="fas fa-chevron-right text-xs" />
+                </button>
+              </div>
+            </div>
+
+            <div style={{ position: 'relative', overflow: 'hidden' }}>
+              <AnimatePresence mode="wait">
+                <LearningCarouselFeatured key={active.id} project={active} direction={direction} onOpenCase={onOpenCase} />
+              </AnimatePresence>
+            </div>
+
+            {/* Dots */}
+            <div className="flex justify-center gap-1.5 mt-4">
+              {items.map((p, i) => {
+                const c = CAT[p.category]?.color || '#8B5CF6'
+                return (
+                  <button key={i} onClick={() => goTo(i)}
+                    className="rounded-full transition-all duration-300"
+                    style={{ width: i === activeIdx ? 18 : 6, height: 6, background: i === activeIdx ? c : 'rgba(255,255,255,0.12)', cursor: 'pointer' }} />
+                )
+              })}
+            </div>
+          </div>
+
+          {/* Sidebar */}
+          <div className="hidden lg:block">
+            <div className="text-xs font-mono uppercase tracking-widest mb-3 px-1" style={{ color: 'rgba(100,116,139,0.5)' }}>All Projects</div>
+            <LearningCarouselSidebar items={items} activeIdx={activeIdx} onSelect={goTo} />
+          </div>
+        </div>
+      </motion.div>
+    </div>
+  )
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 // SECTION
 // ─────────────────────────────────────────────────────────────────────────────
 export default function Projects() {
   const [caseProject, setCaseProject] = useState(null)
   const sectionRef = useRef(null)
-  const learningRef = useRef(null)
   const inView = useInView(sectionRef, { once: true, margin: '-100px' })
-  const learningInView = useInView(learningRef, { once: true, margin: '-80px' })
 
   return (
     <section id="projects" ref={sectionRef} className="py-24 md:py-32 relative overflow-hidden">
@@ -454,10 +705,22 @@ export default function Projects() {
           </p>
         </motion.div>
 
-        {/* ── ENTERPRISE GRID — 2×2 ────────────────────── */}
+        {/* ── FLAGSHIP — Plusmax ERP full-width ─────────── */}
+        {enterpriseProjects.filter(p => p.isFlagship).map((project, i) => (
+          <motion.div key={project.id}
+            initial={{ opacity: 0, y: 40 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="mb-6"
+          >
+            <EnterpriseCard project={project} index={0} onOpenCase={setCaseProject} />
+          </motion.div>
+        ))}
+
+        {/* ── ENTERPRISE GRID — remaining cards ────────── */}
         <div className="grid sm:grid-cols-2 gap-6 mb-10">
-          {enterpriseProjects.map((project, i) => (
-            <EnterpriseCard key={project.id} project={project} index={i} onOpenCase={setCaseProject} />
+          {enterpriseProjects.filter(p => !p.isFlagship).map((project, i) => (
+            <EnterpriseCard key={project.id} project={project} index={i + 1} onOpenCase={setCaseProject} />
           ))}
         </div>
 
@@ -486,43 +749,17 @@ export default function Projects() {
           <div className="flex-1 h-px" style={{ background: 'linear-gradient(to left, transparent, rgba(255,255,255,0.07))' }} />
         </div>
 
-        {/* ── LEARNING PROJECTS ───────────────────────── */}
-        <div ref={learningRef}>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={learningInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-10"
-          >
-            <p className="text-xs mb-2 tracking-widest uppercase font-mono" style={{ color: '#8B5CF6' }}>Masai & Self-Directed Learning</p>
-            <h3 className="text-2xl font-display font-bold" style={{ color: 'rgba(226,232,240,0.55)' }}>
-              Learning <span style={{ color: '#8B5CF6' }}>Projects</span>
-            </h3>
-            <p className="mt-3 max-w-md mx-auto text-xs" style={{ color: 'rgba(100,116,139,0.45)' }}>
-              Built during training to master backend, frontend, and Python fundamentals
-            </p>
-          </motion.div>
+        {/* ── LEARNING CAROUSEL ───────────────────────── */}
+        <LearningCarousel projects={learningProjects} onOpenCase={setCaseProject} />
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={learningInView ? { opacity: 1 } : {}}
-            transition={{ duration: 0.4, delay: 0.1 }}
-            className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5"
-          >
-            {learningProjects.map((project, i) => (
-              <LearningCard key={project.id} project={project} index={i} onOpenCase={setCaseProject} />
-            ))}
-          </motion.div>
-        </div>
-
-        <motion.div initial={{ opacity: 0 }} animate={learningInView ? { opacity: 1 } : {}} transition={{ delay: 0.5 }} className="text-center mt-12">
+        <div className="text-center mt-12">
           <motion.a href="https://github.com/SakthivelMadhu" target="_blank" rel="noopener noreferrer"
             whileHover={{ scale: 1.03, y: -2 }} whileTap={{ scale: 0.97 }}
             className="inline-flex items-center gap-2 px-6 py-3 text-sm font-medium rounded-xl"
             style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)', color: 'rgba(148,163,184,0.7)' }}>
             <i className="fab fa-github" /> View All on GitHub <i className="fas fa-arrow-right text-xs opacity-50" />
           </motion.a>
-        </motion.div>
+        </div>
       </div>
 
       {caseProject && (
