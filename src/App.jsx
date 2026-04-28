@@ -1,22 +1,47 @@
-import { useEffect, useRef, useState } from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
+import { lazy, Suspense, useEffect, useRef, useState } from 'react'
+import { motion } from 'framer-motion'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
-import About from './components/About'
-import WorkHistory from './components/WorkHistory'
-import Projects from './components/Projects'
-import Skills from './components/Skills'
-import Achievements from './components/Achievements'
-import GitHubStats from './components/GitHubStats'
-import BeyondCode from './components/BeyondCode'
-import Contact from './components/Contact'
-import Footer from './components/Footer'
-import ImpactNumbers from './components/ImpactNumbers'
-import Testimonials from './components/Testimonials'
-import OpenSource from './components/OpenSource'
-import FloatingResume from './components/FloatingResume'
-import LeetCodeStats from './components/LeetCodeStats'
 import { useScrollProgress } from './hooks/useScrollProgress'
+
+// Below-fold sections are code-split so the initial JS bundle stays small.
+// Each section becomes its own chunk fetched on demand.
+const About          = lazy(() => import('./components/About'))
+const WorkHistory    = lazy(() => import('./components/WorkHistory'))
+const Projects       = lazy(() => import('./components/Projects'))
+const Skills         = lazy(() => import('./components/Skills'))
+const Achievements   = lazy(() => import('./components/Achievements'))
+const GitHubStats    = lazy(() => import('./components/GitHubStats'))
+const BeyondCode     = lazy(() => import('./components/BeyondCode'))
+const Contact        = lazy(() => import('./components/Contact'))
+const Footer         = lazy(() => import('./components/Footer'))
+const ImpactNumbers  = lazy(() => import('./components/ImpactNumbers'))
+const Testimonials   = lazy(() => import('./components/Testimonials'))
+const OpenSource     = lazy(() => import('./components/OpenSource'))
+const FloatingResume = lazy(() => import('./components/FloatingResume'))
+const LeetCodeStats  = lazy(() => import('./components/LeetCodeStats'))
+
+// Mounts children only when its placeholder scrolls within `rootMargin` of viewport.
+// Reserves vertical space via `minHeight` to avoid layout shift.
+function LazyMount({ children, minHeight = 400, rootMargin = '400px' }) {
+  const ref = useRef(null)
+  const [show, setShow] = useState(false)
+  useEffect(() => {
+    if (show) return
+    const el = ref.current
+    if (!el) return
+    if (typeof IntersectionObserver === 'undefined') { setShow(true); return }
+    const io = new IntersectionObserver((entries) => {
+      if (entries.some(e => e.isIntersecting)) {
+        setShow(true)
+        io.disconnect()
+      }
+    }, { rootMargin })
+    io.observe(el)
+    return () => io.disconnect()
+  }, [show, rootMargin])
+  return <div ref={ref} style={{ minHeight: show ? undefined : minHeight }}>{show && children}</div>
+}
 
 // Section ID → accent color mapping
 const SECTION_COLORS = {
@@ -360,7 +385,9 @@ function ParticleBackground() {
       }
     }
 
-    for (let i = 0; i < 120; i++) particles.push(new Particle())
+    // Halved particle count + connection cap → big CPU savings (was O(n²) over 120)
+    const COUNT = window.innerWidth < 768 ? 30 : 60
+    for (let i = 0; i < COUNT; i++) particles.push(new Particle())
 
     const loop = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height)
@@ -402,13 +429,19 @@ function ParticleBackground() {
 
 export default function App() {
   const scrollProgress = useScrollProgress()
-  const [loaded, setLoaded] = useState(false)
   const [particlesReady, setParticlesReady] = useState(false)
+  const [bgReady, setBgReady] = useState(false)
 
   useEffect(() => {
-    setLoaded(true)
-    const t = setTimeout(() => setParticlesReady(true), 2000)
-    return () => clearTimeout(t)
+    // Defer non-critical decorative backgrounds until after first paint
+    // so Hero LCP isn't blocked by heavy animation work on the main thread.
+    const idle = window.requestIdleCallback || ((cb) => setTimeout(cb, 200))
+    const idleId = idle(() => setBgReady(true))
+    const t = setTimeout(() => setParticlesReady(true), 2500)
+    return () => {
+      clearTimeout(t)
+      if (window.cancelIdleCallback) window.cancelIdleCallback(idleId)
+    }
   }, [])
 
   return (
@@ -419,46 +452,44 @@ export default function App() {
         style={{ width: `${scrollProgress}%` }}
       />
 
-      {/* Space background: planets, satellites, nebula */}
-      <SpaceBackground />
+      {/* Space background: planets, satellites, nebula — deferred past first paint */}
+      {bgReady && <SpaceBackground />}
 
       {/* Particle background — delayed to avoid animation overload on first load */}
       {particlesReady && <ParticleBackground />}
 
-      {/* Custom cursor (desktop only) */}
-      <div className="hidden md:block">
-        <CustomCursor />
-      </div>
+      {/* Custom cursor (desktop only) — deferred past first paint */}
+      {bgReady && (
+        <div className="hidden md:block">
+          <CustomCursor />
+        </div>
+      )}
 
-      <AnimatePresence>
-        {loaded && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.4 }}
-          >
-            <Navbar />
-            <FloatingResume />
-            <main>
-              <Hero />
-              <ImpactNumbers />
-              <About />
-              <WorkHistory />
-              <Projects />
-              <OpenSource />
-              <Skills />
-              <Achievements />
-              <LeetCodeStats />
-              <Testimonials />
-              <GitHubStats />
-              <BeyondCode />
-              <Contact />
-            </main>
+      <Navbar />
+      <Suspense fallback={null}>
+        <FloatingResume />
+      </Suspense>
+      <main>
+        <Hero />
+        <Suspense fallback={null}>
+          <LazyMount minHeight={200}><ImpactNumbers /></LazyMount>
+          <LazyMount minHeight={600}><About /></LazyMount>
+          <LazyMount minHeight={800}><WorkHistory /></LazyMount>
+          <LazyMount minHeight={800}><Projects /></LazyMount>
+          <LazyMount minHeight={500}><OpenSource /></LazyMount>
+          <LazyMount minHeight={600}><Skills /></LazyMount>
+          <LazyMount minHeight={500}><Achievements /></LazyMount>
+          <LazyMount minHeight={500}><LeetCodeStats /></LazyMount>
+          <LazyMount minHeight={500}><Testimonials /></LazyMount>
+          <LazyMount minHeight={500}><GitHubStats /></LazyMount>
+          <LazyMount minHeight={400}><BeyondCode /></LazyMount>
+          <LazyMount minHeight={600}><Contact /></LazyMount>
+        </Suspense>
+      </main>
 
-            <Footer />
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <Suspense fallback={null}>
+        <LazyMount minHeight={200}><Footer /></LazyMount>
+      </Suspense>
     </div>
   )
 }

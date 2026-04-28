@@ -149,6 +149,8 @@ function ProfileSection() {
       {/* Photo */}
       <div className="relative rounded-full overflow-hidden z-10" style={{ width: '230px', height: '230px', border: '2px solid rgba(0,212,255,0.25)', boxShadow: '0 0 50px rgba(0,212,255,0.15)' }}>
         <img src={personalInfo.photo} alt="Sakthivel Madhu" className="w-full h-full object-cover object-top"
+          width="230" height="230"
+          fetchpriority="high" decoding="async"
           onError={(e) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex' }}
         />
         <div className="w-full h-full hidden items-center justify-center font-display font-black text-5xl"

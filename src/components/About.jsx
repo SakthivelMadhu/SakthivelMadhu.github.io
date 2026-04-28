@@ -117,6 +117,7 @@ function HoloIDCard({ inView }) {
               background: 'linear-gradient(135deg, rgba(0,212,255,0.3), rgba(139,92,246,0.3))',
             }}>
               <img src={personalInfo.photo} alt="Sakthivel Madhu"
+                loading="lazy" decoding="async"
                 style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top' }}
               />
             </div>

@@ -43,5 +43,23 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     sourcemap: false,
+    cssCodeSplit: true,
+    target: 'es2020',
+    minify: 'esbuild',
+    rollupOptions: {
+      output: {
+        // Split heavy animation libraries into their own chunks so app code
+        // ships first and the libs cache independently across deploys.
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            if (id.includes('framer-motion')) return 'framer-motion'
+            if (id.includes('gsap')) return 'gsap'
+            if (id.includes('react-intersection-observer')) return 'intersection-observer'
+            if (id.includes('react-dom') || id.includes('scheduler')) return 'react-dom'
+            if (id.includes('react')) return 'react'
+          }
+        },
+      },
+    },
   },
 })

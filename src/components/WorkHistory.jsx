@@ -93,7 +93,7 @@ function TwinleavesPanel() {
               <span style={{ fontSize: '8px', color: 'rgba(0,212,255,0.5)', marginLeft: '6px', fontFamily: 'monospace' }}>twinleaves.enterprise.dashboard</span>
             </div>
             <div style={{ borderRadius: '3px', overflow: 'hidden', border: '1px solid rgba(0,212,255,0.15)' }}>
-              <img src="/img/erp.webp" alt="ERP" style={{ width: '100%', display: 'block', maxHeight: '150px', objectFit: 'cover', objectPosition: 'top' }} />
+              <img src="/img/erp.webp" alt="ERP" loading="lazy" decoding="async" style={{ width: '100%', display: 'block', maxHeight: '150px', objectFit: 'cover', objectPosition: 'top' }} />
             </div>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>

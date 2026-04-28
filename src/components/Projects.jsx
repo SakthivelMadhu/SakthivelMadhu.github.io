@@ -80,6 +80,7 @@ function CaseStudyModal({ project, onClose }) {
           <div className="overflow-y-auto flex-1 px-7 py-6 space-y-6">
             <div className="rounded-2xl overflow-hidden border" style={{ borderColor: `${color}20` }}>
               <img src={project.image} alt={project.title} className="w-full"
+                loading="lazy" decoding="async"
                 style={{ maxHeight: 200, objectFit: 'cover', objectPosition: 'top' }}
                 onError={e => { e.target.style.display = 'none' }} />
             </div>
@@ -218,6 +219,7 @@ function EnterpriseCard({ project, index, onOpenCase }) {
 
           {/* Project image with overlay */}
           <img src={project.image} alt={project.title}
+            loading="lazy" decoding="async"
             className="absolute inset-0 w-full h-full object-cover mix-blend-luminosity"
             style={{ opacity: 0.18 }}
             onError={e => { e.target.style.display = 'none' }} />
@@ -365,6 +367,7 @@ function LearningCard({ project, index, onOpenCase }) {
         {/* Image strip */}
         <div className="relative h-28 overflow-hidden" style={{ background: 'rgba(0,0,0,0.25)' }}>
           <img src={project.image} alt={project.title}
+            loading="lazy" decoding="async"
             className="w-full h-full object-cover"
             style={{ opacity: hov ? 0.22 : 0.12, transition: 'opacity 0.35s ease' }}
             onError={e => { e.target.style.display = 'none' }} />
@@ -477,6 +480,7 @@ function LearningCarouselFeatured({ project, direction, onOpenCase }) {
         {/* Image */}
         <div className="rounded-2xl overflow-hidden mb-5 border" style={{ borderColor: `${color}15`, height: 130 }}>
           <img src={project.image} alt={project.title}
+            loading="lazy" decoding="async"
             className="w-full h-full object-cover"
             style={{ opacity: 0.25, filter: `hue-rotate(0deg)` }}
             onError={e => { e.target.style.display = 'none' }} />
@@ -533,6 +537,7 @@ function LearningCarouselSidebar({ items, activeIdx, onSelect }) {
             <div className="w-9 h-9 rounded-xl overflow-hidden flex-shrink-0 border"
               style={{ borderColor: isActive ? `${cat.color}40` : 'rgba(255,255,255,0.06)' }}>
               <img src={p.image} alt={p.title} className="w-full h-full object-cover"
+                loading="lazy" decoding="async"
                 style={{ opacity: 0.5 }} onError={e => { e.target.style.display = 'none' }} />
             </div>
             <div className="min-w-0">

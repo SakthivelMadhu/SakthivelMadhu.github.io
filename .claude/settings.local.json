@@ -3,7 +3,16 @@
     "allow": [
       "Bash(npm install:*)",
       "Bash(npm run:*)",
-      "WebFetch(domain:www.igloo.inc)"
+      "WebFetch(domain:www.igloo.inc)",
+      "Bash(find dist *)",
+      "Bash(awk '{print $9, $5}')",
+      "Bash(xargs ls *)",
+      "Bash(find img *)",
+      "Bash(node -e \"console.log\\('JS files in dist/assets:'\\); const fs=require\\('fs'\\); fs.readdirSync\\('dist/assets'\\).filter\\(f=>f.endsWith\\('.js'\\)\\).forEach\\(f=>{const s=fs.statSync\\('dist/assets/'+f\\).size; console.log\\(f, '-', \\(s/1024\\).toFixed\\(1\\)+'KB'\\)}\\)\")",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)",
+      "Bash(git reset *)"
     ]
   }
 }
