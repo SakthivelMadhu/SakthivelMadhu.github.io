@@ -8,6 +8,9 @@ import { useScrollProgress } from './hooks/useScrollProgress'
 // Each section becomes its own chunk fetched on demand.
 const About          = lazy(() => import('./components/About'))
 const WorkHistory    = lazy(() => import('./components/WorkHistory'))
+const CaseStudies    = lazy(() => import('./components/CaseStudies'))
+const Leadership     = lazy(() => import('./components/Leadership'))
+const Writing        = lazy(() => import('./components/Writing'))
 const Projects       = lazy(() => import('./components/Projects'))
 const Skills         = lazy(() => import('./components/Skills'))
 const Achievements   = lazy(() => import('./components/Achievements'))
@@ -45,16 +48,19 @@ function LazyMount({ children, minHeight = 400, rootMargin = '400px' }) {
 
 // Section ID → accent color mapping
 const SECTION_COLORS = {
-  hero:         '#00D4FF',
-  about:        '#8B5CF6',
-  work:         '#EC4899',
-  projects:     '#F59E0B',
-  skills:       '#10B981',
-  achievements: '#F59E0B',
-  testimonials: '#8B5CF6',
-  github:       '#00D4FF',
-  beyond:       '#EC4899',
-  contact:      '#10B981',
+  hero:           '#00D4FF',
+  about:          '#8B5CF6',
+  work:           '#EC4899',
+  'case-studies': '#00D4FF',
+  leadership:     '#10B981',
+  writing:        '#00D4FF',
+  projects:       '#F59E0B',
+  skills:         '#10B981',
+  achievements:   '#F59E0B',
+  testimonials:   '#8B5CF6',
+  github:         '#00D4FF',
+  beyond:         '#EC4899',
+  contact:        '#10B981',
 }
 const SECTION_IDS = Object.keys(SECTION_COLORS)
 
@@ -431,8 +437,12 @@ export default function App() {
   const scrollProgress = useScrollProgress()
   const [particlesReady, setParticlesReady] = useState(false)
   const [bgReady, setBgReady] = useState(false)
+  // Desktop-only gate for heavy decorative layers (particles + space bg).
+  // Mobile devices skip these entirely to keep LCP/INP healthy.
+  const isDesktop = typeof window !== 'undefined' && window.innerWidth >= 768
 
   useEffect(() => {
+    if (!isDesktop) return
     // Defer non-critical decorative backgrounds until after first paint
     // so Hero LCP isn't blocked by heavy animation work on the main thread.
     const idle = window.requestIdleCallback || ((cb) => setTimeout(cb, 200))
@@ -442,7 +452,7 @@ export default function App() {
       clearTimeout(t)
       if (window.cancelIdleCallback) window.cancelIdleCallback(idleId)
     }
-  }, [])
+  }, [isDesktop])
 
   return (
     <div className="relative bg-[#0a0a0f] min-h-screen overflow-x-hidden">
@@ -475,6 +485,9 @@ export default function App() {
           <LazyMount minHeight={200}><ImpactNumbers /></LazyMount>
           <LazyMount minHeight={600}><About /></LazyMount>
           <LazyMount minHeight={800}><WorkHistory /></LazyMount>
+          <LazyMount minHeight={900}><CaseStudies /></LazyMount>
+          <LazyMount minHeight={500}><Leadership /></LazyMount>
+          <LazyMount minHeight={500}><Writing /></LazyMount>
           <LazyMount minHeight={800}><Projects /></LazyMount>
           <LazyMount minHeight={500}><OpenSource /></LazyMount>
           <LazyMount minHeight={600}><Skills /></LazyMount>

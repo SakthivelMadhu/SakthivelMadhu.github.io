@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sakthivelmadhu.github.io/sitemap.xml

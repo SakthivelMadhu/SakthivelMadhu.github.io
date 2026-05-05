@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import { personalInfo } from '../data/portfolio'
 
-const TITLES = ['Backend Engineer', 'System Architect', 'Cloud Engineer', 'API Specialist']
+const TITLES = ['Backend SDE', 'Distributed Systems Engineer', 'AI Platform Engineer', 'Backend Engineer']
 
 function TypedTitle() {
   const [index, setIndex] = useState(0)
@@ -148,7 +148,7 @@ function ProfileSection() {
 
       {/* Photo */}
       <div className="relative rounded-full overflow-hidden z-10" style={{ width: '230px', height: '230px', border: '2px solid rgba(0,212,255,0.25)', boxShadow: '0 0 50px rgba(0,212,255,0.15)' }}>
-        <img src={personalInfo.photo} alt="Sakthivel Madhu" className="w-full h-full object-cover object-top"
+        <img src={personalInfo.photo} alt="Sakthivel Madhu — Backend Software Development Engineer" className="w-full h-full object-cover object-top"
           width="230" height="230"
           fetchpriority="high" decoding="async"
           onError={(e) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex' }}
@@ -337,6 +337,7 @@ export default function Hero() {
                 { href: 'https://github.com/SakthivelMadhu', icon: 'fab fa-github' },
                 { href: 'https://www.linkedin.com/in/sakthivel-madhu-864647238/', icon: 'fab fa-linkedin' },
                 { href: 'https://leetcode.com/u/sakthi130597/', icon: 'fas fa-code' },
+                { href: 'https://replit.com/@sakthivelMadhu', icon: 'fas fa-terminal' },
                 { href: 'mailto:sakthi130597@gmail.com', icon: 'fas fa-envelope' },
               ].map((s, i) => (
                 <motion.a key={i} href={s.href}

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>OG Image Generator — 1200×630</title>
+    <style>
+      :root { color-scheme: dark; }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      html, body {
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        background: #050510;
+        color: #e2e8f0;
+      }
+      body {
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        padding: 24px;
+      }
+      .instructions {
+        position: fixed;
+        bottom: 12px;
+        left: 12px;
+        font-size: 12px;
+        background: rgba(0,0,0,0.7);
+        padding: 8px 12px;
+        border-radius: 6px;
+        color: #94a3b8;
+        max-width: 300px;
+        z-index: 100;
+      }
+      /* The OG card — exactly 1200x630 */
+      .og {
+        width: 1200px;
+        height: 630px;
+        position: relative;
+        background: #0a0a0f;
+        overflow: hidden;
+        font-family: 'Inter', system-ui, sans-serif;
+        flex-shrink: 0;
+      }
+      /* Glow blobs */
+      .glow {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(80px);
+        pointer-events: none;
+      }
+      .glow-cyan   { top: -120px; left: -100px; width: 700px; height: 700px;
+                     background: radial-gradient(circle, rgba(0,212,255,0.32), transparent 65%); }
+      .glow-purple { bottom: -120px; right: -100px; width: 700px; height: 700px;
+                     background: radial-gradient(circle, rgba(139,92,246,0.30), transparent 65%); }
+      .glow-pink   { top: 200px; right: 200px; width: 400px; height: 400px;
+                     background: radial-gradient(circle, rgba(236,72,153,0.18), transparent 70%); }
+      /* Subtle grid */
+      .grid {
+        position: absolute; inset: 0;
+        background-image:
+          linear-gradient(rgba(0,212,255,0.04) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(0,212,255,0.04) 1px, transparent 1px);
+        background-size: 60px 60px;
+      }
+      .content {
+        position: relative;
+        height: 100%;
+        padding: 64px 80px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .top-row {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 18px;
+        border-radius: 999px;
+        background: rgba(16,185,129,0.1);
+        border: 1px solid rgba(16,185,129,0.3);
+        font-size: 14px;
+        font-weight: 600;
+        color: #10B981;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        font-family: 'JetBrains Mono', ui-monospace, monospace;
+      }
+      .dot {
+        width: 8px; height: 8px;
+        border-radius: 50%;
+        background: #10B981;
+        box-shadow: 0 0 12px #10B981;
+      }
+      .label {
+        font-family: 'JetBrains Mono', ui-monospace, monospace;
+        font-size: 14px;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: #64748b;
+      }
+      h1 {
+        font-size: 96px;
+        font-weight: 900;
+        line-height: 0.95;
+        letter-spacing: -0.04em;
+        margin: 32px 0 24px;
+      }
+      .grad {
+        background: linear-gradient(135deg, #00D4FF 0%, #8B5CF6 50%, #EC4899 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+      .subtitle {
+        font-size: 28px;
+        line-height: 1.35;
+        color: rgba(226,232,240,0.85);
+        max-width: 900px;
+        font-weight: 500;
+      }
+      .stats {
+        display: flex;
+        gap: 28px;
+        margin-top: 32px;
+      }
+      .stat {
+        padding: 16px 24px;
+        border-radius: 14px;
+        background: rgba(255,255,255,0.04);
+        border: 1px solid rgba(255,255,255,0.08);
+      }
+      .stat-num {
+        font-size: 36px;
+        font-weight: 800;
+        font-family: 'JetBrains Mono', ui-monospace, monospace;
+        line-height: 1;
+        margin-bottom: 4px;
+      }
+      .stat-num.cyan   { color: #00D4FF; }
+      .stat-num.purple { color: #8B5CF6; }
+      .stat-num.pink   { color: #EC4899; }
+      .stat-num.gold   { color: #F59E0B; }
+      .stat-label {
+        font-size: 12px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: rgba(148,163,184,0.7);
+        font-family: 'JetBrains Mono', ui-monospace, monospace;
+      }
+      .footer-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .url {
+        font-family: 'JetBrains Mono', ui-monospace, monospace;
+        font-size: 18px;
+        color: rgba(148,163,184,0.65);
+      }
+      .stack {
+        display: flex;
+        gap: 10px;
+      }
+      .chip {
+        padding: 6px 12px;
+        border-radius: 8px;
+        font-family: 'JetBrains Mono', ui-monospace, monospace;
+        font-size: 13px;
+        font-weight: 600;
+      }
+      .chip.cyan   { background: rgba(0,212,255,0.1);  border: 1px solid rgba(0,212,255,0.3);  color: #00D4FF; }
+      .chip.purple { background: rgba(139,92,246,0.1); border: 1px solid rgba(139,92,246,0.3); color: #8B5CF6; }
+      .chip.pink   { background: rgba(236,72,153,0.1); border: 1px solid rgba(236,72,153,0.3); color: #EC4899; }
+      .chip.gold   { background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.3); color: #F59E0B; }
+      .top-strip {
+        position: absolute; top: 0; left: 0; right: 0; height: 4px;
+        background: linear-gradient(90deg, #00D4FF, #8B5CF6, #EC4899);
+      }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="og" id="og">
+      <div class="top-strip"></div>
+      <div class="glow glow-cyan"></div>
+      <div class="glow glow-purple"></div>
+      <div class="glow glow-pink"></div>
+      <div class="grid"></div>
+
+      <div class="content">
+        <div>
+          <div class="top-row">
+            <div class="pill"><span class="dot"></span>OPEN TO OPPORTUNITIES</div>
+            <span class="label">sakthivelmadhu.github.io</span>
+          </div>
+
+          <h1>
+            <span style="color:#fff;">Sakthivel Madhu</span><br/>
+            <span class="grad">Backend SDE · Distributed Systems</span>
+          </h1>
+
+          <p class="subtitle">
+            3+ years building production ERP, Finance, HRMS, and Vendor microservices on Java 17 / Spring Boot + GCP. Distributed systems, event-driven, and AI-augmented workflows.
+          </p>
+
+          <div class="stats">
+            <div class="stat">
+              <div class="stat-num cyan">~92%</div>
+              <div class="stat-label">Manual cut</div>
+            </div>
+            <div class="stat">
+              <div class="stat-num purple">~50ms</div>
+              <div class="stat-label">p95 ledger</div>
+            </div>
+            <div class="stat">
+              <div class="stat-num pink">~200</div>
+              <div class="stat-label">Vendors onboarded</div>
+            </div>
+            <div class="stat">
+              <div class="stat-num gold">~5K/mo</div>
+              <div class="stat-label">Invoices auto</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-row">
+          <span class="url">sakthivelmadhu.github.io</span>
+          <div class="stack">
+            <span class="chip cyan">Java 17</span>
+            <span class="chip purple">Spring Boot</span>
+            <span class="chip pink">GCP</span>
+            <span class="chip gold">Pub/Sub</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="instructions">
+      <strong>To export:</strong> in Chrome DevTools → Device Toolbar → set viewport to 1200×630 → screenshot the .og element → save as <code>img/og.png</code>.
+    </div>
+  </body>
+</html>

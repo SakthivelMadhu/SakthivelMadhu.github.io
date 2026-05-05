@@ -6,6 +6,7 @@ const SOCIALS = [
   { icon: 'fab fa-github',   href: 'https://github.com/SakthivelMadhu',                          color: '#e2e8f0', label: 'GitHub'   },
   { icon: 'fab fa-linkedin', href: 'https://www.linkedin.com/in/sakthivel-madhu-864647238/',      color: '#0A66C2', label: 'LinkedIn' },
   { icon: 'fas fa-code',     href: 'https://leetcode.com/u/sakthi130597/',                       color: '#FFA116', label: 'LeetCode' },
+  { icon: 'fas fa-terminal', href: 'https://replit.com/@sakthivelMadhu',                          color: '#F26207', label: 'Replit'   },
   { icon: 'fas fa-envelope', href: 'mailto:sakthi130597@gmail.com',                               color: '#00D4FF', label: 'Email'    },
 ]
 
@@ -197,11 +198,13 @@ export default function Footer() {
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.3, duration: 0.7 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6"
+            className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6 flex-wrap"
           >
-            {/* Primary: email */}
+            {/* Primary: book a call */}
             <motion.a
-              href="mailto:sakthi130597@gmail.com"
+              href={personalInfo.contact.calendar}
+              target="_blank"
+              rel="noopener noreferrer"
               whileHover={{ scale: 1.04, y: -3 }}
               whileTap={{ scale: 0.97 }}
               className="relative group px-8 py-4 rounded-2xl font-display font-bold text-base overflow-hidden flex items-center gap-3"
@@ -218,11 +221,27 @@ export default function Footer() {
                 transition={{ duration: 0.5 }}
                 style={{ background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent)' }}
               />
-              <i className="fas fa-paper-plane text-sm" />
+              <i className="fas fa-calendar-check text-sm" />
+              Book a Call
+            </motion.a>
+
+            {/* Secondary: email */}
+            <motion.a
+              href="mailto:sakthi130597@gmail.com"
+              whileHover={{ scale: 1.04, y: -3 }}
+              whileTap={{ scale: 0.97 }}
+              className="px-8 py-4 rounded-2xl font-display font-bold text-base flex items-center gap-3"
+              style={{
+                background: 'rgba(255,255,255,0.04)',
+                border: '1px solid rgba(255,255,255,0.12)',
+                color: 'rgba(226,232,240,0.9)',
+              }}
+            >
+              <i className="fas fa-paper-plane text-sm" style={{ color: '#00D4FF' }} />
               Say Hello
             </motion.a>
 
-            {/* Secondary: resume */}
+            {/* Tertiary: resume */}
             <motion.a
               href={personalInfo.resume}
               target="_blank"
@@ -329,9 +348,10 @@ export default function Footer() {
             ))}
           </nav>
 
-          {/* Copyright */}
-          <span className="font-mono text-xs" style={{ color: 'rgba(100,116,139,0.35)' }}>
-            © {new Date().getFullYear()} Sakthivel Madhu
+          {/* Copyright + build stamp */}
+          <span className="font-mono text-xs flex flex-col md:items-end" style={{ color: 'rgba(100,116,139,0.35)' }}>
+            <span>© {new Date().getFullYear()} Sakthivel Madhu</span>
+            <span className="text-[10px] opacity-70">Last updated · {typeof __BUILD_DATE__ !== 'undefined' ? __BUILD_DATE__ : 'dev'}</span>
           </span>
         </motion.div>
 

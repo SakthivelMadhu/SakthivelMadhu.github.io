@@ -22,7 +22,7 @@ function SkillPill({ skill, color, index, inView }) {
       transition={{ delay: index * 0.022, duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      title={`${skill.name} — ${skill.level}% (${lv.text})`}
+      title={`${skill.name} — ${lv.text}`}
       className="relative flex items-center justify-center rounded-lg cursor-default transition-all duration-200"
       style={{
         height: '36px', padding: '0 12px',
@@ -53,10 +53,7 @@ function SkillBar({ skill, color, index, inView }) {
     >
       <div className="flex items-center justify-between mb-1">
         <span className="text-xs font-mono text-white group-hover:text-white transition-colors">{skill.name}</span>
-        <div className="flex items-center gap-2">
-          <span className="text-xs font-mono px-1.5 py-0.5 rounded" style={{ background: `${lv.color}15`, color: lv.color, border: `1px solid ${lv.color}25`, fontSize: '10px' }}>{lv.text}</span>
-          <span className="text-xs font-bold font-mono" style={{ color }}>{skill.level}%</span>
-        </div>
+        <span className="text-xs font-mono px-1.5 py-0.5 rounded" style={{ background: `${lv.color}15`, color: lv.color, border: `1px solid ${lv.color}25`, fontSize: '10px' }}>{lv.text}</span>
       </div>
       {/* Track */}
       <div className="h-2 rounded-full overflow-hidden" style={{ background: 'rgba(255,255,255,0.05)' }}>
@@ -88,6 +85,7 @@ function SkillCategory({ category, catIndex }) {
 
   const expertCount = category.skills.filter(s => s.level >= 80).length
   const avgLevel = Math.round(category.skills.reduce((a, s) => a + s.level, 0) / category.skills.length)
+  const dominantTier = profLabel(avgLevel)
 
   return (
     <motion.div
@@ -114,10 +112,10 @@ function SkillCategory({ category, catIndex }) {
               </p>
             </div>
           </div>
-          {/* Avg proficiency badge */}
+          {/* Dominant tier badge */}
           <div className="text-right">
-            <div className="text-lg font-black font-display" style={{ color: category.color }}>{avgLevel}%</div>
-            <div className="text-xs font-mono" style={{ color: 'rgba(100,116,139,0.6)' }}>avg</div>
+            <div className="text-sm font-bold font-display" style={{ color: dominantTier.color }}>{dominantTier.text}</div>
+            <div className="text-xs font-mono" style={{ color: 'rgba(100,116,139,0.6)' }}>tier</div>
           </div>
         </div>
 
@@ -210,8 +208,8 @@ export default function Skills() {
           <p className="font-mono text-sm mb-3 tracking-widest uppercase" style={{ color: '#8B5CF6' }}>Technical Arsenal</p>
           <h2 className="section-title text-white">Skills &amp; <span className="gradient-text-cyan">Technologies</span></h2>
           <p className="mt-4 max-w-xl mx-auto text-sm" style={{ color: 'rgba(100,116,139,0.7)' }}>
-            {totalSkills} technologies · {expertSkills} at Expert/Advanced level.
-            Click <strong className="text-white">Show Proficiency</strong> on any category to expand contribution bars.
+            {totalSkills} technologies · {expertSkills} at Expert/Advanced tier.
+            Click <strong className="text-white">Show Proficiency</strong> on any category to expand the breakdown.
           </p>
         </motion.div>
 
@@ -257,18 +255,17 @@ export default function Skills() {
           className="flex flex-wrap gap-3 mb-8 justify-center"
         >
           {[
-            { text: 'Expert',       color: '#00D4FF', range: '90–100%' },
-            { text: 'Advanced',     color: '#10B981', range: '80–89%' },
-            { text: 'Proficient',   color: '#8B5CF6', range: '70–79%' },
-            { text: 'Intermediate', color: '#F59E0B', range: '55–69%' },
-            { text: 'Familiar',     color: '#EC4899', range: '<55%' },
+            { text: 'Expert',       color: '#00D4FF' },
+            { text: 'Advanced',     color: '#10B981' },
+            { text: 'Proficient',   color: '#8B5CF6' },
+            { text: 'Intermediate', color: '#F59E0B' },
+            { text: 'Familiar',     color: '#EC4899' },
           ].map(l => (
             <div key={l.text} className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg border"
               style={{ background: `${l.color}08`, borderColor: `${l.color}20` }}
             >
               <div className="w-2 h-2 rounded-full" style={{ background: l.color }} />
               <span className="text-xs font-mono" style={{ color: l.color }}>{l.text}</span>
-              <span className="text-xs" style={{ color: 'rgba(100,116,139,0.5)' }}>{l.range}</span>
             </div>
           ))}
         </motion.div>

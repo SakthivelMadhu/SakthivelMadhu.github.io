@@ -2,6 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  /* Kill heavy decorative animations entirely */
+  #particles-canvas,
+  .cursor-dot,
+  .cursor-ring {
+    display: none !important;
+  }
+}
+
 @layer base {
   :root {
     --cyan: #00D4FF;

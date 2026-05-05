@@ -48,6 +48,7 @@ const SOCIAL_LINKS = [
   { label: 'GitHub', href: 'https://github.com/SakthivelMadhu', icon: 'fab fa-github', color: '#e2e8f0', description: 'View repositories' },
   { label: 'LinkedIn', href: 'https://www.linkedin.com/in/sakthivel-madhu-864647238/', icon: 'fab fa-linkedin', color: '#0A66C2', description: 'Connect professionally' },
   { label: 'LeetCode', href: 'https://leetcode.com/u/sakthi130597/', icon: 'fas fa-code', color: '#FFA116', description: 'Competitive coding' },
+  { label: 'Replit', href: 'https://replit.com/@sakthivelMadhu', icon: 'fas fa-terminal', color: '#F26207', description: 'Live coding sandbox' },
   { label: 'Email', href: `mailto:${personalInfo.contact.email}`, icon: 'fas fa-envelope', color: '#00D4FF', description: personalInfo.contact.email },
 ]
 

@@ -1,25 +1,27 @@
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { motion, useInView } from 'framer-motion'
 
 const GITHUB_USER = 'SakthivelMadhu'
 
-// GitHub readme stats cards — dark theme matching portfolio palette
+// GitHub readme stats cards — dark theme matching portfolio palette.
+// Use solid bg_color (matches portfolio bg) + hide_border + bright text
+// for reliable rendering across the upstream cache.
 const statsCards = [
   {
     label: 'GitHub Stats',
-    src: `https://github-readme-stats.vercel.app/api?username=${GITHUB_USER}&show_icons=true&theme=transparent&title_color=00D4FF&icon_color=8B5CF6&text_color=94a3b8&border_color=00D4FF20&bg_color=00000000&include_all_commits=true&count_private=true`,
+    src: `https://github-readme-stats.vercel.app/api?username=${GITHUB_USER}&show_icons=true&hide_border=true&bg_color=0a0a0f&title_color=00D4FF&icon_color=8B5CF6&text_color=e2e8f0&include_all_commits=true&count_private=true&card_width=500`,
     color: '#00D4FF',
     span: 'md:col-span-2',
   },
   {
     label: 'Top Languages',
-    src: `https://github-readme-stats.vercel.app/api/top-langs/?username=${GITHUB_USER}&layout=compact&theme=transparent&title_color=8B5CF6&text_color=94a3b8&border_color=8B5CF620&bg_color=00000000&langs_count=8`,
+    src: `https://github-readme-stats.vercel.app/api/top-langs/?username=${GITHUB_USER}&layout=compact&hide_border=true&bg_color=0a0a0f&title_color=8B5CF6&text_color=e2e8f0&langs_count=8&card_width=320`,
     color: '#8B5CF6',
     span: 'md:col-span-1',
   },
   {
     label: 'GitHub Streak',
-    src: `https://github-readme-streak-stats.herokuapp.com?user=${GITHUB_USER}&theme=transparent&hide_border=false&border=EC489920&stroke=EC489940&ring=EC4899&fire=F59E0B&currStreakLabel=EC4899&sideLabels=94a3b8&dates=64748b&background=00000000`,
+    src: `https://github-readme-streak-stats.herokuapp.com?user=${GITHUB_USER}&hide_border=true&background=0a0a0f&stroke=EC489940&ring=EC4899&fire=F59E0B&currStreakLabel=EC4899&sideLabels=e2e8f0&dates=94a3b8&currStreakNum=EC4899&sideNums=e2e8f0`,
     color: '#EC4899',
     span: 'md:col-span-2',
   },
@@ -84,30 +86,69 @@ function StatCard({ card, inView, i }) {
     )
   }
 
+  return <RemoteStatCard card={card} inView={inView} i={i} />
+}
+
+function RemoteStatCard({ card, inView, i }) {
+  const [errored, setErrored] = useState(false)
+  const [loaded, setLoaded] = useState(false)
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.6, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
-      className={`rounded-2xl p-5 border ${card.span} flex flex-col items-center justify-center`}
+      className={`rounded-2xl p-5 border ${card.span} flex flex-col`}
       style={{
         background: 'rgba(255,255,255,0.025)',
         backdropFilter: 'blur(20px)',
         borderColor: `${card.color}25`,
         boxShadow: `0 20px 60px rgba(0,0,0,0.4), 0 0 30px ${card.color}08`,
-        minHeight: '160px',
+        minHeight: 200,
       }}
     >
-      <p className="font-mono text-xs font-bold uppercase tracking-widest mb-3 self-start" style={{ color: card.color }}>
+      <p className="font-mono text-xs font-bold uppercase tracking-widest mb-3" style={{ color: card.color }}>
         {card.label}
       </p>
-      <img
-        src={card.src}
-        alt={card.label}
-        loading="lazy"
-        className="w-full h-auto rounded-xl"
-        style={{ maxWidth: '100%', filter: 'drop-shadow(0 0 16px rgba(0,0,0,0.5))' }}
-      />
+      <div className="flex-1 flex items-center justify-center w-full">
+        {!errored && (
+          <img
+            src={card.src}
+            alt={card.label}
+            loading="lazy"
+            decoding="async"
+            onLoad={() => setLoaded(true)}
+            onError={() => setErrored(true)}
+            className="rounded-xl"
+            style={{
+              width: '100%',
+              maxWidth: '100%',
+              height: 'auto',
+              display: 'block',
+              filter: 'drop-shadow(0 0 16px rgba(0,0,0,0.5))',
+              opacity: loaded ? 1 : 0,
+              transition: 'opacity 0.3s ease',
+            }}
+          />
+        )}
+        {!loaded && !errored && (
+          <div className="text-xs font-mono py-8" style={{ color: 'rgba(148,163,184,0.5)' }}>
+            <i className="fas fa-spinner fa-spin mr-2" />Loading…
+          </div>
+        )}
+        {errored && (
+          <a
+            href={`https://github.com/${GITHUB_USER}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block w-full text-center py-6 rounded-xl text-sm"
+            style={{ background: `${card.color}08`, border: `1px dashed ${card.color}30`, color: card.color }}
+          >
+            <i className="fab fa-github text-xl block mb-2 opacity-70" />
+            Stats unavailable — view on GitHub
+          </a>
+        )}
+      </div>
     </motion.div>
   )
 }

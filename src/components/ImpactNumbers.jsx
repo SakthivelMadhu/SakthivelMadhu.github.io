@@ -3,12 +3,12 @@ import { motion, useInView } from 'framer-motion'
 
 const STATS = [
   { value: 3, suffix: '+', label: 'Years Experience', sub: 'Enterprise backend engineering', color: '#00D4FF', icon: '⚡' },
-  { value: 12, suffix: '+', label: 'Projects Built', sub: 'Enterprise to open source', color: '#8B5CF6', icon: '🏗️' },
-  { value: 92, suffix: '%', label: 'Manual Work Reduced', sub: 'via Doc-AI & automation', color: '#EC4899', icon: '🤖' },
-  { value: 80, suffix: '%', label: 'Faster Onboarding', sub: 'ERP inventory pipeline', color: '#F59E0B', icon: '🚀' },
+  { value: 200, prefix: '~', label: 'Vendors Onboarded', sub: 'Across procurement & ERP', color: '#8B5CF6', icon: '🤝' },
+  { value: 92, suffix: '%', label: 'Manual Work Reduced', sub: 'via Doc-AI + LLM pipeline', color: '#EC4899', icon: '🤖' },
+  { value: 80, suffix: '%', label: 'Faster Onboarding', sub: 'Express Purchase workflow', color: '#F59E0B', icon: '🚀' },
 ]
 
-function CountUp({ target, suffix, color, inView }) {
+function CountUp({ target, suffix, prefix, color, inView }) {
   const [count, setCount] = useState(0)
   useEffect(() => {
     if (!inView) return
@@ -26,7 +26,7 @@ function CountUp({ target, suffix, color, inView }) {
 
   return (
     <span className="font-display font-black tabular-nums" style={{ color }}>
-      {count}{suffix}
+      {prefix || ''}{count}{suffix || ''}
     </span>
   )
 }
@@ -81,7 +81,7 @@ export default function ImpactNumbers() {
                 </motion.div>
 
                 <div className="text-4xl md:text-5xl leading-none mb-2">
-                  <CountUp target={stat.value} suffix={stat.suffix} color={stat.color} inView={inView} />
+                  <CountUp target={stat.value} suffix={stat.suffix} prefix={stat.prefix} color={stat.color} inView={inView} />
                 </div>
 
                 <div className="font-display font-bold text-white text-sm mb-1">{stat.label}</div>

@@ -5,6 +5,10 @@ import fs from 'fs'
 import path from 'path'
 
 export default defineConfig({
+  define: {
+    // Build timestamp surfaced in the footer for "last updated" signal.
+    __BUILD_DATE__: JSON.stringify(new Date().toISOString().slice(0, 10)),
+  },
   plugins: [
     react(),
     viteStaticCopy({

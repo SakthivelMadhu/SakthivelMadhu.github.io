@@ -1,14 +1,16 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { personalInfo } from '../data/portfolio'
 
 const navLinks = [
   { label: 'About', href: '#about' },
   { label: 'Work', href: '#work' },
+  { label: 'Case Studies', href: '#case-studies' },
+  { label: 'Leadership', href: '#leadership' },
+  { label: 'Writing', href: '#writing' },
   { label: 'Projects', href: '#projects' },
   { label: 'Skills', href: '#skills' },
-  { label: 'Achievements', href: '#achievements' },
   { label: 'GitHub', href: '#github' },
-  { label: 'Beyond', href: '#beyond' },
   { label: 'Contact', href: '#contact' },
 ]
 
@@ -21,7 +23,7 @@ export default function Navbar() {
     const onScroll = () => {
       setScrolled(window.scrollY > 50)
 
-      const sections = ['about', 'work', 'projects', 'skills', 'achievements', 'github', 'beyond', 'contact']
+      const sections = ['about', 'work', 'case-studies', 'leadership', 'writing', 'projects', 'skills', 'achievements', 'github', 'beyond', 'contact']
       const current = sections.find((id) => {
         const el = document.getElementById(id)
         if (!el) return false
@@ -43,6 +45,8 @@ export default function Navbar() {
   return (
     <>
       <motion.nav
+        role="navigation"
+        aria-label="Primary"
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: [0.23, 1, 0.32, 1] }}
@@ -56,6 +60,7 @@ export default function Navbar() {
           {/* Logo */}
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            aria-label="Sakthivel Madhu — back to top"
             className="font-display font-bold text-lg text-white hover:text-cyan-400 transition-colors"
           >
             <span className="gradient-text-cyan">SM</span>
@@ -68,6 +73,7 @@ export default function Navbar() {
               <li key={link.href}>
                 <button
                   onClick={() => scrollTo(link.href)}
+                  aria-current={active === link.href ? 'true' : undefined}
                   className={`relative px-4 py-2 text-sm font-medium transition-colors rounded-lg ${
                     active === link.href
                       ? 'text-cyan-400'
@@ -89,12 +95,13 @@ export default function Navbar() {
           {/* CTA + Hamburger */}
           <div className="flex items-center gap-3">
             <a
-              href="https://drive.google.com/file/d/1rLtlLlLSBEiQulypJezq-kmwUfeK5qNW/view?usp=sharing"
+              href={personalInfo.resume}
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="Download resume PDF"
               className="hidden md:inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold text-[#0a0a0f] bg-gradient-to-r from-cyan-400 to-purple-500 rounded-lg hover:opacity-90 transition-opacity"
             >
-              <i className="fas fa-download text-xs" />
+              <i className="fas fa-download text-xs" aria-hidden="true" />
               Resume
             </a>
 
@@ -149,12 +156,13 @@ export default function Navbar() {
               ))}
               <li className="pt-2 border-t border-white/5">
                 <a
-                  href="https://drive.google.com/file/d/1rLtlLlLSBEiQulypJezq-kmwUfeK5qNW/view?usp=sharing"
+                  href={personalInfo.resume}
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label="Download resume PDF"
                   className="flex items-center justify-center gap-2 w-full py-3 text-sm font-semibold text-[#0a0a0f] bg-gradient-to-r from-cyan-400 to-purple-500 rounded-lg"
                 >
-                  <i className="fas fa-download text-xs" />
+                  <i className="fas fa-download text-xs" aria-hidden="true" />
                   Download Resume
                 </a>
               </li>

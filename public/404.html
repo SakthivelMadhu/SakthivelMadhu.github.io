@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0a0a0f" />
+    <meta name="robots" content="noindex" />
+    <title>404 — Sakthivel Madhu</title>
+    <link rel="icon" type="image/webp" href="/img/my%20pic.webp" />
+    <style>
+      :root { color-scheme: dark; }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      html, body {
+        height: 100%;
+        font-family: 'JetBrains Mono', ui-monospace, 'Courier New', monospace;
+        background: #0a0a0f;
+        color: #e2e8f0;
+        overflow: hidden;
+      }
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+      }
+      .glow1, .glow2 {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(80px);
+        pointer-events: none;
+      }
+      .glow1 { top: -10%; left: -10%; width: 500px; height: 500px;
+        background: radial-gradient(circle, rgba(0,212,255,0.18), transparent 70%); }
+      .glow2 { bottom: -15%; right: -10%; width: 600px; height: 600px;
+        background: radial-gradient(circle, rgba(139,92,246,0.18), transparent 70%); }
+      main {
+        position: relative;
+        text-align: center;
+        padding: 2rem;
+        max-width: 560px;
+      }
+      h1 {
+        font-size: clamp(5rem, 14vw, 9rem);
+        font-weight: 900;
+        line-height: 1;
+        background: linear-gradient(135deg, #00D4FF, #8B5CF6, #EC4899);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        margin-bottom: 1rem;
+        letter-spacing: -0.04em;
+      }
+      .label {
+        font-size: 0.75rem;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: #64748b;
+        margin-bottom: 1.5rem;
+      }
+      p {
+        color: rgba(148,163,184,0.8);
+        line-height: 1.6;
+        margin-bottom: 2rem;
+        font-size: 0.95rem;
+      }
+      .actions {
+        display: flex;
+        gap: 0.75rem;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      a {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1.5rem;
+        border-radius: 0.75rem;
+        text-decoration: none;
+        font-size: 0.85rem;
+        font-weight: 600;
+        transition: all 0.2s ease;
+      }
+      a.primary {
+        background: linear-gradient(135deg, #00D4FF, #8B5CF6);
+        color: #fff;
+      }
+      a.primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,212,255,0.25); }
+      a.secondary {
+        background: rgba(255,255,255,0.04);
+        border: 1px solid rgba(255,255,255,0.1);
+        color: rgba(226,232,240,0.85);
+      }
+      a.secondary:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.18); }
+    </style>
+  </head>
+  <body>
+    <div class="glow1"></div>
+    <div class="glow2"></div>
+    <main>
+      <p class="label">Error 404</p>
+      <h1>Lost in the build pipeline</h1>
+      <p>This route doesn't exist — but the rest of the system does. Head back to the home page or jump straight to a section.</p>
+      <div class="actions">
+        <a href="/" class="primary">← Back to Home</a>
+        <a href="/#case-studies" class="secondary">Case Studies</a>
+        <a href="/#contact" class="secondary">Contact</a>
+      </div>
+    </main>
+  </body>
+</html>

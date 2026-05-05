@@ -30,6 +30,9 @@ function CaseStudyModal({ project, onClose }) {
   return (
     <AnimatePresence>
       <motion.div
+        role="dialog"
+        aria-modal="true"
+        aria-label={`${project.title} — case study`}
         className="fixed inset-0 z-[100] flex items-end sm:items-center justify-center p-0 sm:p-6"
         initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
         onClick={onClose}
