@@ -97,6 +97,15 @@ function ZoomBackground() {
   )
 }
 
+// The profile's floating badges sit outside the 340px avatar circle via a fixed
+// negative left/right offset. That's fine once the max-w-7xl container has real
+// side margins (roughly >=1460px viewport), but between md (768px, where the
+// profile column first appears) and xl there's little to no margin, so a fixed
+// -100px offset pushes the badge straight past the viewport edge and clips it.
+// This ramps the offset down to a safe -20px at narrow/medium widths and back
+// up to the full design offset once the layout has room to spare.
+const edgeOffset = (px) => `clamp(-${px}px, calc((1300px - 100vw) / 2 - 20px), -20px)`
+
 // ── Unique floating badge ─────────────────────────────────────────────────────
 function Badge({ children, color, style, delay, animY = [-5, 5, -5], duration = 4 }) {
   return (
@@ -161,7 +170,7 @@ function ProfileSection() {
 
       {/* 🏆 Employee of the Quarter */}
       <Badge color="#F59E0B" delay={2.0} duration={4} animY={[-4, 4, -4]}
-        style={{ top: '-10px', left: '-90px' }}
+        style={{ top: '-10px', left: edgeOffset(90) }}
       >
         <span>🏆</span>
         <span>Emp. of Quarter</span>
@@ -169,23 +178,25 @@ function ProfileSection() {
 
       {/* 🤖 Agentic AI */}
       <Badge color="#6366F1" delay={2.2} duration={5} animY={[4, -4, 4]}
-        style={{ top: '20px', right: '-100px' }}
+        style={{ top: '20px', right: edgeOffset(100) }}
       >
         <span>🤖</span>
         <span>LLM Agents</span>
       </Badge>
 
-      {/* 92% Automation */}
+      {/* 92% Automation — parked below the photo circle's bounding box (not
+          beside it) so pulling it inward on narrow viewports can never put its
+          text behind the (higher-stacked) photo */}
       <Badge color="#10B981" delay={2.4} duration={3.5} animY={[-3, 5, -3]}
-        style={{ bottom: '80px', left: '-80px' }}
+        style={{ bottom: '20px', left: edgeOffset(80) }}
       >
         <span>⚡</span>
         <span>92% Automation</span>
       </Badge>
 
-      {/* ☁️ GCP */}
+      {/* ☁️ GCP — same reasoning as the badge above */}
       <Badge color="#00D4FF" delay={2.6} duration={4.5} animY={[5, -3, 5]}
-        style={{ bottom: '80px', right: '-85px' }}
+        style={{ bottom: '20px', right: edgeOffset(85) }}
       >
         <span>☁️</span>
         <span>GCP Cloud Eng</span>
