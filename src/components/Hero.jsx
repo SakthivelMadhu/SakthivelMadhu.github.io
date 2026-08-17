@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import { personalInfo } from '../data/portfolio'
 
-const TITLES = ['Backend SDE', 'Distributed Systems Engineer', 'AI Platform Engineer', 'Backend Engineer']
+const TITLES = ['Backend SDE', 'Distributed Systems Engineer', 'Agentic AI Engineer', 'AI Platform Engineer']
 
 function TypedTitle() {
   const [index, setIndex] = useState(0)
@@ -167,12 +167,12 @@ function ProfileSection() {
         <span>Emp. of Quarter</span>
       </Badge>
 
-      {/* 🤖 Doc-AI */}
-      <Badge color="#EC4899" delay={2.2} duration={5} animY={[4, -4, 4]}
+      {/* 🤖 Agentic AI */}
+      <Badge color="#6366F1" delay={2.2} duration={5} animY={[4, -4, 4]}
         style={{ top: '20px', right: '-100px' }}
       >
         <span>🤖</span>
-        <span>Doc-AI Expert</span>
+        <span>LLM Agents</span>
       </Badge>
 
       {/* 92% Automation */}
@@ -275,7 +275,8 @@ export default function Hero() {
               className="text-slate-400 text-base md:text-lg max-w-xl leading-relaxed mb-8"
             >
               3+ years building fault-tolerant enterprise platforms —
-              <span style={{ color: '#00D4FF' }}> ERP, HRMS, Finance</span> — with
+              <span style={{ color: '#00D4FF' }}> ERP, HRMS, Finance</span> — plus a
+              <span style={{ color: '#6366F1' }}> production multi-agent LLM system</span>, with
               <span style={{ color: '#8B5CF6' }}> Java 17, Spring Boot &amp; GCP</span>.
               Delivered <span style={{ color: '#10B981' }}>92% automation &amp; 80% faster onboarding</span>.
             </motion.p>
@@ -286,7 +287,7 @@ export default function Hero() {
             >
               {[
                 { icon: '🏆', label: 'Employee of Quarter', color: '#F59E0B' },
-                { icon: '🤖', label: 'Doc-AI Integrated', color: '#EC4899' },
+                { icon: '🤖', label: 'Built LLM Agents', color: '#6366F1' },
                 { icon: '⚡', label: '92% Manual Reduced', color: '#10B981' },
                 { icon: '☁️', label: 'GCP Certified Exp', color: '#00D4FF' },
               ].map((k, i) => (

@@ -156,7 +156,7 @@ function HoloIDCard({ inView }) {
 
         {/* Skill chips */}
         <div style={{ padding: '0 18px 14px', display: 'flex', flexWrap: 'wrap', gap: 5 }}>
-          {['Java 17', 'Spring Boot', 'PostgreSQL', 'Redis', 'Docker', 'GCP Pub/Sub'].map((s, i) => (
+          {['Java 17', 'Spring Boot', 'LLM Agents', 'PostgreSQL', 'Redis', 'Docker', 'GCP Pub/Sub'].map((s, i) => (
             <motion.span key={s}
               initial={{ opacity: 0, scale: 0 }}
               animate={inView ? { opacity: 1, scale: 1 } : {}}
@@ -398,7 +398,7 @@ export default function About() {
                   { icon: '⚙️', label: 'Microservices', color: '#00D4FF' },
                   { icon: '☁️', label: 'Cloud (GCP)', color: '#8B5CF6' },
                   { icon: '🔄', label: 'Event-Driven', color: '#EC4899' },
-                  { icon: '🤖', label: 'AI Integration', color: '#F59E0B' },
+                  { icon: '🤖', label: 'Agentic AI Systems', color: '#F59E0B' },
                   { icon: '📊', label: 'ERP / Finance', color: '#10B981' },
                   { icon: '🔒', label: 'Secure APIs', color: '#00D4FF' },
                 ].map((item, i) => (

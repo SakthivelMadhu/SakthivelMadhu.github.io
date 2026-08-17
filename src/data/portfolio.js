@@ -48,14 +48,14 @@ export const workHistory = [
         isMalaysiaClient: true,
       },
       {
-        title: 'Purchase & ERP Platform',
-        description: 'Owned Purchase Order lifecycle (PR → PO → GRN → Bills → Payments → Returns) including inter-company flows across ~5K invoices/month. Designed Express Purchase workflow, accelerating inventory onboarding ~80%. Integrated Doc-AI + LLM pipeline, cutting manual data entry ~92%.',
-        impact: ['~5K invoices/mo processed', '~80% faster inventory onboarding', '~92% manual entry reduction'],
-      },
-      {
         title: 'Purchase AI Agent — Invoice-to-GRN Automation 🤖',
         description: 'Designed and built a multi-agent AI system (Java, Spring Boot, Google Agent Development Kit, Gemini 2.5) that turns a photographed or PDF vendor invoice straight into a completed GRN — Gemini multimodal vision extracts the invoice, the agent resolves the vendor and deterministically scores every line item against the catalog across 5 priority tiers, streams live checkpoints for human review over SSE, and commits the GRN via the purchase/inventory APIs once confirmed.',
         impact: ['Multi-agent orchestration (ADK)', 'Gemini 2.5 multimodal OCR', '5-tier deterministic matching', 'Zero manual line-item entry'],
+      },
+      {
+        title: 'Purchase & ERP Platform',
+        description: 'Owned Purchase Order lifecycle (PR → PO → GRN → Bills → Payments → Returns) including inter-company flows across ~5K invoices/month. Designed Express Purchase workflow, accelerating inventory onboarding ~80%. Integrated Doc-AI + LLM pipeline, cutting manual data entry ~92%.',
+        impact: ['~5K invoices/mo processed', '~80% faster inventory onboarding', '~92% manual entry reduction'],
       },
       {
         title: 'HRMS — Facial Recognition & Attendance',
@@ -99,8 +99,8 @@ export const workHistory = [
       },
       {
         title: 'System Design & DSA Practice',
-        description: 'Solved 150+ LeetCode problems (~60 Medium / ~25 Hard) focusing on data structures, algorithms, and system design patterns. Studied distributed systems, consistency models, microservices, and observability/SLO design.',
-        impact: ['150+ LeetCode (~60 Medium / ~25 Hard)', 'Distributed systems & consistency', 'Microservices + SLO patterns'],
+        description: 'Solved 250+ LeetCode problems (~125 Medium / ~20 Hard) focusing on data structures, algorithms, and system design patterns. Studied distributed systems, consistency models, microservices, and observability/SLO design.',
+        impact: ['250+ LeetCode (~125 Medium / ~20 Hard)', 'Distributed systems & consistency', 'Microservices + SLO patterns'],
       },
       {
         title: 'Python & Full-Stack Projects',
@@ -189,6 +189,17 @@ export const leadership = {
 
 export const writingPosts = [
   {
+    title: 'Why I Added a Semantic Sanity-Check to an LLM Agent\'s Product Matching',
+    summary: 'A deterministic 5-tier matching engine still made confident wrong calls — the fix wasn\'t a better threshold, it was teaching the agent to double-check itself.',
+    tags: ['Agentic AI', 'Gemini', 'LLM Agents'],
+    icon: '🤖',
+    color: '#6366F1',
+    readTime: '7 min',
+    url: '#', // placeholder — wire up to Hashnode/Dev.to/Medium
+    status: 'draft',
+    date: '2026-09',
+  },
+  {
     title: 'Idempotent Event Processing: Dedup Keys vs Transactional Outbox',
     summary: 'Two patterns for at-least-once Pub/Sub deliveries — when each one wins, with code from a real ERP invoice pipeline.',
     tags: ['Distributed Systems', 'GCP Pub/Sub', 'Idempotency'],
@@ -197,7 +208,7 @@ export const writingPosts = [
     readTime: '8 min',
     url: '#', // placeholder — wire up to Hashnode/Dev.to/Medium
     status: 'draft',
-    date: '2026-05',
+    date: '2026-10',
   },
   {
     title: 'Why I Chose Pub/Sub over Kafka (and When I\'d Switch)',
@@ -208,7 +219,7 @@ export const writingPosts = [
     readTime: '6 min',
     url: '#',
     status: 'draft',
-    date: '2026-04',
+    date: '2026-11',
   },
   {
     title: 'Building a State Machine for Async Vendor Onboarding',
@@ -219,7 +230,7 @@ export const writingPosts = [
     readTime: '10 min',
     url: '#',
     status: 'draft',
-    date: '2026-03',
+    date: '2026-12',
   },
 ]
 

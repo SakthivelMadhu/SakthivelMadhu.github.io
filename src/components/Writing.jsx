@@ -34,7 +34,7 @@ export default function Writing() {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-5">
+        <div className="grid md:grid-cols-2 gap-5">
           {writingPosts.map((post, i) => {
             const isDraft = post.status === 'draft'
             const Tag = isDraft ? 'div' : 'a'

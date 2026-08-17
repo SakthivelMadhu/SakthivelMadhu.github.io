@@ -38,23 +38,34 @@ export default function LeetCodeStats() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    // Use LeetCode stats API (unofficial, commonly used for portfolios)
-    fetch(`https://leetcode-stats-api.herokuapp.com/${LEETCODE_USERNAME}`)
-      .then(r => r.json())
-      .then(data => {
-        if (data.status === 'success' || data.totalSolved !== undefined) {
-          setStats(data)
-        }
+    // Live LeetCode stats (unofficial community API — the previous herokuapp.com
+    // endpoint was permanently dead since Heroku dropped free dynos)
+    Promise.all([
+      fetch(`https://alfa-leetcode-api.onrender.com/${LEETCODE_USERNAME}/solved`).then(r => r.json()),
+      fetch(`https://alfa-leetcode-api.onrender.com/${LEETCODE_USERNAME}`).then(r => r.json()),
+    ])
+      .then(([solved, profile]) => {
+        if (solved?.solvedProblem === undefined) { setLoading(false); return }
+        const allAc = solved.acSubmissionNum?.find(s => s.difficulty === 'All')
+        const allTotal = solved.totalSubmissionNum?.find(s => s.difficulty === 'All')
+        setStats({
+          totalSolved: solved.solvedProblem,
+          easySolved: solved.easySolved,
+          mediumSolved: solved.mediumSolved,
+          hardSolved: solved.hardSolved,
+          ranking: profile?.ranking ?? null,
+          acceptanceRate: allAc && allTotal ? (allAc.submissions / allTotal.submissions) * 100 : null,
+        })
         setLoading(false)
       })
       .catch(() => setLoading(false))
   }, [])
 
-  // Fallback data from portfolio.js mention ("150+ LeetCode problems")
-  const totalSolved = stats?.totalSolved ?? 150
-  const easySolved = stats?.easySolved ?? 60
-  const mediumSolved = stats?.mediumSolved ?? 70
-  const hardSolved = stats?.hardSolved ?? 20
+  // Fallback data if the live API is unreachable — last known-good snapshot
+  const totalSolved = stats?.totalSolved ?? 284
+  const easySolved = stats?.easySolved ?? 133
+  const mediumSolved = stats?.mediumSolved ?? 130
+  const hardSolved = stats?.hardSolved ?? 21
   const ranking = stats?.ranking ?? null
   const acceptanceRate = stats?.acceptanceRate ?? null
 

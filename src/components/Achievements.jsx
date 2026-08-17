@@ -38,31 +38,6 @@ function StarField({ accentColor = '#F59E0B' }) {
   )
 }
 
-function SpinningRings({ color, size = 80 }) {
-  return (
-    <div className="relative flex items-center justify-center flex-shrink-0" style={{ width: size, height: size }}>
-      {/* Ring 1 */}
-      <motion.div animate={{ rotate: 360 }} transition={{ duration: 5, repeat: Infinity, ease: 'linear' }}
-        className="absolute inset-0 rounded-full"
-        style={{ border: `2px solid transparent`, borderTopColor: color, borderRightColor: `${color}50` }} />
-      {/* Ring 2 reverse */}
-      <motion.div animate={{ rotate: -360 }} transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
-        className="absolute rounded-full"
-        style={{ inset: 8, border: `1.5px dashed ${color}40`, borderBottomColor: `${color}80` }} />
-      {/* Ring 3 slow */}
-      <motion.div animate={{ rotate: 360 }} transition={{ duration: 14, repeat: Infinity, ease: 'linear' }}
-        className="absolute rounded-full"
-        style={{ inset: 16, border: `1px solid ${color}20`, borderLeftColor: `${color}60` }} />
-      {/* Icon center */}
-      <div className="relative z-10 flex items-center justify-center rounded-full"
-        style={{ width: size * 0.45, height: size * 0.45, background: `${color}18`, border: `1px solid ${color}40` }}
-      >
-        <slot />
-      </div>
-    </div>
-  )
-}
-
 // ── Employee of the Quarter — hero card ───────────────────────────────────────
 function TrophyHeroCard({ inView }) {
   const ach = achievements.find(a => a.title === 'Employee of the Quarter')

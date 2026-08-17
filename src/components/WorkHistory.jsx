@@ -68,7 +68,7 @@ function TwinleavesPanel() {
   const metrics = [
     { label: '80% faster', sub: 'ERP processing', color: '#00D4FF', z: 45, top: '8%', left: '-6%' },
     { label: '95% accuracy', sub: 'Doc-AI ledger', color: '#10B981', z: 35, top: '5%', right: '-4%' },
-    { label: '4 platforms', sub: 'ERP·VMS·HRMS·Fin', color: '#F59E0B', z: 40, bottom: '10%', left: '-4%' },
+    { label: 'LLM Agent', sub: 'Invoice → GRN', color: '#6366F1', z: 40, bottom: '10%', left: '-4%' },
     { label: 'Real-time', sub: 'Face-ID attendance', color: '#8B5CF6', z: 30, bottom: '8%', right: '-2%' },
   ]
   return (
