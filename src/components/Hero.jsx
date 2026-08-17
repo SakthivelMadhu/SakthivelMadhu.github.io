@@ -321,7 +321,7 @@ export default function Hero() {
                 Hire Me
               </motion.a>
 
-              <motion.a href="https://drive.google.com/file/d/1rLtlLlLSBEiQulypJezq-kmwUfeK5qNW/view?usp=sharing"
+              <motion.a href={personalInfo.resume}
                 target="_blank" rel="noopener noreferrer"
                 whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.97 }}
                 className="inline-flex items-center gap-2 px-5 py-3.5 font-bold text-sm rounded-xl text-white border"
