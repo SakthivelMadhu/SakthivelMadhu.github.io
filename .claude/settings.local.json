@@ -14,7 +14,22 @@
       "Bash(git push *)",
       "Bash(git reset *)",
       "Bash(Get-ChildItem -Path . -Recurse -Depth 2)",
-      "Bash(Select-Object FullName)"
+      "Bash(Select-Object FullName)",
+      "Bash(xargs grep -l \"Resume \\(16\\)\")",
+      "Bash(node -e ' *)",
+      "Bash(command -v identify)",
+      "Bash(identify \"img/my pic.webp\" \"img/photo.jpg\" \"img/erp.webp\" \"img/purchase_system.png\")",
+      "Bash(command -v python3)",
+      "Bash(python3 -c ' *)",
+      "Bash(node *)",
+      "Bash(\"/c/Program Files/Google/Chrome/Application/chrome.exe\" --headless=new --disable-gpu --hide-scrollbars --window-size=1400,1400 --screenshot=hero.png \"http://localhost:5173/\")",
+      "Bash(mkdir -p /c/temp)",
+      "Bash(\"/c/Program Files/Google/Chrome/Application/chrome.exe\" --headless=new --disable-gpu --hide-scrollbars --window-size=1400,1400 --screenshot=C:/temp/hero.png \"http://localhost:5173/\")",
+      "Bash(\"/c/Program Files/Google/Chrome/Application/chrome.exe\" --headless=new --disable-gpu --hide-scrollbars --window-size=1400,1400 --virtual-time-budget=4000 --screenshot=C:/temp/hero.png \"http://localhost:5173/\")",
+      "Bash(\"/c/Program Files/Google/Chrome/Application/chrome.exe\" --headless=new --disable-gpu --hide-scrollbars --window-size=1400,2400 --virtual-time-budget=6000 --screenshot=C:/temp/projects.png \"http://localhost:5173/#projects\")",
+      "Bash(curl -s \"http://localhost:5173/og-generator.html\")",
+      "Bash(curl -s -o ss4-regular.woff2 \"https://fonts.gstatic.com/s/sourceserif4/v14/vEFF2_tTDB4M7-auWDN0ahZJW3IX2ih5nk3AucvUHf6kDXr4.woff2\")",
+      "Bash(curl -s -o ss4-italic.woff2 \"https://fonts.gstatic.com/s/sourceserif4/v14/vEF02_tTDB4M7-auWDN0ahZJW1ge6NmXpVAHV83Bfb_US2D2QYxoUKIkn98pRl9tDMQC.woff2\")"
     ]
   }
 }
