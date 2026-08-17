@@ -721,7 +721,7 @@ export default function Projects() {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="mb-6"
           >
-            <EnterpriseCard project={project} index={0} onOpenCase={setCaseProject} />
+            <EnterpriseCard project={project} index={i} onOpenCase={setCaseProject} />
           </motion.div>
         ))}
 

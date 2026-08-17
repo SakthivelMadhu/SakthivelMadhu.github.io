@@ -328,7 +328,7 @@ export default function CaseStudies() {
             Featured <span className="gradient-text-cyan">Case Studies</span>
           </h2>
           <p className="mt-4 text-sm md:text-base max-w-2xl mx-auto" style={{ color: 'rgba(148,163,184,0.85)' }}>
-            Three production systems — architecture, tradeoffs, and measurable outcomes.
+            Four production systems — architecture, tradeoffs, and measurable outcomes.
           </p>
         </motion.div>
 
